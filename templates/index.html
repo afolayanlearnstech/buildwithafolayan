@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Custom Web Solutions for Modern Dental Practices{% endblock %}
+
+{% block content %}
+    <!-- 
+      This hero section has been strategically rewritten to speak directly
+      to a high-end dental practice owner.
+    -->
+    <div class="hero-section" data-aos="fade-in">
+        <h1 data-aos="fade-up">Custom Web Solutions for Modern Dental Practices</h1>
+        <p data-aos="fade-up" data-aos-delay="100">
+            We build secure, HIPAA-compliant web applications that automate your practice, build patient trust, and attract high-value cases.
+        </p>
+        <!-- The button now leads to the 'Solutions' page, creating a clear user journey -->
+        <a href="{{ url_for('solutions') }}" class="cta-button" data-aos="fade-up" data-aos-delay="200">Explore Our Solutions</a>
+    </div>
+{% endblock %}
+

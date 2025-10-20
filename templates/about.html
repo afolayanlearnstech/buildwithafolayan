@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}About Me | Your Name{% endblock %}
+
+{% block content %}
+<div class="page-header" data-aos="fade-up">
+    <h1>About Me</h1>
+</div>
+<!-- 
+  We will use the original, correct layout structure.
+  It is a flex container that holds both the image and the text.
+-->
+<div class="about-content">
+    <!-- 
+      THIS IS THE FIX:
+      1. We use the original <img> tag with the class "profile-pic".
+      2. We replace its 'src' with the correct path to your image.
+      3. We remove the extra "about-image" div.
+    -->
+    <img src="{{ url_for('static', filename='assets/images/profile.jpeg.jpeg') }}" alt="A professional headshot of the developer" class="profile-pic" data-aos="fade-right">
+    
+    <div class="about-text" data-aos="fade-left" data-aos-delay="100">
+        <h2>AFOLAYAN FAVOUR AYO-OLUWA</h2>
+        <p>
+            Hello! I am a specialist developer and digital strategist with a dedicated focus on the high-end dental industry. My passion is building custom, secure, and efficient web applications that solve the unique challenges of modern dental practices.
+        </p>
+
+        <h3>The Python Advantage</h3>
+        <p>
+            While many dental sites are built on generic templates, I build custom web applications using Python. This is a significant advantage for your practice. A robust Python backend is perfect for securely handling sensitive Patient Health Information (PHI) and gives us the power to create true custom integrations with your Practice Management Software (PMS)—automating your workflows in ways template-based sites simply cannot.
+        </p>
+        <p>
+            My goal is not just to build you a website, but to build you a custom-fit, secure, and automated business solution that reduces administrative workload and helps you attract and retain high-value patients.
+        </p>
+    </div>
+</div>
+{% endblock %}
+
