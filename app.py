@@ -1,17 +1,18 @@
-# Import all necessary tools from Flask
+# Import all necessary tools from Flask and the 'os' module
 from flask import Flask, render_template, request, redirect, url_for, flash
+import os
 
-app = Flask(__name__)
+# --- Production-Ready App Initialization ---
+# This is a more robust way to initialize the app for production.
+# It explicitly tells Flask where to find the templates and static files.
+app = Flask(__name__,
+            static_folder='static',
+            template_folder='templates')
+
 app.config['SECRET_KEY'] = 'a-super-secret-key-that-you-should-change'
-
-# --- DEVELOPMENT SETTING: PREVENT BROWSER CACHING OF STATIC FILES ---
-# This ensures that any changes you make to your CSS file are reflected
-# immediately in the browser without needing to hard-refresh every time.
-app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
-
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0 # Good for development
 
 # --- DYNAMIC CASE STUDY DATA ---
-# This list now holds the data for our "Patient-First" demo
 portfolio_projects = [
     {
         'title': 'The Calming & Trustworthy Design',
@@ -49,17 +50,14 @@ def home():
 def about():
     return render_template('about.html')
 
-# CORRECTED: Route is now '/solutions' to match our strategy
 @app.route('/solutions')
 def solutions():
     return render_template('solutions.html')
 
 @app.route('/portfolio')
 def portfolio():
-    # We pass the project data to the template here
     return render_template('portfolio.html', projects=portfolio_projects)
 
-# NEW: This route makes the HIPAA page live
 @app.route('/hipaa')
 def hipaa():
     return render_template('hipaa.html')
@@ -67,20 +65,24 @@ def hipaa():
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
     if request.method == 'POST':
-        # Updated to capture the new form fields
         name = request.form['name']
         email = request.form['email']
         phone = request.form['phone']
         practice_type = request.form['practice_type']
-        
-        # Updated the print statement for better logging
-        print(f"New Consultation Request: From {name} ({email}), Phone: {phone}, Practice Type: {practice_type}")
-        
-        # Updated the flash message to match the new context
-        flash('Thank you for scheduling a consultation! I will be in touch shortly to confirm.', 'success')
-        
+        challenges = request.form['challenges']
+
+        print(f"--- New Consultation Request ---")
+        print(f"Name: {name}")
+        print(f"Email: {email}")
+        print(f"Phone: {phone}")
+        print(f"Practice Type: {practice_type}")
+        print(f"Challenges: {challenges}")
+        print(f"---------------------------------")
+
+        flash('Thank you for your consultation request! I will get back to you soon.', 'success')
         return redirect(url_for('contact'))
-    return render_template('contact.html')
+    
+    return render_template('contact.html', body_class="contact-body-gradient")
 
 if __name__ == '__main__':
     app.run(debug=True)
