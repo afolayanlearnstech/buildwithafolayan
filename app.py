@@ -3,8 +3,6 @@ from flask import Flask, render_template, request, redirect, url_for, flash
 import os
 
 # --- Production-Ready App Initialization ---
-# This is a more robust way to initialize the app for production.
-# It explicitly tells Flask where to find the templates and static files.
 app = Flask(__name__,
             static_folder='static',
             template_folder='templates')
@@ -12,30 +10,30 @@ app = Flask(__name__,
 app.config['SECRET_KEY'] = 'a-super-secret-key-that-you-should-change'
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0 # Good for development
 
-# --- DYNAMIC CASE STUDY DATA ---
+# --- DYNAMIC CASE STUDY DATA (UPDATED) ---
 portfolio_projects = [
     {
-        'title': 'The Calming & Trustworthy Design',
-        'description': 'A strategic color palette and layout designed to reduce patient anxiety and build immediate trust.',
-        'image_url': 'https://placehold.co/600x400/5c9ead/ffffff?text=Calm+Design',
+        'title': 'The User-Centric UI/UX Design',
+        'description': 'A clean, modern layout and color palette designed to build user trust and make navigation intuitive.',
+        'image_url': 'https://placehold.co/600x400/5c9ead/ffffff?text=Intuitive+Design',
         'case_study_url': '#'
     },
     {
-        'title': 'The High-Converting Service Page',
-        'description': 'An SEO-driven page for "Dental Implants" that answers patient questions and drives high-value bookings.',
-        'image_url': 'https://placehold.co/600x400/343a40/ffffff?text=Service+Page',
+        'title': 'The High-Converting Landing Page',
+        'description': 'An SEO-driven service page focused on clear communication and a strong call-to-action to increase conversions.',
+        'image_url': 'https://placehold.co/600x400/343a40/ffffff?text=Landing+Page',
         'case_study_url': '#'
     },
     {
-        'title': 'The Secure, Automated New Patient Form',
-        'description': 'A demo of our HIPAA-compliant intake system that reduces front-desk workload and eliminates errors.',
+        'title': 'The Secure, Automated Data Form',
+        'description': 'A demo of a secure data intake system that protects user information and reduces administrative workload.',
         'image_url': 'https://placehold.co/600x400/0b0b3b/ffffff?text=Secure+Forms',
         'case_study_url': '#'
     },
     {
-        'title': 'The "Meet The Doctor" Trust-Builder',
-        'description': 'A bio page that goes beyond credentials to build a personal connection with prospective patients.',
-        'image_url': 'https://placehold.co/600x400/6f42c1/ffffff?text=Doctor+Bio',
+        'title': 'The "Meet The Team" Profile Page',
+        'description': 'A professional bio page that goes beyond credentials to build a personal connection and establish authority.',
+        'image_url': 'https://placehold.co/600x400/6f42c1/ffffff?text=Team+Bio',
         'case_study_url': '#'
     }
 ]
@@ -58,24 +56,20 @@ def solutions():
 def portfolio():
     return render_template('portfolio.html', projects=portfolio_projects)
 
-@app.route('/hipaa')
-def hipaa():
-    return render_template('hipaa.html')
-
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
     if request.method == 'POST':
         name = request.form['name']
         email = request.form['email']
         phone = request.form['phone']
-        practice_type = request.form['practice_type']
+        # REMOVED the 'practice_type' line
         challenges = request.form['challenges']
 
         print(f"--- New Consultation Request ---")
         print(f"Name: {name}")
         print(f"Email: {email}")
         print(f"Phone: {phone}")
-        print(f"Practice Type: {practice_type}")
+        # REMOVED the print statement for 'practice_type'
         print(f"Challenges: {challenges}")
         print(f"---------------------------------")
 
@@ -86,4 +80,3 @@ def contact():
 
 if __name__ == '__main__':
     app.run(debug=True)
-

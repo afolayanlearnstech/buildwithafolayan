@@ -4,13 +4,12 @@
 
 {% block content %}
 <div class="page-header" data-aos="fade-up">
-    <h1>The "Patient-First" Approach: A Case Study</h1>
-    <p style="font-size: 1.1rem; color: #555; max-width: 800px; margin: 1rem auto 0;">
-        Below is a deconstruction of our flagship demonstration project, "Dr. Serene Dental Studio." It showcases how strategic design and custom technology can solve the core challenges of a modern dental practice: reducing patient anxiety, automating workflows, and increasing high-value bookings.
+    <h1>A "Business-First" Approach: Case Studies</h1>
+<p style="font-size: 1.1rem; max-width: 800px; margin: 1rem auto 0;">
+            Below is a deconstruction of several key project features. They showcase how strategic design and custom technology can solve the core challenges of a modern business: automating workflows, building user trust, and increasing conversions.
     </p>
 </div>
 <div class="portfolio-grid">
-    <!-- The loop will now generate our case study items from app.py -->
     {% for project in projects %}
         <div class="portfolio-item" data-aos="fade-up" data-aos-delay="{{ loop.index0 * 100 }}">
             <img src="{{ project.image_url }}" alt="Case study for {{ project.title }}">
@@ -23,4 +22,3 @@
     {% endfor %}
 </div>
 {% endblock %}
-
