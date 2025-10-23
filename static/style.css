@@ -692,3 +692,50 @@ footer {
 .services-grid .service-card:nth-child(4) .service-icon svg {
     color: #FF9800; /* Orange icon color */
 }
+
+/* --- ADD THIS TO THE END OF style.css --- */
+
+/* --- Development Process Card Hover Effect --- */
+.process-card {
+    /* ... (existing styles) ... */
+    transition: all 0.3s ease; /* Add transition for a smooth effect */
+}
+
+.process-card:hover {
+    transform: translateY(-5px); /* Lifts the card up */
+    box-shadow: 0 10px 20px rgba(15, 23, 42, 0.05); /* Adds a soft shadow */
+}
+
+/* --- Custom Colors for Process Icons --- */
+
+/* 1. Discovery & Planning (Green/Teal) */
+.process-grid .process-card:nth-child(1) .process-icon {
+    background-color: #E0F7FA; /* Light Teal background */
+}
+.process-grid .process-card:nth-child(1) .process-icon svg {
+    color: #00BCD4; /* Teal icon color */
+}
+
+/* 2. Design & Architecture (Blue) */
+.process-grid .process-card:nth-child(2) .process-icon {
+    background-color: #E3F2FD; /* Light Blue background */
+}
+.process-grid .process-card:nth-child(2) .process-icon svg {
+    color: #2196F3; /* Blue icon color */
+}
+
+/* 3. Development & Testing (Purple) */
+.process-grid .process-card:nth-child(3) .process-icon {
+    background-color: #EDE7F6; /* Light Purple background */
+}
+.process-grid .process-card:nth-child(3) .process-icon svg {
+    color: #673AB7; /* Purple icon color */
+}
+
+/* 4. Launch & Support (Orange) */
+.process-grid .process-card:nth-child(4) .process-icon {
+    background-color: #FFF3E0; /* Light Orange background */
+}
+.process-grid .process-card:nth-child(4) .process-icon svg {
+    color: #FF9800; /* Orange icon color */
+}
