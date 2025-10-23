@@ -175,3 +175,49 @@
     </div>
 </div>
 {% endblock %}
+
+<div class="cta-section" data-aos="fade-up">
+    <div class="container">
+        <h2>Ready to build your next project?</h2>
+        <p>
+            Let's work together to create an exceptional digital solution.
+            Get in touch to discuss your ideas.
+        </p>
+        <a href="{{ url_for('contact') }}" class="cta-button">Get In Touch</a>
+    </div>
+</div>
+
+{% endblock %} ```
+
+#### 2. Add to `style.css`
+
+Open your `style.css` file. Go to the **very end** (after all the responsive media queries) and paste this new block of CSS.
+
+```css
+/* --- ADD THIS TO THE END OF style.css --- */
+
+/* --- High-Contrast CTA Section --- */
+.cta-section {
+    background-color: var(--heading-text); /* Dark Background */
+    padding: 4rem 0;
+    text-align: center;
+    margin-top: 4rem; /* Add some space above it */
+}
+
+.cta-section h2 {
+    color: var(--background); /* White Heading */
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.cta-section p {
+    color: var(--card-bg); /* Off-white Paragraph */
+    font-size: 1.1rem;
+    max-width: 500px;
+    margin: 0 auto 2rem auto;
+}
+
+/* We are re-using the .cta-button style, 
+  which already looks great on a dark or light background.
+*/
+
