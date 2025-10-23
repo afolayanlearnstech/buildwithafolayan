@@ -657,3 +657,38 @@ footer {
         font-size: 2rem;
     }
 }
+/* --- ADD THIS TO THE END OF style.css --- */
+
+/* --- Custom Colors for Service Icons --- */
+
+/* Custom Website Development (first service card) */
+.services-grid .service-card:nth-child(1) .service-icon-wrapper {
+    background-color: #E0F7FA; /* Light Teal background */
+}
+.services-grid .service-card:nth-child(1) .service-icon svg {
+    color: #00BCD4; /* Teal icon color */
+}
+
+/* Python Backend Development (second service card) */
+.services-grid .service-card:nth-child(2) .service-icon-wrapper {
+    background-color: #E3F2FD; /* Light Blue background */
+}
+.services-grid .service-card:nth-child(2) .service-icon svg {
+    color: #2196F3; /* Blue icon color */
+}
+
+/* Workflow & Process Automation (third service card) */
+.services-grid .service-card:nth-child(3) .service-icon-wrapper {
+    background-color: #EDE7F6; /* Light Purple background */
+}
+.services-grid .service-card:nth-child(3) .service-icon svg {
+    color: #673AB7; /* Purple icon color */
+}
+
+/* Website Modernization (fourth service card) */
+.services-grid .service-card:nth-child(4) .service-icon-wrapper {
+    background-color: #FFF3E0; /* Light Orange background */
+}
+.services-grid .service-card:nth-child(4) .service-icon svg {
+    color: #FF9800; /* Orange icon color */
+}
