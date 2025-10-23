@@ -785,3 +785,30 @@ footer {
         max-width: none;
     }
 }
+```css
+/* --- ADD THIS TO THE END OF style.css --- */
+
+/* --- High-Contrast CTA Section --- */
+.cta-section {
+    background-color: var(--heading-text); /* Dark Background */
+    padding: 4rem 0;
+    text-align: center;
+    margin-top: 4rem; /* Add some space above it */
+}
+
+.cta-section h2 {
+    color: var(--background); /* White Heading */
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.cta-section p {
+    color: var(--card-bg); /* Off-white Paragraph */
+    font-size: 1.1rem;
+    max-width: 500px;
+    margin: 0 auto 2rem auto;
+}
+
+/* We are re-using the .cta-button style, 
+  which already looks great on a dark or light background.
+*/
