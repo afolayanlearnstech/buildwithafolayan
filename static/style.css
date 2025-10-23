@@ -33,8 +33,7 @@ body {
     line-height: 1.6;
     background-color: var(--background);
     color: var(--body-text);
-    /* We remove top-padding because the hero is now full-width */
-    padding-top: 0; 
+    padding-top: 100px; /* Restored top-padding */
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -62,19 +61,19 @@ body {
     text-decoration: none;
 }
 
-/* --- HEADER & NAVIGATION (Updated) --- */
+/* --- HEADER & NAVIGATION (Restored) --- */
 header {
-    position: fixed; /* Was 'fixed' - let's make it 'absolute' for the carousel */
-    position: absolute; /* Sits ON TOP of the carousel */
+    position: fixed; /* Restored to 'fixed' */
     top: 0;
     left: 0;
     width: 100%;
-    background: transparent; /* Makes it see-through */
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Light border */
+    background: rgba(255, 255, 255, 0.85); /* Restored light background */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-color);
     z-index: 1000;
     transition: all 0.3s ease;
 }
-/* We will add a "scrolled" class later with JS if we want it to change color */
 
 nav {
     display: flex;
@@ -89,7 +88,7 @@ nav {
 nav .logo {
     font-size: 1.5rem;
     font-weight: 700;
-    color: #FFFFFF; /* White logo text for hero */
+    color: var(--heading-text); /* Restored dark logo text */
     text-decoration: none;
 }
 
@@ -101,7 +100,7 @@ nav ul {
 
 nav ul li a {
     text-decoration: none;
-    color: #FFFFFF; /* White nav links for hero */
+    color: var(--body-text); /* Restored dark nav links */
     font-weight: 600;
     font-size: 0.95rem;
     padding: 0.5rem 1rem;
@@ -110,193 +109,23 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: var(--card-bg);
+    color: var(--heading-text);
 }
 
-/* --- PAGE HEADER (for other pages) --- */
+
+/* --- PAGE HEADER --- */
 .page-header {
     text-align: center;
     padding-bottom: 2rem;
     border-bottom: 1px solid var(--border-color);
     margin-bottom: 2rem;
-    /* Add padding to account for the removed body padding */
-    padding-top: 100px; 
+    padding-top: 2rem; /* Adjusted padding */
 }
 
 .page-header h1 {
     color: var(--heading-text);
     font-size: 2.8rem;
-}
-
-/* --- NEW HERO CAROUSEL V3.0 --- */
-.hero-carousel {
-    width: 100%;
-    height: 700px; /* Specific height for the hero */
-    position: relative;
-    padding: 0;
-    /* This ensures our content starts *after* the header */
-    padding-top: 80px; 
-}
-
-.swiper {
-    width: 100%;
-    height: 100%;
-}
-
-.swiper-slide {
-    text-align: left;
-    background: #fff;
-    display: flex;
-    /* align-items: center; (we removed this) */
-    position: relative;
-    overflow: hidden;
-}
-
-/* This is the background image div */
-.slide-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-}
-
-/* This is the overlay to make text readable */
-.slide-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    /* Dark overlay */
-    background: linear-gradient(90deg, 
-        rgba(0, 0, 0, 0.7) 0%, 
-        rgba(0, 0, 0, 0.4) 50%, 
-        rgba(0, 0, 0, 0.2) 100%);
-}
-
-/* We must wrap slide content in a .container to align it */
-.swiper-slide .container {
-    position: relative;
-    z-index: 2;
-    margin-top: 6rem; /* Push content down from header */
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.hero-content {
-    position: relative;
-    z-index: 2;
-    max-width: 650px;
-    text-align: left;
-    color: #fff; 
-}
-
-.hero-tag {
-    color: var(--heading-text);
-    background-color: rgba(255, 255, 255, 0.9);
-    border: none;
-    margin-bottom: 1.5rem;
-}
-
-.hero-content h1 {
-    font-size: 3.2rem;
-    color: #fff;
-    margin-bottom: 1.5rem;
-    line-height: 1.2;
-}
-
-.hero-content p {
-    font-size: 1.15rem;
-    color: rgba(255, 255, 255, 0.9);
-    font-weight: 400;
-    max-width: 600px;
-    margin: 0 0 2rem 0;
-}
-
-/* Button Group */
-.button-group {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 4rem;
-}
-
-.cta-button {
-    display: inline-block;
-    padding: 0.8rem 1.8rem;
-    background-color: var(--accent-blue);
-    color: #fff;
-    text-decoration: none;
-    font-weight: 600;
-    border-radius: 50px;
-    transition: all 0.3s ease;
-    border: 2px solid var(--accent-blue);
-}
-.cta-button:hover {
-    background-color: var(--accent-blue-hover);
-    border-color: var(--accent-blue-hover);
-    transform: translateY(-3px);
-}
-
-.cta-button-outline {
-    display: inline-block;
-    padding: 0.8rem 1.8rem;
-    text-decoration: none;
-    font-weight: 600;
-    border-radius: 50px;
-    transition: all 0.3s ease;
-    color: #fff;
-    border: 2px solid rgba(255, 255, 255, 0.8);
-}
-.cta-button-outline:hover {
-    background-color: #fff;
-    border-color: #fff;
-    color: var(--heading-text);
-    transform: translateY(-3px);
-}
-
-/* Hero Stats */
-.hero-stats {
-    display: flex;
-    gap: 2.5rem;
-}
-.stat-item strong {
-    display: block;
-    font-size: 2.2rem;
-    font-weight: 700;
-    color: #fff;
-    line-height: 1;
-}
-.stat-item span {
-    font-size: 1rem;
-    color: rgba(255, 255, 255, 0.8);
-}
-
-/* SWIPER DOTS & ARROWS */
-.swiper-pagination-bullet {
-    background-color: rgba(255, 255, 255, 0.5);
-    width: 10px;
-    height: 10px;
-    opacity: 1;
-}
-.swiper-pagination-bullet-active {
-    background-color: var(--accent-blue);
-    border: 2px solid #fff;
-}
-.swiper-button-prev,
-.swiper-button-next {
-    color: #fff;
-    opacity: 0.5;
-    transition: opacity 0.3s ease;
-}
-.swiper-button-prev:hover,
-.swiper-button-next:hover {
-    opacity: 1;
 }
 
 /* --- Homepage Sections --- */
@@ -315,6 +144,120 @@ nav ul li a:hover {
     max-width: 600px;
     margin: 0 auto;
 }
+
+/* --- HERO SECTION V2 (Restored) --- */
+.hero-section-v2 {
+    position: relative;
+    padding: 6rem 0 8rem 0;
+    background-color: var(--card-bg);
+    /* Using Unsplash image directly */
+    background-image: url('https://source.unsplash.com/random/1920x1080/?coding,developer,desk');
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    /* Remove top margin/padding */
+    margin-top: -100px; /* Pulls it up under the fixed header */
+    padding-top: 180px; /* Pushes content down below header */
+}
+.hero-section-v2::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    background: linear-gradient(90deg, 
+        rgba(255, 255, 255, 0.95) 0%, 
+        rgba(255, 255, 255, 0.8) 50%, 
+        rgba(255, 255, 255, 0.3) 100%);
+}
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 650px;
+    text-align: left;
+}
+.hero-tag {
+    display: inline-block;
+    padding: 0.35rem 1rem;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--accent-blue);
+    background-color: var(--accent-blue-light);
+    margin-bottom: 1.5rem;
+}
+.hero-section-v2 h1 {
+    font-size: 3.2rem;
+    color: var(--heading-text);
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+}
+.hero-section-v2 p {
+    font-size: 1.15rem;
+    color: var(--body-text);
+    font-weight: 400;
+    max-width: 600px;
+    margin: 0 0 2rem 0;
+}
+.button-group {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 4rem;
+}
+.cta-button {
+    display: inline-block;
+    padding: 0.8rem 1.8rem;
+    background-color: var(--accent-blue);
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    border: 2px solid var(--accent-blue);
+}
+.cta-button:hover {
+    background-color: var(--accent-blue-hover);
+    border-color: var(--accent-blue-hover);
+    transform: translateY(-3px);
+}
+.cta-button-outline {
+    display: inline-block;
+    padding: 0.8rem 1.8rem;
+    background-color: transparent;
+    color: var(--heading-text);
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    border: 2px solid var(--border-color);
+}
+.cta-button-outline:hover {
+    background-color: var(--card-bg);
+    border-color: var(--accent-blue);
+    color: var(--accent-blue);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+.hero-stats {
+    display: flex;
+    gap: 2.5rem;
+}
+.stat-item strong {
+    display: block;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--heading-text);
+    line-height: 1;
+}
+.stat-item span {
+    font-size: 1rem;
+    color: var(--muted-text);
+}
+
 
 /* --- Services Section --- */
 .services-grid {
@@ -712,7 +655,6 @@ nav ul li a:hover {
     display: flex;
     gap: 3rem;
     padding: 2rem 0;
-    /* Add padding to account for the removed body padding */
     padding-top: 100px;
 }
 .contact-info {
@@ -811,7 +753,7 @@ footer {
         padding: 1rem;
     }
     nav ul {
-        display: none; /* Mobile menu will be added later */
+        display: none;
     }
     .about-section-home {
         gap: 2rem;
@@ -826,19 +768,24 @@ footer {
 
 @media (max-width: 768px) {
     body { 
-        padding-top: 0; 
+        padding-top: 80px; /* Restore top padding for mobile */
     }
     nav {
         justify-content: center;
     }
-    .hero-carousel {
-        height: 600px;
-        padding-top: 60px; /* Shorter header on mobile */
+    .hero-section-v2 {
+        padding: 4rem 0 5rem 0;
+        text-align: center;
+        margin-top: -80px; /* Match new mobile body padding */
+        padding-top: 120px; /* Adjust for 80px mobile header */
     }
     .hero-content {
         text-align: center;
     }
-    .hero-content h1 {
+    .hero-section-v2::before {
+        background: rgba(255, 255, 255, 0.85);
+    }
+    .hero-section-v2 h1 {
         font-size: 2.5rem;
     }
     .button-group {
@@ -846,12 +793,20 @@ footer {
     }
     .hero-stats {
         justify-content: center;
+        gap: 1.5rem;
     }
+    .stat-item strong {
+        font-size: 1.8rem;
+    }
+    .stat-item span {
+        font-size: 0.9rem;
+    }
+
     nav {
-        height: 60px; /* Shorter header on mobile */
+        height: 80px; /* Restore mobile header height */
     }
     .page-header, .contact-page-wrapper {
-        padding-top: 80px; /* Adjust for 60px header */
+        padding-top: 2rem; /* Remove the 100px padding */
     }
 
     .hero-section h1, .page-header h1 {

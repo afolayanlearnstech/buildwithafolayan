@@ -3,89 +3,39 @@
 {% block title %}Custom Python Web Applications for Your Business{% endblock %}
 
 {% block content %}
-<div class="hero-carousel">
-    <div class="swiper">
-        <div class="swiper-wrapper">
-            
-            <div class="swiper-slide">
-                <div class="slide-bg" style="background-image: url('https://source.unsplash.com/random/1920x1080/?coding,developer,desk');"></div>
-                <div class="slide-overlay"></div>
-                
-                <div class="container">
-                    <div class="hero-content">
-                        <span class="hero-tag" data-aos="fade-up">
-                            &lt;/&gt; Full-Stack Developer & Automation Expert
-                        </span>
-                        <h1 data-aos="fade-up" data-aos-delay="100">Building Digital Solutions That Drive Results</h1>
-                        <p data-aos="fade-up" data-aos-delay="200">
-                            I create custom websites, Python backends, and workflow automation solutions.
-                        </p>
-                        <div class="button-group" data-aos="fade-up" data-aos-delay="300">
-                            <a href="{{ url_for('contact') }}" class="cta-button">Start Your Project &rarr;</a>
-                            <a href="{{ url_for('portfolio') }}" class="cta-button-outline">View My Work &rarr;</a>
-                        </div>
-                        <div class="hero-stats" data-aos="fade-up" data-aos-delay="400">
-                            <div class="stat-item"><strong>50+</strong><span>Projects</span></div>
-                            <div class="stat-item"><strong>100%</strong><span>Satisfaction</span></div>
-                            <div class="stat-item"><strong>5+</strong><span>Years Experience</span></div>
-                        </div>
-                    </div>
+<div class="hero-section-v2" data-aos="fade-in">
+    <div class="container">
+        <div class="hero-content">
+            <span class="hero-tag" data-aos="fade-up">
+                &lt;/&gt; Full-Stack Developer & Automation Expert
+            </span>
+            <h1 data-aos="fade-up" data-aos-delay="100">Building Digital Solutions That Drive Results</h1>
+            <p data-aos="fade-up" data-aos-delay="200">
+                I create custom websites, Python backends, and workflow automation
+                solutions that elevate your business efficiency and strengthen your
+                online presence.
+            </p>
+            <div class="button-group" data-aos="fade-up" data-aos-delay="300">
+                <a href="{{ url_for('contact') }}" class="cta-button">Start Your Project &rarr;</a>
+                <a href="{{ url_for('portfolio') }}" class="cta-button-outline">View My Work &rarr;</a>
+            </div>
+            <div class="hero-stats" data-aos="fade-up" data-aos-delay="400">
+                <div class="stat-item">
+                    <strong>50+</strong>
+                    <span>Projects Completed</span>
                 </div>
-            </div> <div class="swiper-slide">
-                <div class="slide-bg" style="background-image: url('https://source.unsplash.com/random/1920x1080/?tech,office,modern');"></div>
-                <div class="slide-overlay"></div>
-                
-                <div class="container">
-                    <div class="hero-content">
-                        <span class="hero-tag" data-aos="fade-up">
-                            &lt;/&gt; Python & Backend Specialist
-                        </span>
-                        <h1 data-aos="fade-up" data-aos-delay="100">Powerful Backends, Seamless Automation</h1>
-                        <p data-aos="fade-up" data-aos-delay="200">
-                            Let's build a scalable and efficient system to power your application.
-                        </p>
-                        <div class="button-group" data-aos="fade-up" data-aos-delay="300">
-                            <a href="{{ url_for('contact') }}" class="cta-button">Start Your Project &rarr;</a>
-                            <a href="{{ url_for('portfolio') }}" class="cta-button-outline">View My Work &rarr;</a>
-                        </div>
-                        <div class="hero-stats" data-aos="fade-up" data-aos-delay="400">
-                            <div class="stat-item"><strong>50+</strong><span>Projects</span></div>
-                            <div class="stat-item"><strong>100%</strong><span>Satisfaction</span></div>
-                            <div class="stat-item"><strong>5+</strong><span>Years Experience</span></div>
-                        </div>
-                    </div>
+                <div class="stat-item">
+                    <strong>100%</strong>
+                    <span>Client Satisfaction</span>
                 </div>
-            </div> <div class="swiper-slide">
-                <div class="slide-bg" style="background-image: url('https://source.unsplash.com/random/1920x1080/?data,backend,server');"></div>
-                <div class="slide-overlay"></div>
-                
-                <div class="container">
-                    <div class="hero-content">
-                        <span class="hero-tag" data-aos="fade-up">
-                            &lt;/&gt; Custom Web Application Expert
-                        </span>
-                        <h1 data-aos="fade-up" data-aos-delay="100">Your Ideas, Brought to Life With Code</h1>
-                        <p data-aos="fade-up" data-aos-delay="200">
-                            From concept to launch, I deliver high-quality, custom-built web solutions.
-                        </p>
-                        <div class="button-group" data-aos="fade-up" data-aos-delay="300">
-                            <a href="{{ url_for('contact') }}" class="cta-button">Start Your Project &rarr;</a>
-                            <a href="{{ url_for('portfolio') }}" class="cta-button-outline">View My Work &rarr;</a>
-                        </div>
-                        <div class="hero-stats" data-aos="fade-up" data-aos-delay="400">
-                            <div class="stat-item"><strong>50+</strong><span>Projects</span></div>
-                            <div class="stat-item"><strong>100%</strong><span>Satisfaction</span></div>
-                            <div class="stat-item"><strong>5+</strong><span>Years Experience</span></div>
-                        </div>
-                    </div>
+                <div class="stat-item">
+                    <strong>5+</strong>
+                    <span>Years Experience</span>
                 </div>
-            </div> </div>
-        <div class="swiper-pagination"></div>
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div>
+            </div>
+        </div>
     </div>
 </div>
-
 
 <div style="background-color: var(--card-bg); padding: 4rem 0; border-top: 1px solid var(--border-color);">
     <div class="container">
@@ -94,8 +44,9 @@
             <h2>Services That Transform Your Business</h2>
             <p>Comprehensive development solutions designed to elevate your digital presence and operational efficiency.</p>
         </div>
+
         <div class="services-grid">
-            
+
             <div class="service-card" data-aos="fade-up">
                 <div class="service-icon-wrapper">
                     <div class="service-icon">
@@ -111,7 +62,7 @@
                     <li>Modern UI/UX</li>
                 </ul>
             </div>
-            
+
             <div class="service-card" data-aos="fade-up" data-aos-delay="100">
                 <div class="service-icon-wrapper">
                     <div class="service-icon">
@@ -127,7 +78,7 @@
                     <li>Cloud Integration</li>
                 </ul>
             </div>
-            
+
             <div class="service-card" data-aos="fade-up">
                 <div class="service-icon-wrapper">
                     <div class="service-icon">
@@ -143,7 +94,7 @@
                     <li>Custom Scripts</li>
                 </ul>
             </div>
-            
+
             <div class="service-card" data-aos="fade-up" data-aos-delay="100">
                 <div class="service-icon-wrapper">
                     <div class="service-icon">
@@ -257,40 +208,5 @@
         <a href="{{ url_for('contact') }}" class="cta-button">Get In Touch</a>
     </div>
 </div>
-
-
-<script>
-    // This script finds our swiper and turns it on
-    const swiper = new Swiper('.swiper', {
-        // Optional parameters
-        direction: 'horizontal',
-        loop: true, // Loops back to the beginning
-        
-        // Autoplay
-        autoplay: {
-            delay: 5000, // 5 seconds
-            disableOnInteraction: false,
-        },
-
-        // If we need pagination (the dots)
-        pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
-        },
-
-        // Navigation arrows
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-        },
-
-        // We also want the AOS animations to re-trigger on each slide change
-        on: {
-            slideChange: function () {
-                AOS.refresh();
-            }
-        }
-    });
-</script>
 
 {% endblock %}
