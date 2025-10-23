@@ -1,28 +1,55 @@
 {% extends "base.html" %}
 
-{% block title %}About Me | Your Name{% endblock %}
+{% block title %}About Me | Afolayan Favour{% endblock %}
 
 {% block content %}
-<div class="page-header" data-aos="fade-up">
-    <h1>About Me</h1>
-</div>
-<div class="about-content">
-    
-    <img src="{{ url_for('static', filename='assets/images/profile.jpeg.jpeg') }}" alt="A professional headshot of the developer" class="profile-pic" data-aos="fade-right">
-    
-    <div class="about-text" data-aos="fade-left" data-aos-delay="100">
-        <h2>AFOLAYAN FAVOUR AYO-OLUWA</h2>
+<div class="container about-section-home" id="about-page">
+    <div class="about-home-text" data-aos="fade-up">
+        <span class="tag">About Me</span>
+        <h2>Passionate Developer Focused on Your Success</h2>
         <p>
-            Hello! I am a specialist developer and digital strategist focused on building custom web applications that solve real-world business challenges and drive efficiency.
-        </p>
-
-        <h3>The Python Advantage</h3>
-        <p>
-            While many websites are built on generic templates, I build custom web applications using Python. This is a significant advantage for your business. A robust Python backend is perfect for securely handling sensitive user data and gives us the power to create true custom integrations with your existing software—automating your workflows in ways template-based sites simply cannot.
+            With years of experience in web development and Python programming, I specialize in creating digital solutions that make a real impact. My approach combines technical expertise with a deep understanding of business needs.
         </p>
         <p>
-            My goal is not just to build you a website, but to build you a custom-fit, secure, and automated business solution that reduces your administrative workload and helps you serve your customers more effectively.
+            I believe in building long-term partnerships with my clients, delivering not just code, but complete solutions that drive growth and efficiency. Every project is an opportunity to create something exceptional.
         </p>
+        <ul class="feature-list">
+            <li>
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path><path d="M2 2l7.586 7.586"></path><circle cx="11" cy="11" r="2"></circle></svg>
+                </div>
+                <div class="feature-text">
+                    <strong>Innovation-Driven</strong>
+                    <span>Always exploring cutting-edge technologies to deliver modern solutions.</span>
+                </div>
+            </li>
+            <li>
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                </div>
+                <div class="feature-text">
+                    <strong>Client-Focused</strong>
+                    <span>Your goals are my priority, with clear communication every step.</span>
+                </div>
+            </li>
+            <li>
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                </div>
+                <div class="feature-text">
+                    <strong>Quality Assured</strong>
+                    <span>Rigorous testing and best practices ensure reliable, maintainable code.</span>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="about-home-image" data-aos="fade-up" data-aos-delay="100">
+        <img src="https://placehold.co/500x600/333/FFF?text=My+Workspace" alt="Afolayan Favour working at a development workstation">
+        
+        <div class="cta-overlay-box">
+            <h3>Let's Build Together</h3>
+            <p>Ready to bring your ideas to life</p>
+        </div>
     </div>
 </div>
 {% endblock %}
