@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}My Portfolio{% endblock %}</title>
     
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}?v=1.2">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
@@ -13,7 +13,7 @@
 <body class="{{ body_class or '' }}">
     <header>
         <nav>
-            <a href="/" class="logo">Portfolio</a>
+            <a href="/" class="logo">Afolayan Favour</a>
             <ul>
                 <li><a href="/">Home</a></li>
                 <li><a href="/about">About</a></li>
@@ -24,29 +24,25 @@
         </nav>
     </header>
 
-    <main class="container">
+    <main>
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
-                <ul class="flash-messages">
-                    {% for category, message in messages %}
-                        <li class="alert alert-{{ category }}">{{ message }}</li>
-                    {% endfor %}
-                </ul>
-            {% endif %}
+                {% endif %}
         {% endwith %}
+        
         {% block content %}{% endblock %}
     </main>
 
     <footer>
-        <p>&copy; 2025 Afolayan Favour Ayo-Oluwa | Custom Web Solutions</p>
+        <p>&copy; 2025 Afolayan Favour Ayo-Oluwa. All rights reserved.</p>
     </footer>
 
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    
     <script>
       AOS.init({
         duration: 800, 
-        once: true, 
+        once: true,
+        offset: 50, /* Start animation a bit sooner */
       });
     </script>
 </body>
