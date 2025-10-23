@@ -812,3 +812,167 @@ footer {
 /* We are re-using the .cta-button style, 
   which already looks great on a dark or light background.
 */
+
+/* --- ADD THIS TO THE END OF style.css --- */
+
+/* --- NEW HERO SECTION V2.0 --- */
+
+/* 1. The main container with the background image */
+.hero-section-v2 {
+    position: relative; /* Required for the overlay */
+    padding: 6rem 0 8rem 0; /* More padding at the bottom for stats */
+    background-color: var(--card-bg); /* Fallback color */
+    
+    /* --- YOUR IMAGE GOES HERE --- */
+    /* 1. Find a background image (e.g., from unsplash.com) */
+    /* 2. Save it in: static/assets/images/hero-bg.jpg */
+    /* 3. Uncomment the line below: */
+    /* background-image: url("{{ url_for('static', filename='assets/images/hero-bg.jpg') }}"); */
+    
+    background-size: cover;
+    background-position: center;
+    overflow: hidden; /* Ensures overlay fits perfectly */
+}
+
+/* 2. The readability overlay */
+.hero-section-v2::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    /* Faint white gradient to fade the image */
+    background: linear-gradient(90deg, 
+        rgba(255, 255, 255, 0.95) 0%, 
+        rgba(255, 255, 255, 0.8) 50%, 
+        rgba(255, 255, 255, 0.3) 100%);
+}
+
+/* 3. The hero content (text, buttons, stats) */
+.hero-content {
+    position: relative; /* Puts content on top of the overlay */
+    z-index: 2;
+    max-width: 650px; /* Stops text from stretching too far */
+    text-align: left; /* Change from our old centered hero */
+}
+
+/* 4. The new tag: </> Full-Stack... */
+.hero-tag {
+    display: inline-block;
+    padding: 0.35rem 1rem;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--accent-blue);
+    background-color: var(--accent-blue-light);
+    margin-bottom: 1.5rem;
+}
+
+/* 5. Adjusting the text to match the new design */
+.hero-section-v2 h1 {
+    font-size: 3.2rem; /* Slightly smaller than old hero */
+    color: var(--heading-text);
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+}
+
+.hero-section-v2 p {
+    font-size: 1.15rem;
+    color: var(--body-text);
+    font-weight: 400;
+    max-width: 600px;
+    margin: 0 0 2rem 0; /* Remove auto margins */
+}
+
+/* 6. The new button group */
+.button-group {
+    display: flex;
+    flex-wrap: wrap; /* Allows buttons to stack on mobile */
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 4rem; /* Space before stats */
+}
+
+/* 7. The new "Ghost" button */
+.cta-button-outline {
+    display: inline-block;
+    padding: 0.8rem 1.8rem;
+    background-color: transparent;
+    color: var(--heading-text);
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    border: 2px solid var(--border-color);
+}
+
+.cta-button-outline:hover {
+    background-color: var(--card-bg);
+    border-color: var(--accent-blue);
+    color: var(--accent-blue);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+/* 8. The new stats section */
+.hero-stats {
+    display: flex;
+    gap: 2.5rem;
+}
+
+.stat-item {
+    text-align: left;
+}
+
+.stat-item strong {
+    display: block;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--heading-text);
+    line-height: 1;
+}
+
+.stat-item span {
+    font-size: 1rem;
+    color: var(--muted-text);
+}
+
+/* 9. Responsive adjustments for the new hero */
+@media (max-width: 768px) {
+    .hero-section-v2 {
+        padding: 4rem 0 5rem 0;
+        text-align: center; /* Center everything on mobile */
+    }
+    
+    .hero-content {
+        text-align: center;
+    }
+    
+    .hero-section-v2::before {
+        /* Make the overlay less directional on mobile */
+        background: rgba(255, 255, 255, 0.85);
+    }
+    
+    .hero-section-v2 h1 {
+        font-size: 2.5rem;
+    }
+    
+    .button-group {
+        justify-content: center; /* Center buttons on mobile */
+        margin-bottom: 3rem;
+    }
+    
+    .hero-stats {
+        justify-content: center; /* Center stats on mobile */
+        gap: 1.5rem;
+    }
+    
+    .stat-item strong {
+        font-size: 1.8rem;
+    }
+    .stat-item span {
+        font-size: 0.9rem;
+    }
+}
