@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}My Portfolio{% endblock %}</title>
     
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}?v=3.0">
     
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
@@ -37,12 +39,14 @@
         <p>&copy; 2025 Afolayan Favour Ayo-Oluwa. All rights reserved.</p>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
       AOS.init({
         duration: 800, 
         once: true,
-        offset: 50, /* Start animation a bit sooner */
+        offset: 50,
       });
     </script>
 </body>

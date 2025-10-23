@@ -976,3 +976,174 @@ footer {
         font-size: 0.9rem;
     }
 }
+
+/* --- ADD THIS TO THE END OF style.css --- */
+
+/* --- NEW HERO CAROUSEL V3.0 --- */
+
+.hero-carousel {
+    width: 100%;
+    /* We set a specific height for the hero area */
+    height: 700px; 
+    position: relative;
+    /* We remove this padding so the slide can fill it */
+    padding: 0; 
+}
+
+.swiper {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative; /* For positioning content */
+    overflow: hidden; /* Ensures overlay fits */
+}
+
+/* This is the background image div */
+.slide-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    /* Add a dark overlay to make text readable */
+    filter: brightness(0.6);
+}
+
+/* We reuse .hero-content, but adjust it for the slide */
+.hero-content {
+    position: relative; /* Sits on top of the slide-bg */
+    z-index: 2;
+    max-width: 650px;
+    text-align: left;
+    /* Change text colors to be light */
+    color: #fff; 
+}
+
+.hero-tag {
+    /* Make the tag stand out on a dark background */
+    color: var(--heading-text);
+    background-color: rgba(255, 255, 255, 0.9);
+    border: none;
+    margin-bottom: 1.5rem;
+}
+
+.hero-section-v2 h1,
+.hero-section-v2 p,
+.hero-content h1, /* Target h1 inside new carousel */
+.hero-content p { /* Target p inside new carousel */
+    color: #fff;
+}
+
+.hero-content h1 {
+    font-size: 3.2rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+}
+
+.hero-content p {
+    font-size: 1.15rem;
+    font-weight: 400;
+    max-width: 600px;
+    margin: 0 0 2rem 0;
+    color: rgba(255, 255, 255, 0.9); /* Slightly transparent white */
+}
+
+/* Adjust button styles for dark background */
+.button-group {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 4rem;
+}
+
+.cta-button {
+    /* The primary button is already good */
+}
+
+.cta-button-outline {
+    /* Make the outline button light */
+    color: #fff;
+    border: 2px solid rgba(255, 255, 255, 0.8);
+}
+
+.cta-button-outline:hover {
+    background-color: #fff;
+    border-color: #fff;
+    color: var(--heading-text); /* Invert text color on hover */
+}
+
+/* Adjust stats for light text */
+.hero-stats {
+    display: flex;
+    gap: 2.5rem;
+}
+
+.stat-item strong {
+    color: #fff;
+}
+
+.stat-item span {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+
+/* --- SWIPER DOTS & ARROWS STYLING --- */
+/* This styles the pagination dots to match our blue brand */
+.swiper-pagination-bullet {
+    background-color: rgba(255, 255, 255, 0.5);
+    width: 10px;
+    height: 10px;
+    opacity: 1;
+}
+
+.swiper-pagination-bullet-active {
+    background-color: var(--accent-blue);
+    border: 2px solid #fff;
+}
+
+/* This styles the navigation arrows */
+.swiper-button-prev,
+.swiper-button-next {
+    color: #fff;
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+}
+
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+    opacity: 1;
+}
+
+/* --- RESPONSIVE FOR CAROUSEL --- */
+@media (max-width: 768px) {
+    .hero-carousel {
+        height: 600px; /* Shorter on mobile */
+    }
+
+    .hero-content {
+        text-align: center;
+    }
+    
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+    
+    .button-group {
+        justify-content: center;
+    }
+    
+    .hero-stats {
+        justify-content: center;
+    }
+}
