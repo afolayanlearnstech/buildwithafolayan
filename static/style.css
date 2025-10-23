@@ -33,7 +33,7 @@ body {
     line-height: 1.6;
     background-color: var(--background);
     color: var(--body-text);
-    padding-top: 100px; /* Restored top-padding */
+    padding-top: 100px; 
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -61,13 +61,13 @@ body {
     text-decoration: none;
 }
 
-/* --- HEADER & NAVIGATION (Restored) --- */
+/* --- HEADER & NAVIGATION --- */
 header {
-    position: fixed; /* Restored to 'fixed' */
+    position: fixed; 
     top: 0;
     left: 0;
     width: 100%;
-    background: rgba(255, 255, 255, 0.85); /* Restored light background */
+    background: rgba(255, 255, 255, 0.85); 
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--border-color);
@@ -88,7 +88,7 @@ nav {
 nav .logo {
     font-size: 1.5rem;
     font-weight: 700;
-    color: var(--heading-text); /* Restored dark logo text */
+    color: var(--heading-text); 
     text-decoration: none;
 }
 
@@ -100,7 +100,7 @@ nav ul {
 
 nav ul li a {
     text-decoration: none;
-    color: var(--body-text); /* Restored dark nav links */
+    color: var(--body-text); 
     font-weight: 600;
     font-size: 0.95rem;
     padding: 0.5rem 1rem;
@@ -120,7 +120,7 @@ nav ul li a:hover {
     padding-bottom: 2rem;
     border-bottom: 1px solid var(--border-color);
     margin-bottom: 2rem;
-    padding-top: 2rem; /* Adjusted padding */
+    padding-top: 2rem; 
 }
 
 .page-header h1 {
@@ -145,19 +145,17 @@ nav ul li a:hover {
     margin: 0 auto;
 }
 
-/* --- HERO SECTION V2 (Restored) --- */
+/* --- HERO SECTION V2 --- */
 .hero-section-v2 {
     position: relative;
     padding: 6rem 0 8rem 0;
     background-color: var(--card-bg);
-    /* Using Unsplash image directly */
     background-image: url('https://source.unsplash.com/random/1920x1080/?coding,developer,desk');
     background-size: cover;
     background-position: center;
     overflow: hidden;
-    /* Remove top margin/padding */
-    margin-top: -100px; /* Pulls it up under the fixed header */
-    padding-top: 180px; /* Pushes content down below header */
+    margin-top: -100px; 
+    padding-top: 180px; 
 }
 .hero-section-v2::before {
     content: '';
@@ -508,6 +506,60 @@ nav ul li a:hover {
     color: var(--muted-text);
 }
 
+/* --- Testimonials Section --- */
+.testimonials-section .section-header p {
+    max-width: 600px;
+}
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 1.5rem;
+    margin-top: 3rem;
+}
+.testimonial-card {
+    background-color: var(--background);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 10px rgba(15, 23, 42, 0.03);
+    transition: all 0.3s ease;
+}
+.testimonial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(15, 23, 42, 0.05);
+}
+.testimonial-quote {
+    font-size: 1rem;
+    color: var(--body-text);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    position: relative;
+    padding-left: 2.5rem;
+}
+.testimonial-quote::before {
+    content: '“';
+    position: absolute;
+    left: 0;
+    top: -0.5rem;
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--accent-blue-light); 
+    line-height: 1;
+}
+.testimonial-author {
+    border-top: 1px solid var(--border-color);
+    padding-top: 1rem;
+}
+.testimonial-author strong {
+    display: block;
+    color: var(--heading-text);
+    font-weight: 600;
+}
+.testimonial-author span {
+    font-size: 0.9rem;
+    color: var(--muted-text);
+}
+
 /* --- ABOUT PAGE (Specifics) --- */
 .about-content {
     display: flex;
@@ -768,16 +820,22 @@ footer {
 
 @media (max-width: 768px) {
     body { 
-        padding-top: 80px; /* Restore top padding for mobile */
+        padding-top: 80px; 
+    }
+    header {
+        height: 60px; /* Shorter header on mobile */
     }
     nav {
-        justify-content: center;
+        height: 60px;
+        padding: 0.5rem 1rem;
+        justify-content: center; /* Center logo if menu is hidden */
     }
+
     .hero-section-v2 {
         padding: 4rem 0 5rem 0;
         text-align: center;
-        margin-top: -80px; /* Match new mobile body padding */
-        padding-top: 120px; /* Adjust for 80px mobile header */
+        margin-top: -80px; 
+        padding-top: 120px; 
     }
     .hero-content {
         text-align: center;
@@ -802,14 +860,11 @@ footer {
         font-size: 0.9rem;
     }
 
-    nav {
-        height: 80px; /* Restore mobile header height */
-    }
     .page-header, .contact-page-wrapper {
-        padding-top: 2rem; /* Remove the 100px padding */
+        padding-top: 2rem; 
     }
 
-    .hero-section h1, .page-header h1 {
+    .page-header h1 { /* Adjusted from combined rule */
         font-size: 2.2rem;
     }
     .section-header h2 {
@@ -867,78 +922,7 @@ footer {
         width: 90%;
         max-width: none;
     }
-}
-
-/* --- ADD THIS TO THE END OF style.css --- */
-
-/* --- Testimonials Section --- */
-.testimonials-section .section-header p {
-    max-width: 600px; /* Consistent paragraph width */
-}
-
-.testimonials-grid {
-    display: grid;
-    /* Creates 3 columns, or fewer if space is limited */
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-    gap: 1.5rem;
-    margin-top: 3rem;
-}
-
-.testimonial-card {
-    background-color: var(--background); /* White card */
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
-    padding: 2rem;
-    box-shadow: 0 4px 10px rgba(15, 23, 42, 0.03); /* Subtle shadow */
-    transition: all 0.3s ease;
-}
-
-.testimonial-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(15, 23, 42, 0.05);
-}
-
-.testimonial-quote {
-    font-size: 1rem;
-    color: var(--body-text);
-    line-height: 1.7;
-    margin-bottom: 1.5rem;
-    position: relative;
-    padding-left: 2.5rem; /* Space for the quote mark */
-}
-
-/* Adds a decorative quote mark */
-.testimonial-quote::before {
-    content: '“';
-    position: absolute;
-    left: 0;
-    top: -0.5rem;
-    font-size: 3rem;
-    font-weight: 700;
-    color: var(--accent-blue-light); 
-    line-height: 1;
-}
-
-.testimonial-author {
-    border-top: 1px solid var(--border-color);
-    padding-top: 1rem;
-}
-
-.testimonial-author strong {
-    display: block;
-    color: var(--heading-text);
-    font-weight: 600;
-}
-
-.testimonial-author span {
-    font-size: 0.9rem;
-    color: var(--muted-text);
-}
-
-/* --- Responsive for Testimonials --- */
-@media (max-width: 768px) {
     .testimonials-grid {
-        /* Already handles stacking via auto-fit, but we can adjust gap */
         gap: 1rem;
     }
     .testimonial-card {
