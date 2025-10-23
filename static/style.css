@@ -929,3 +929,125 @@ footer {
         padding: 1.5rem;
     }
 }
+
+/* --- ADD THIS TO THE END OF style.css --- */
+
+/* --- Mobile Menu --- */
+
+/* Hamburger Button */
+#mobile-menu-button {
+    display: none; /* Hidden by default */
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+    position: absolute; /* Position relative to header */
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1100; /* Above mobile nav */
+}
+
+#mobile-menu-button svg {
+    width: 28px;
+    height: 28px;
+    color: var(--heading-text); /* Dark icon color */
+}
+
+/* Mobile Nav Container */
+#mobile-nav {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 80%; /* Takes up 80% of screen width */
+    max-width: 300px; /* But not more than 300px */
+    height: 100%;
+    background-color: var(--heading-text); /* Dark background */
+    padding: 4rem 2rem 2rem 2rem;
+    box-shadow: 2px 0 15px rgba(0, 0, 0, 0.1);
+    z-index: 1050; /* Below hamburger, above content */
+    transform: translateX(-100%); /* Start off-screen to the left */
+    transition: transform 0.3s ease-in-out; /* Smooth slide */
+}
+
+/* Close button inside mobile nav */
+#mobile-close-button {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.7); /* Light close icon */
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.5rem;
+    cursor: pointer;
+}
+#mobile-close-button svg {
+    width: 24px;
+    height: 24px;
+}
+#mobile-close-button:hover {
+    color: #fff;
+}
+
+
+/* Styling links inside mobile nav */
+#mobile-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* Space between links */
+}
+
+#mobile-nav ul li a {
+    display: block; /* Make links full width */
+    color: #fff; /* White link text */
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 500;
+    padding: 0.75rem 0;
+    transition: color 0.2s ease;
+}
+
+#mobile-nav ul li a:hover {
+    color: var(--accent-blue); /* Highlight on hover */
+}
+
+/* The "Open" State */
+#mobile-nav.mobile-nav-open {
+    transform: translateX(0); /* Slide into view */
+}
+
+/* --- Responsive Adjustments for Header --- */
+@media (max-width: 950px) {
+    /* Hide desktop nav, show hamburger */
+    .desktop-nav ul {
+        display: none; 
+    }
+    #mobile-menu-button {
+        display: block; 
+    }
+    #mobile-nav {
+        display: block; /* Make the container exist, even if hidden off-screen */
+    }
+    /* Adjust main nav alignment */
+    nav.desktop-nav {
+        justify-content: space-between; /* Keep logo left, button right */
+        padding: 1rem; /* Match mobile button padding */
+    }
+}
+
+@media (max-width: 768px) {
+    /* Ensure header height is correct */
+     header {
+        height: 80px; /* Use desktop height */
+    }
+     nav.desktop-nav {
+        height: 80px; /* Match header height */
+    }
+     #mobile-menu-button {
+        /* Position stays the same relative to header */
+    }
+}

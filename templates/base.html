@@ -12,8 +12,27 @@
 </head>
 <body class="{{ body_class or '' }}">
     <header>
-        <nav>
+        <nav class="desktop-nav"> {/* Added class for desktop nav */}
             <a href="/" class="logo">Afolayan Favour</a>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/solutions">Solutions</a></li>
+                <li><a href="/portfolio">Case Studies</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+        </nav>
+
+        {/* --- NEW: Hamburger Button (Mobile Only) --- */}
+        <button id="mobile-menu-button" aria-label="Open Menu">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+
+        {/* --- NEW: Mobile Navigation Menu (Initially Hidden) --- */}
+        <nav id="mobile-nav">
+             <button id="mobile-close-button" aria-label="Close Menu">
+                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+             </button>
             <ul>
                 <li><a href="/">Home</a></li>
                 <li><a href="/about">About</a></li>
@@ -27,7 +46,8 @@
     <main>
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
-                {% endif %}
+                {/* Flash message logic remains */}
+            {% endif %}
         {% endwith %}
         
         {% block content %}{% endblock %}
@@ -37,6 +57,9 @@
         <p>&copy; 2025 Afolayan Favour Ayo-Oluwa. All rights reserved.</p>
     </footer>
 
+    {/* Swiper.js JS link REMOVED */}
+
+    {/* AOS JavaScript Library */}
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
       AOS.init({
@@ -45,5 +68,8 @@
         offset: 50,
       });
     </script>
+
+    {/* --- NEW: Link to our custom JavaScript file --- */}
+    <script src="{{ url_for('static', filename='script.js') }}"></script> 
 </body>
 </html>
