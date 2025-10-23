@@ -59,22 +59,19 @@ def portfolio():
 # --- UPDATED /contact ROUTE ---
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
-    # We must use 'try/except' in case the form is submitted
-    # without a service selected, which could cause a crash.
     try:
         if request.method == 'POST':
             name = request.form['name']
             email = request.form['email']
-            phone = request.form['phone']
-            # NEW: Get the value from the <select> menu
+            # phone = request.form['phone']  <-- THIS LINE IS NOW REMOVED
             service = request.form['service_needed'] 
             challenges = request.form['challenges']
 
             print(f"--- New Consultation Request ---")
             print(f"Name: {name}")
             print(f"Email: {email}")
-            print(f"Phone: {phone}")
-            print(f"Service Needed: {service}") # NEW
+            # print(f"Phone: {phone}")  <-- THIS LINE IS NOW REMOVED
+            print(f"Service Needed: {service}") 
             print(f"Challenges: {challenges}")
             print(f"---------------------------------")
 
