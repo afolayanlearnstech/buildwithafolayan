@@ -535,3 +535,125 @@ footer {
         grid-template-columns: 1fr;
     }
 }
+
+/* --- ADD THIS TO THE END OF STYLE.CSS --- */
+
+/* --- NEW: Contact Page V2.0 Layout --- */
+.contact-page-wrapper {
+    display: flex;
+    gap: 3rem;
+    padding: 2rem 0;
+}
+
+.contact-info {
+    flex-basis: 40%; /* Left column takes 40% width */
+}
+
+.contact-form-wrapper {
+    flex-basis: 60%; /* Right column takes 60% width */
+    background-color: var(--card-bg);
+    padding: 2.5rem;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+}
+
+.contact-info h2 {
+    color: var(--heading-text);
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.contact-info p {
+    font-size: 1rem;
+    color: var(--body-text);
+    margin-bottom: 2rem;
+}
+
+.contact-details {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.contact-details li {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.contact-details strong {
+    display: block;
+    color: var(--heading-text);
+    font-weight: 600;
+}
+
+.contact-details span {
+    color: var(--muted-text);
+    font-size: 0.95rem;
+}
+
+.contact-icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 50px;
+    height: 50px;
+    background-color: var(--accent-green-light);
+    border-radius: 50%;
+}
+
+.contact-icon-wrapper svg {
+    width: 24px;
+    height: 24px;
+    color: var(--accent-green);
+}
+
+/* NEW: Style for the <select> dropdown */
+.form-group select {
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    background: var(--background);
+    color: var(--body-text);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    font-family: 'Poppins', sans-serif;
+    /* Added for dropdown arrow */
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%2364748B' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1em;
+}
+
+.form-group select:focus {
+    outline: none;
+    border-color: var(--accent-green);
+    box-shadow: 0 0 0 3px var(--accent-green-light);
+}
+
+/* Adjust feedback message margin for new layout */
+.feedback-message {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+}
+
+/* --- Responsive for Contact Page --- */
+@media (max-width: 768px) {
+    .contact-page-wrapper {
+        /* Stack columns on mobile */
+        flex-direction: column;
+        gap: 2rem;
+    }
+    
+    .contact-form-wrapper {
+        padding: 1.5rem;
+    }
+
+    .contact-info h2 {
+        font-size: 2rem;
+    }
+}

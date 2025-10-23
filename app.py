@@ -56,27 +56,38 @@ def solutions():
 def portfolio():
     return render_template('portfolio.html', projects=portfolio_projects)
 
+# --- UPDATED /contact ROUTE ---
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
-    if request.method == 'POST':
-        name = request.form['name']
-        email = request.form['email']
-        phone = request.form['phone']
-        # REMOVED the 'practice_type' line
-        challenges = request.form['challenges']
+    # We must use 'try/except' in case the form is submitted
+    # without a service selected, which could cause a crash.
+    try:
+        if request.method == 'POST':
+            name = request.form['name']
+            email = request.form['email']
+            phone = request.form['phone']
+            # NEW: Get the value from the <select> menu
+            service = request.form['service_needed'] 
+            challenges = request.form['challenges']
 
-        print(f"--- New Consultation Request ---")
-        print(f"Name: {name}")
-        print(f"Email: {email}")
-        print(f"Phone: {phone}")
-        # REMOVED the print statement for 'practice_type'
-        print(f"Challenges: {challenges}")
-        print(f"---------------------------------")
+            print(f"--- New Consultation Request ---")
+            print(f"Name: {name}")
+            print(f"Email: {email}")
+            print(f"Phone: {phone}")
+            print(f"Service Needed: {service}") # NEW
+            print(f"Challenges: {challenges}")
+            print(f"---------------------------------")
 
-        flash('Thank you for your consultation request! I will get back to you soon.', 'success')
+            flash('Thank you for your consultation request! I will get back to you soon.', 'success')
+            return redirect(url_for('contact'))
+    except Exception as e:
+        # If anything goes wrong, flash a generic error
+        print(f"Form submission error: {e}")
+        flash('An error occurred. Please try again.', 'error')
         return redirect(url_for('contact'))
     
-    return render_template('contact.html', body_class="contact-body-gradient")
+    # This is what runs on a 'GET' request (just loading the page)
+    return render_template('contact.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
