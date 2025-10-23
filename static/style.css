@@ -10,19 +10,16 @@
     padding: 0;
 }
 
-/* --- NEW UNIFIED COLOR PALETTE --- */
+/* --- UNIFIED COLOR PALETTE --- */
 :root {
-    --background: #FFFFFF;         /* White background */
-    --card-bg: #F8FAFC;            /* Very light gray for cards */
-    --border-color: #E2E8F0;       /* Light gray border */
-    --heading-text: #0F172A;       /* Dark blue/black for headings */
-    --body-text: #475569;          /* Muted gray for body text */
-    
-    /* --- NEW PRIMARY ACCENT --- */
-    --accent-blue: #3B82F6;         /* Modern, vibrant blue */
-    --accent-blue-hover: #2563EB;   /* Darker blue for hover */
-    --accent-blue-light: #EFF6FF;   /* Very light blue for tags/bgs */
-
+    --background: #FFFFFF;
+    --card-bg: #F8FAFC;
+    --border-color: #E2E8F0;
+    --heading-text: #0F172A;
+    --body-text: #475569;
+    --accent-blue: #3B82F6;
+    --accent-blue-hover: #2563EB;
+    --accent-blue-light: #EFF6FF;
     --muted-text: #64748B;
 }
 
@@ -36,7 +33,8 @@ body {
     line-height: 1.6;
     background-color: var(--background);
     color: var(--body-text);
-    padding-top: 100px;
+    /* We remove top-padding because the hero is now full-width */
+    padding-top: 0; 
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -50,7 +48,7 @@ body {
     flex-grow: 1;
 }
 
-/* --- Utility Classes (Updated) --- */
+/* --- Utility Classes --- */
 .tag {
     display: inline-block;
     padding: 0.25rem 0.75rem;
@@ -64,19 +62,19 @@ body {
     text-decoration: none;
 }
 
-/* --- HEADER & NAVIGATION --- */
+/* --- HEADER & NAVIGATION (Updated) --- */
 header {
-    position: fixed;
+    position: fixed; /* Was 'fixed' - let's make it 'absolute' for the carousel */
+    position: absolute; /* Sits ON TOP of the carousel */
     top: 0;
     left: 0;
     width: 100%;
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--border-color);
+    background: transparent; /* Makes it see-through */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Light border */
     z-index: 1000;
     transition: all 0.3s ease;
 }
+/* We will add a "scrolled" class later with JS if we want it to change color */
 
 nav {
     display: flex;
@@ -91,7 +89,7 @@ nav {
 nav .logo {
     font-size: 1.5rem;
     font-weight: 700;
-    color: var(--heading-text);
+    color: #FFFFFF; /* White logo text for hero */
     text-decoration: none;
 }
 
@@ -103,7 +101,7 @@ nav ul {
 
 nav ul li a {
     text-decoration: none;
-    color: var(--body-text);
+    color: #FFFFFF; /* White nav links for hero */
     font-weight: 600;
     font-size: 0.95rem;
     padding: 0.5rem 1rem;
@@ -112,16 +110,17 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-    background-color: var(--card-bg);
-    color: var(--heading-text);
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
-/* --- PAGE HEADER --- */
+/* --- PAGE HEADER (for other pages) --- */
 .page-header {
     text-align: center;
     padding-bottom: 2rem;
     border-bottom: 1px solid var(--border-color);
     margin-bottom: 2rem;
+    /* Add padding to account for the removed body padding */
+    padding-top: 100px; 
 }
 
 .page-header h1 {
@@ -129,44 +128,102 @@ nav ul li a:hover {
     font-size: 2.8rem;
 }
 
-/* --- NEW: Homepage Sections --- */
-.section-header {
-    text-align: center;
-    margin-bottom: 3rem;
+/* --- NEW HERO CAROUSEL V3.0 --- */
+.hero-carousel {
+    width: 100%;
+    height: 700px; /* Specific height for the hero */
+    position: relative;
+    padding: 0;
+    /* This ensures our content starts *after* the header */
+    padding-top: 80px; 
 }
 
-.section-header h2 {
+.swiper {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-slide {
+    text-align: left;
+    background: #fff;
+    display: flex;
+    /* align-items: center; (we removed this) */
+    position: relative;
+    overflow: hidden;
+}
+
+/* This is the background image div */
+.slide-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+}
+
+/* This is the overlay to make text readable */
+.slide-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    /* Dark overlay */
+    background: linear-gradient(90deg, 
+        rgba(0, 0, 0, 0.7) 0%, 
+        rgba(0, 0, 0, 0.4) 50%, 
+        rgba(0, 0, 0, 0.2) 100%);
+}
+
+/* We must wrap slide content in a .container to align it */
+.swiper-slide .container {
+    position: relative;
+    z-index: 2;
+    margin-top: 6rem; /* Push content down from header */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 650px;
+    text-align: left;
+    color: #fff; 
+}
+
+.hero-tag {
     color: var(--heading-text);
-    font-size: 2.5rem;
-    margin-bottom: 0.5rem;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: none;
+    margin-bottom: 1.5rem;
 }
 
-.section-header p {
-    font-size: 1.1rem;
-    color: var(--muted-text);
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-/* --- HOMEPAGE HERO SECTION (Updated) --- */
-.hero-section {
-    text-align: center;
-    padding: 4rem 1rem;
-}
-
-.hero-section h1 {
-    font-size: 3.5rem;
-    color: var(--heading-text);
+.hero-content h1 {
+    font-size: 3.2rem;
+    color: #fff;
     margin-bottom: 1.5rem;
     line-height: 1.2;
 }
 
-.hero-section p {
-    font-size: 1.2rem;
-    color: var(--body-text);
+.hero-content p {
+    font-size: 1.15rem;
+    color: rgba(255, 255, 255, 0.9);
     font-weight: 400;
     max-width: 600px;
-    margin: 0 auto 2rem auto;
+    margin: 0 0 2rem 0;
+}
+
+/* Button Group */
+.button-group {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 4rem;
 }
 
 .cta-button {
@@ -180,22 +237,92 @@ nav ul li a:hover {
     transition: all 0.3s ease;
     border: 2px solid var(--accent-blue);
 }
-
 .cta-button:hover {
     background-color: var(--accent-blue-hover);
     border-color: var(--accent-blue-hover);
     transform: translateY(-3px);
-    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.2);
 }
 
-/* --- Services Section (Updated) --- */
+.cta-button-outline {
+    display: inline-block;
+    padding: 0.8rem 1.8rem;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    color: #fff;
+    border: 2px solid rgba(255, 255, 255, 0.8);
+}
+.cta-button-outline:hover {
+    background-color: #fff;
+    border-color: #fff;
+    color: var(--heading-text);
+    transform: translateY(-3px);
+}
+
+/* Hero Stats */
+.hero-stats {
+    display: flex;
+    gap: 2.5rem;
+}
+.stat-item strong {
+    display: block;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1;
+}
+.stat-item span {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* SWIPER DOTS & ARROWS */
+.swiper-pagination-bullet {
+    background-color: rgba(255, 255, 255, 0.5);
+    width: 10px;
+    height: 10px;
+    opacity: 1;
+}
+.swiper-pagination-bullet-active {
+    background-color: var(--accent-blue);
+    border: 2px solid #fff;
+}
+.swiper-button-prev,
+.swiper-button-next {
+    color: #fff;
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+}
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+    opacity: 1;
+}
+
+/* --- Homepage Sections --- */
+.section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+.section-header h2 {
+    color: var(--heading-text);
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+.section-header p {
+    font-size: 1.1rem;
+    color: var(--muted-text);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* --- Services Section --- */
 .services-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
     margin-top: 2rem;
 }
-
 .service-card {
     background-color: var(--card-bg);
     border: 1px solid var(--border-color);
@@ -203,20 +330,17 @@ nav ul li a:hover {
     padding: 2.5rem;
     transition: all 0.3s ease;
 }
-
 .service-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 20px rgba(15, 23, 42, 0.05);
 }
-
 .service-icon-wrapper {
     display: inline-block;
     padding: 1rem;
-    background-color: var(--accent-blue-light); /* UNIFIED */
+    background-color: var(--accent-blue-light);
     border-radius: 8px;
     margin-bottom: 1.5rem;
 }
-
 .service-icon {
     display: flex;
     align-items: center;
@@ -224,78 +348,67 @@ nav ul li a:hover {
     width: 32px;
     height: 32px;
 }
-
 .service-icon svg {
     width: 28px;
     height: 28px;
-    color: var(--accent-blue); /* UNIFIED */
+    color: var(--accent-blue);
 }
-
 .service-card h3 {
     color: var(--heading-text);
     margin-bottom: 0.5rem;
     font-size: 1.4rem;
 }
-
 .service-card p {
     font-size: 1rem;
     margin-bottom: 1.5rem;
     color: var(--body-text);
 }
-
 .service-features {
     list-style: none;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 0.5rem;
 }
-
 .service-features li {
     font-size: 0.95rem;
     color: var(--muted-text);
     position: relative;
     padding-left: 1.5rem;
 }
-
 .service-features li::before {
     content: '✔';
-    color: var(--accent-blue); /* UNIFIED */
+    color: var(--accent-blue);
     position: absolute;
     left: 0;
     top: 2px;
 }
 
-/* --- Homepage "About Me" Section (Updated) --- */
+/* --- Homepage "About Me" Section --- */
 .about-section-home {
     display: flex;
     gap: 4rem;
     align-items: center;
     padding: 6rem 0;
 }
-
 .about-home-text {
     flex-basis: 55%;
 }
-
 .about-home-image {
     flex-basis: 45%;
     position: relative;
 }
-
 .about-home-text h2 {
     color: var(--heading-text);
     font-size: 2.5rem;
     margin-bottom: 1.5rem;
     line-height: 1.3;
 }
-
 .about-home-text p {
     color: var(--body-text);
     font-size: 1.05rem;
     line-height: 1.7;
     margin-bottom: 1.5rem;
 }
-
 .feature-list {
     list-style: none;
     display: flex;
@@ -303,13 +416,11 @@ nav ul li a:hover {
     gap: 1.5rem;
     margin-top: 2.5rem;
 }
-
 .feature-list li {
     display: flex;
     align-items: center;
     gap: 1rem;
 }
-
 .feature-icon {
     flex-shrink: 0;
     width: 50px;
@@ -318,29 +429,23 @@ nav ul li a:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--accent-blue-light); /* UNIFIED */
-    color: var(--accent-blue); /* UNIFIED */
+    background-color: var(--accent-blue-light);
+    color: var(--accent-blue);
 }
-
 .feature-icon svg {
     width: 24px;
     height: 24px;
 }
-
 .feature-text strong {
     display: block;
     color: var(--heading-text);
     font-weight: 600;
     font-size: 1.1rem;
 }
-
 .feature-text span {
     color: var(--muted-text);
     font-size: 0.95rem;
 }
-
-/* --- REMOVED custom icon colors for feature list --- */
-
 .about-home-image img {
     width: 100%;
     height: auto;
@@ -348,48 +453,42 @@ nav ul li a:hover {
     object-fit: cover;
     box-shadow: 0 20px 40px rgba(15, 23, 42, 0.1);
 }
-
 .cta-overlay-box {
     position: absolute;
     bottom: -40px;
     left: -40px;
-    background-color: var(--accent-blue); /* UNIFIED */
+    background-color: var(--accent-blue);
     color: #fff;
     padding: 2rem;
     border-radius: 12px;
     max-width: 300px;
-    box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3); /* UNIFIED */
+    box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
     transition: all 0.3s ease;
 }
-
 .cta-overlay-box:hover {
     transform: translateY(-5px);
-    box-shadow: 0 15px 35px rgba(59, 130, 246, 0.4); /* UNIFIED */
+    box-shadow: 0 15px 35px rgba(59, 130, 246, 0.4);
 }
-
 .cta-overlay-box h3 {
     font-size: 1.5rem;
     margin-bottom: 0.5rem;
 }
-
 .cta-overlay-box p {
     font-size: 1rem;
-    color: #EFF6FF; /* UNIFIED */
+    color: #EFF6FF;
     margin: 0;
 }
 
-/* --- Development Process Section (Updated) --- */
+/* --- Development Process Section --- */
 .process-section {
     padding: 4rem 0;
 }
-
 .process-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 1.5rem;
     margin-top: 2rem;
 }
-
 .process-card {
     background-color: var(--card-bg);
     border: 1px solid var(--border-color);
@@ -399,12 +498,10 @@ nav ul li a:hover {
     position: relative;
     transition: all 0.3s ease;
 }
-
 .process-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 20px rgba(15, 23, 42, 0.05);
 }
-
 .process-card .process-number {
     font-size: 4rem;
     font-weight: 700;
@@ -414,23 +511,20 @@ nav ul li a:hover {
     left: 1rem;
     z-index: 1;
 }
-
 .process-card .process-icon {
     display: inline-block;
     padding: 1rem;
     border-radius: 8px;
-    background-color: var(--accent-blue-light); /* UNIFIED */
+    background-color: var(--accent-blue-light);
     margin-bottom: 1rem;
     position: relative;
     z-index: 2;
 }
-
 .process-icon svg {
     width: 28px;
     height: 28px;
-    color: var(--accent-blue); /* UNIFIED */
+    color: var(--accent-blue);
 }
-
 .process-card h3 {
     color: var(--heading-text);
     font-size: 1.25rem;
@@ -438,7 +532,6 @@ nav ul li a:hover {
     position: relative;
     z-index: 2;
 }
-
 .process-card p {
     font-size: 0.9rem;
     color: var(--muted-text);
@@ -450,7 +543,6 @@ nav ul li a:hover {
 .tech-section {
     padding: 4rem 0;
 }
-
 .tech-grid {
     display: grid;
     grid-template-columns: repeat(8, 1fr);
@@ -460,23 +552,20 @@ nav ul li a:hover {
     border-radius: 12px;
     border: 1px solid var(--border-color);
 }
-
 .tech-item {
     text-align: center;
 }
-
 .tech-item img {
     height: 48px;
     margin-bottom: 0.5rem;
 }
-
 .tech-item span {
     font-size: 0.9rem;
     font-weight: 500;
     color: var(--muted-text);
 }
 
-/* --- ABOUT PAGE --- */
+/* --- ABOUT PAGE (Specifics) --- */
 .about-content {
     display: flex;
     align-items: flex-start;
@@ -504,7 +593,7 @@ nav ul li a:hover {
     line-height: 1.8;
 }
 
-/* --- PORTFOLIO PAGE (Updated) --- */
+/* --- PORTFOLIO PAGE (Specifics) --- */
 .portfolio-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -533,11 +622,11 @@ nav ul li a:hover {
 .portfolio-item:hover .portfolio-overlay { transform: translateY(0); }
 .portfolio-overlay h3 { color: var(--heading-text); }
 .portfolio-overlay p { color: var(--body-text); opacity: 0; }
-.portfolio-link { color: var(--accent-blue); opacity: 0; } /* UNIFIED */
+.portfolio-link { color: var(--accent-blue); opacity: 0; }
 .portfolio-item:hover .portfolio-overlay p,
 .portfolio-item:hover .portfolio-overlay .portfolio-link { opacity: 1; }
 
-/* --- CONTACT FORM STYLES (Updated) --- */
+/* --- CONTACT FORM (Specifics) --- */
 .contact-container {
     max-width: 700px;
     margin: 2rem auto;
@@ -558,7 +647,7 @@ nav ul li a:hover {
 }
 .form-group input,
 .form-group textarea,
-.form-group select { /* Added select */
+.form-group select {
     padding: 0.75rem 1rem;
     border: 1px solid var(--border-color);
     border-radius: 0.5rem;
@@ -570,13 +659,20 @@ nav ul li a:hover {
 }
 .form-group input:focus,
 .form-group textarea:focus,
-.form-group select:focus { /* Added select */
+.form-group select:focus {
     outline: none;
-    border-color: var(--accent-blue); /* UNIFIED */
-    box-shadow: 0 0 0 3px var(--accent-blue-light); /* UNIFIED */
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 0 3px var(--accent-blue-light);
+}
+.form-group select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%2364748B' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1em;
 }
 .submit-btn {
-    background: var(--accent-blue); /* UNIFIED */
+    background: var(--accent-blue);
     color: #fff;
     border: none;
     padding: 0.9rem 1.2rem;
@@ -587,10 +683,10 @@ nav ul li a:hover {
     transition: background 0.2s ease;
 }
 .submit-btn:hover {
-    background: var(--accent-blue-hover); /* UNIFIED */
+    background: var(--accent-blue-hover);
 }
 
-/* --- FEEDBACK MESSAGES (Updated) --- */
+/* --- FEEDBACK MESSAGES --- */
 .feedback-message {
     margin-top: 1.5rem;
     padding: 1rem 1.2rem;
@@ -601,9 +697,9 @@ nav ul li a:hover {
     transition: all 0.3s ease;
 }
 .feedback-message.success {
-    background-color: var(--accent-blue-light); /* UNIFIED */
-    color: var(--accent-blue-hover); /* UNIFIED */
-    border: 1px solid var(--accent-blue); /* UNIFIED */
+    background-color: var(--accent-blue-light);
+    color: var(--accent-blue-hover);
+    border: 1px solid var(--accent-blue);
 }
 .feedback-message.error {
     background-color: #FFF1F2;
@@ -611,21 +707,13 @@ nav ul li a:hover {
     border: 1px solid #F87171;
 }
 
-/* --- FOOTER --- */
-footer {
-    background-color: var(--card-bg);
-    color: var(--muted-text);
-    text-align: center;
-    padding: 2rem 0;
-    border-top: 1px solid var(--border-color);
-    margin-top: auto;
-}
-
-/* --- Contact Page V2.0 (Updated) --- */
+/* --- Contact Page V2.0 (Specifics) --- */
 .contact-page-wrapper {
     display: flex;
     gap: 3rem;
     padding: 2rem 0;
+    /* Add padding to account for the removed body padding */
+    padding-top: 100px;
 }
 .contact-info {
     flex-basis: 40%;
@@ -675,28 +763,46 @@ footer {
     flex-shrink: 0;
     width: 50px;
     height: 50px;
-    background-color: var(--accent-blue-light); /* UNIFIED */
+    background-color: var(--accent-blue-light);
     border-radius: 50%;
 }
 .contact-icon-wrapper svg {
     width: 24px;
     height: 24px;
-    color: var(--accent-blue); /* UNIFIED */
+    color: var(--accent-blue);
 }
-
-/* Style for the <select> dropdown */
-.form-group select {
-    appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%2364748B' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 1rem center;
-    background-size: 1em;
-}
-
-/* Adjust feedback message margin for new layout */
 .contact-form-wrapper .feedback-message {
     margin-top: 0;
     margin-bottom: 1.5rem;
+}
+
+/* --- High-Contrast CTA Section --- */
+.cta-section {
+    background-color: var(--heading-text);
+    padding: 4rem 0;
+    text-align: center;
+    margin-top: 4rem;
+}
+.cta-section h2 {
+    color: var(--background);
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+.cta-section p {
+    color: var(--card-bg);
+    font-size: 1.1rem;
+    max-width: 500px;
+    margin: 0 auto 2rem auto;
+}
+
+/* --- FOOTER --- */
+footer {
+    background-color: var(--card-bg);
+    color: var(--muted-text);
+    text-align: center;
+    padding: 2rem 0;
+    border-top: 1px solid var(--border-color);
+    margin-top: auto;
 }
 
 /* --- RESPONSIVE ADJUSTMENTS --- */
@@ -705,7 +811,7 @@ footer {
         padding: 1rem;
     }
     nav ul {
-        display: none;
+        display: none; /* Mobile menu will be added later */
     }
     .about-section-home {
         gap: 2rem;
@@ -719,13 +825,35 @@ footer {
 }
 
 @media (max-width: 768px) {
-    body { padding-top: 80px; }
-    header {
-        /* (No changes needed) */
+    body { 
+        padding-top: 0; 
     }
     nav {
         justify-content: center;
     }
+    .hero-carousel {
+        height: 600px;
+        padding-top: 60px; /* Shorter header on mobile */
+    }
+    .hero-content {
+        text-align: center;
+    }
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+    .button-group {
+        justify-content: center;
+    }
+    .hero-stats {
+        justify-content: center;
+    }
+    nav {
+        height: 60px; /* Shorter header on mobile */
+    }
+    .page-header, .contact-page-wrapper {
+        padding-top: 80px; /* Adjust for 60px header */
+    }
+
     .hero-section h1, .page-header h1 {
         font-size: 2.2rem;
     }
@@ -783,367 +911,5 @@ footer {
         margin-right: auto;
         width: 90%;
         max-width: none;
-    }
-}
-```css
-/* --- ADD THIS TO THE END OF style.css --- */
-
-/* --- High-Contrast CTA Section --- */
-.cta-section {
-    background-color: var(--heading-text); /* Dark Background */
-    padding: 4rem 0;
-    text-align: center;
-    margin-top: 4rem; /* Add some space above it */
-}
-
-.cta-section h2 {
-    color: var(--background); /* White Heading */
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-}
-
-.cta-section p {
-    color: var(--card-bg); /* Off-white Paragraph */
-    font-size: 1.1rem;
-    max-width: 500px;
-    margin: 0 auto 2rem auto;
-}
-
-/* We are re-using the .cta-button style, 
-  which already looks great on a dark or light background.
-*/
-
-/* --- ADD THIS TO THE END OF style.css --- */
-
-/* --- NEW HERO SECTION V2.0 --- */
-
-/* 1. The main container with the background image */
-.hero-section-v2 {
-    position: relative; /* Required for the overlay */
-    padding: 6rem 0 8rem 0; /* More padding at the bottom for stats */
-    background-color: var(--card-bg); /* Fallback color */
-    
-    /* --- YOUR IMAGE GOES HERE --- */
-    /* 1. Find a background image (e.g., from unsplash.com) */
-    /* 2. Save it in: static/assets/images/hero-bg.jpg */
-    /* 3. Uncomment the line below: */
-    /* background-image: url("{{ url_for('static', filename='assets/images/hero-bg.jpg') }}"); */
-    
-    background-size: cover;
-    background-position: center;
-    overflow: hidden; /* Ensures overlay fits perfectly */
-}
-
-/* 2. The readability overlay */
-.hero-section-v2::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 1;
-    /* Faint white gradient to fade the image */
-    background: linear-gradient(90deg, 
-        rgba(255, 255, 255, 0.95) 0%, 
-        rgba(255, 255, 255, 0.8) 50%, 
-        rgba(255, 255, 255, 0.3) 100%);
-}
-
-/* 3. The hero content (text, buttons, stats) */
-.hero-content {
-    position: relative; /* Puts content on top of the overlay */
-    z-index: 2;
-    max-width: 650px; /* Stops text from stretching too far */
-    text-align: left; /* Change from our old centered hero */
-}
-
-/* 4. The new tag: </> Full-Stack... */
-.hero-tag {
-    display: inline-block;
-    padding: 0.35rem 1rem;
-    border-radius: 50px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--accent-blue);
-    background-color: var(--accent-blue-light);
-    margin-bottom: 1.5rem;
-}
-
-/* 5. Adjusting the text to match the new design */
-.hero-section-v2 h1 {
-    font-size: 3.2rem; /* Slightly smaller than old hero */
-    color: var(--heading-text);
-    margin-bottom: 1.5rem;
-    line-height: 1.2;
-}
-
-.hero-section-v2 p {
-    font-size: 1.15rem;
-    color: var(--body-text);
-    font-weight: 400;
-    max-width: 600px;
-    margin: 0 0 2rem 0; /* Remove auto margins */
-}
-
-/* 6. The new button group */
-.button-group {
-    display: flex;
-    flex-wrap: wrap; /* Allows buttons to stack on mobile */
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 4rem; /* Space before stats */
-}
-
-/* 7. The new "Ghost" button */
-.cta-button-outline {
-    display: inline-block;
-    padding: 0.8rem 1.8rem;
-    background-color: transparent;
-    color: var(--heading-text);
-    text-decoration: none;
-    font-weight: 600;
-    border-radius: 50px;
-    transition: all 0.3s ease;
-    border: 2px solid var(--border-color);
-}
-
-.cta-button-outline:hover {
-    background-color: var(--card-bg);
-    border-color: var(--accent-blue);
-    color: var(--accent-blue);
-    transform: translateY(-3px);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-}
-
-/* 8. The new stats section */
-.hero-stats {
-    display: flex;
-    gap: 2.5rem;
-}
-
-.stat-item {
-    text-align: left;
-}
-
-.stat-item strong {
-    display: block;
-    font-size: 2.2rem;
-    font-weight: 700;
-    color: var(--heading-text);
-    line-height: 1;
-}
-
-.stat-item span {
-    font-size: 1rem;
-    color: var(--muted-text);
-}
-
-/* 9. Responsive adjustments for the new hero */
-@media (max-width: 768px) {
-    .hero-section-v2 {
-        padding: 4rem 0 5rem 0;
-        text-align: center; /* Center everything on mobile */
-    }
-    
-    .hero-content {
-        text-align: center;
-    }
-    
-    .hero-section-v2::before {
-        /* Make the overlay less directional on mobile */
-        background: rgba(255, 255, 255, 0.85);
-    }
-    
-    .hero-section-v2 h1 {
-        font-size: 2.5rem;
-    }
-    
-    .button-group {
-        justify-content: center; /* Center buttons on mobile */
-        margin-bottom: 3rem;
-    }
-    
-    .hero-stats {
-        justify-content: center; /* Center stats on mobile */
-        gap: 1.5rem;
-    }
-    
-    .stat-item strong {
-        font-size: 1.8rem;
-    }
-    .stat-item span {
-        font-size: 0.9rem;
-    }
-}
-
-/* --- ADD THIS TO THE END OF style.css --- */
-
-/* --- NEW HERO CAROUSEL V3.0 --- */
-
-.hero-carousel {
-    width: 100%;
-    /* We set a specific height for the hero area */
-    height: 700px; 
-    position: relative;
-    /* We remove this padding so the slide can fill it */
-    padding: 0; 
-}
-
-.swiper {
-    width: 100%;
-    height: 100%;
-}
-
-.swiper-slide {
-    text-align: center;
-    font-size: 18px;
-    background: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative; /* For positioning content */
-    overflow: hidden; /* Ensures overlay fits */
-}
-
-/* This is the background image div */
-.slide-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    /* Add a dark overlay to make text readable */
-    filter: brightness(0.6);
-}
-
-/* We reuse .hero-content, but adjust it for the slide */
-.hero-content {
-    position: relative; /* Sits on top of the slide-bg */
-    z-index: 2;
-    max-width: 650px;
-    text-align: left;
-    /* Change text colors to be light */
-    color: #fff; 
-}
-
-.hero-tag {
-    /* Make the tag stand out on a dark background */
-    color: var(--heading-text);
-    background-color: rgba(255, 255, 255, 0.9);
-    border: none;
-    margin-bottom: 1.5rem;
-}
-
-.hero-section-v2 h1,
-.hero-section-v2 p,
-.hero-content h1, /* Target h1 inside new carousel */
-.hero-content p { /* Target p inside new carousel */
-    color: #fff;
-}
-
-.hero-content h1 {
-    font-size: 3.2rem;
-    margin-bottom: 1.5rem;
-    line-height: 1.2;
-}
-
-.hero-content p {
-    font-size: 1.15rem;
-    font-weight: 400;
-    max-width: 600px;
-    margin: 0 0 2rem 0;
-    color: rgba(255, 255, 255, 0.9); /* Slightly transparent white */
-}
-
-/* Adjust button styles for dark background */
-.button-group {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 4rem;
-}
-
-.cta-button {
-    /* The primary button is already good */
-}
-
-.cta-button-outline {
-    /* Make the outline button light */
-    color: #fff;
-    border: 2px solid rgba(255, 255, 255, 0.8);
-}
-
-.cta-button-outline:hover {
-    background-color: #fff;
-    border-color: #fff;
-    color: var(--heading-text); /* Invert text color on hover */
-}
-
-/* Adjust stats for light text */
-.hero-stats {
-    display: flex;
-    gap: 2.5rem;
-}
-
-.stat-item strong {
-    color: #fff;
-}
-
-.stat-item span {
-    color: rgba(255, 255, 255, 0.8);
-}
-
-
-/* --- SWIPER DOTS & ARROWS STYLING --- */
-/* This styles the pagination dots to match our blue brand */
-.swiper-pagination-bullet {
-    background-color: rgba(255, 255, 255, 0.5);
-    width: 10px;
-    height: 10px;
-    opacity: 1;
-}
-
-.swiper-pagination-bullet-active {
-    background-color: var(--accent-blue);
-    border: 2px solid #fff;
-}
-
-/* This styles the navigation arrows */
-.swiper-button-prev,
-.swiper-button-next {
-    color: #fff;
-    opacity: 0.5;
-    transition: opacity 0.3s ease;
-}
-
-.swiper-button-prev:hover,
-.swiper-button-next:hover {
-    opacity: 1;
-}
-
-/* --- RESPONSIVE FOR CAROUSEL --- */
-@media (max-width: 768px) {
-    .hero-carousel {
-        height: 600px; /* Shorter on mobile */
-    }
-
-    .hero-content {
-        text-align: center;
-    }
-    
-    .hero-content h1 {
-        font-size: 2.5rem;
-    }
-    
-    .button-group {
-        justify-content: center;
-    }
-    
-    .hero-stats {
-        justify-content: center;
     }
 }

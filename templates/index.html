@@ -8,7 +8,9 @@
         <div class="swiper-wrapper">
             
             <div class="swiper-slide">
-                <div class="slide-bg" style="background-image: url(https://placehold.co/1920x1080/333/FFF?text=Slide+1);"></div>
+                <div class="slide-bg" style="background-image: url('{{ url_for('static', filename='assets/images/slide1.jpg') }}');"></div>
+                <div class="slide-overlay"></div>
+                
                 <div class="container">
                     <div class="hero-content">
                         <span class="hero-tag" data-aos="fade-up">
@@ -30,7 +32,9 @@
                     </div>
                 </div>
             </div> <div class="swiper-slide">
-                <div class="slide-bg" style="background-image: url(https://placehold.co/1920x1080/555/FFF?text=Slide+2);"></div>
+                <div class="slide-bg" style="background-image: url('{{ url_for('static', filename='assets/images/slide2.jpg') }}');"></div>
+                <div class="slide-overlay"></div>
+                
                 <div class="container">
                     <div class="hero-content">
                         <span class="hero-tag" data-aos="fade-up">
@@ -52,7 +56,9 @@
                     </div>
                 </div>
             </div> <div class="swiper-slide">
-                <div class="slide-bg" style="background-image: url(https://placehold.co/1920x1080/777/FFF?text=Slide+3);"></div>
+                <div class="slide-bg" style="background-image: url('{{ url_for('static', filename='assets/images/slide3.jpg') }}');"></div>
+                <div class="slide-overlay"></div>
+                
                 <div class="container">
                     <div class="hero-content">
                         <span class="hero-tag" data-aos="fade-up">
@@ -89,30 +95,168 @@
             <p>Comprehensive development solutions designed to elevate your digital presence and operational efficiency.</p>
         </div>
         <div class="services-grid">
+            
             <div class="service-card" data-aos="fade-up">
+                <div class="service-icon-wrapper">
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+                    </div>
+                </div>
                 <h3>Custom Website Development</h3>
-                </div>
+                <p>Tailored web solutions built with modern technologies. From landing pages to complex web applications.</p>
+                <ul class="service-features">
+                    <li>Responsive Design</li>
+                    <li>SEO Optimized</li>
+                    <li>Fast Performance</li>
+                    <li>Modern UI/UX</li>
+                </ul>
+            </div>
+            
             <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="service-icon-wrapper">
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                    </div>
+                </div>
                 <h3>Python Backend Development</h3>
-                </div>
+                <p>Robust and scalable backend systems using Python. I build secure APIs, database architectures, and server-side logic.</p>
+                <ul class="service-features">
+                    <li>RESTful APIs</li>
+                    <li>Database Design</li>
+                    <li>Authentication</li>
+                    <li>Cloud Integration</li>
+                </ul>
+            </div>
+            
             <div class="service-card" data-aos="fade-up">
+                <div class="service-icon-wrapper">
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>
+                    </div>
+                </div>
                 <h3>Workflow & Process Automation</h3>
-                </div>
+                <p>Streamline your business operations. I develop custom scripts and tools that eliminate repetitive tasks and save valuable time.</p>
+                <ul class="service-features">
+                    <li>Task Automation</li>
+                    <li>Data Processing</li>
+                    <li>Integration Solutions</li>
+                    <li>Custom Scripts</li>
+                </ul>
+            </div>
+            
             <div class="service-card" data-aos="fade-up" data-aos-delay="100">
-                <h3>Website Modernization</h3>
+                <div class="service-icon-wrapper">
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path><path d="M2 2l7.586 7.586"></path><circle cx="11" cy="11" r="2"></circle></svg>
+                    </div>
                 </div>
+                <h3>Website Modernization</h3>
+                <p>Transform outdated websites into modern, high-performing platforms. I upgrade legacy systems with improved security and user experiences.</p>
+                <ul class="service-features">
+                    <li>Technology Upgrade</li>
+                    <li>Performance Boost</li>
+                    <li>Security Enhancement</li>
+                    <li>UX Improvement</li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>
 
 <div class="container process-section">
+    <div class="section-header" data-aos="fade-up">
+        <span class="tag">How I Work</span>
+        <h2>My Development Process</h2>
+        <p>A proven methodology that ensures quality results and client satisfaction.</p>
     </div>
+
+    <div class="process-grid">
+        <div class="process-card" data-aos="fade-up">
+            <div class="process-number">01</div>
+            <div class="process-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            </div>
+            <h3>Discovery & Planning</h3>
+            <p>We start by understanding your goals, challenges, and requirements to create a detailed project roadmap.</p>
+        </div>
+        <div class="process-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="process-number">02</div>
+            <div class="process-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M4 12v8"></path><path d="M4 4v2"></path><path d="M16 4h4"></path><path d="M4 10h16"></path></svg>
+            </div>
+            <h3>Design & Architecture</h3>
+            <p>I design the solution architecture, create wireframes, and plan the technical implementation for scalability.</p>
+        </div>
+        <div class="process-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="process-number">03</div>
+            <div class="process-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+            </div>
+            <h3>Development & Testing</h3>
+            <p>Building your solution with clean code. Rigorous testing ensures everything works flawlessly before launch.</p>
+        </div>
+        <div class="process-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="process-number">04</div>
+            <div class="process-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path><polyline points="16 6 12 2 8 6"></polyline><line x1="12" y1="2" x2="12" y2="15"></line></svg>
+            </div>
+            <h3>Launch & Support</h3>
+            <p>Smooth deployment to production. Ongoing support ensures your success long after launch.</p>
+        </div>
+    </div>
+</div>
 
 <div class="container tech-section">
+    <div class="section-header" data-aos="fade-up">
+        <h2>Technologies I Work With</h2>
     </div>
+    
+    <div class="tech-grid" data-aos="fade-up">
+        <div class="tech-item">
+            <img src="https://simpleicons.org/icons/python.svg" alt="Python">
+            <span>Python</span>
+        </div>
+        <div class="tech-item">
+            <img src="https://simpleicons.org/icons/flask.svg" alt="Flask">
+            <span>Flask</span>
+        </div>
+        <div class="tech-item">
+            <img src="https://simpleicons.org/icons/docker.svg" alt="Docker">
+            <span>Docker</span>
+        </div>
+        <div class="tech-item">
+            <img src="https://simpleicons.org/icons/amazonaws.svg" alt="AWS">
+            <span>AWS</span>
+        </div>
+        <div class="tech-item">
+            <img src="https://simpleicons.org/icons/postgresql.svg" alt="PostgreSQL">
+            <span>PostgreSQL</span>
+        </div>
+        <div class="tech-item">
+            <img src="https://simpleicons.org/icons/git.svg" alt="Git">
+            <span>Git</span>
+        </div>
+        <div class="tech-item">
+            <img src="https://simpleicons.org/icons/html5.svg" alt="HTML5">
+            <span>HTML5</span>
+        </div>
+        <div class="tech-item">
+            <img src="https://simpleicons.org/icons/css3.svg" alt="CSS3">
+            <span>CSS3</span>
+        </div>
+    </div>
+</div>
 
 <div class="cta-section" data-aos="fade-up">
+    <div class="container">
+        <h2>Ready to build your next project?</h2>
+        <p>
+            Let's work together to create an exceptional digital solution.
+            Get in touch to discuss your ideas.
+        </p>
+        <a href="{{ url_for('contact') }}" class="cta-button">Get In Touch</a>
     </div>
+</div>
 
 
 <script>
@@ -139,6 +283,13 @@
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev',
         },
+
+        // We also want the AOS animations to re-trigger on each slide change
+        on: {
+            slideChange: function () {
+                AOS.refresh();
+            }
+        }
     });
 </script>
 
