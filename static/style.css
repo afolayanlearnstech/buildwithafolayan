@@ -10,16 +10,19 @@
     padding: 0;
 }
 
-/* --- NEW LIGHT THEME COLOR PALETTE --- */
+/* --- NEW UNIFIED COLOR PALETTE --- */
 :root {
     --background: #FFFFFF;         /* White background */
     --card-bg: #F8FAFC;            /* Very light gray for cards */
     --border-color: #E2E8F0;       /* Light gray border */
     --heading-text: #0F172A;       /* Dark blue/black for headings */
     --body-text: #475569;          /* Muted gray for body text */
-    --accent-green: #10B981;       /* The new green accent */
-    --accent-green-hover: #059669; /* Darker green for hover */
-    --accent-green-light: #ECFDF5; /* Very light green for tags */
+    
+    /* --- NEW PRIMARY ACCENT --- */
+    --accent-blue: #3B82F6;         /* Modern, vibrant blue */
+    --accent-blue-hover: #2563EB;   /* Darker blue for hover */
+    --accent-blue-light: #EFF6FF;   /* Very light blue for tags/bgs */
+
     --muted-text: #64748B;
 }
 
@@ -33,7 +36,7 @@ body {
     line-height: 1.6;
     background-color: var(--background);
     color: var(--body-text);
-    padding-top: 100px; /* Adjusted for new header */
+    padding-top: 100px;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -47,27 +50,27 @@ body {
     flex-grow: 1;
 }
 
-/* --- Utility Classes (from screenshots) --- */
+/* --- Utility Classes (Updated) --- */
 .tag {
     display: inline-block;
     padding: 0.25rem 0.75rem;
     border-radius: 50px;
     font-size: 0.85rem;
     font-weight: 600;
-    color: var(--accent-green);
-    background-color: var(--accent-green-light);
-    border: 1px solid var(--accent-green);
+    color: var(--accent-blue);
+    background-color: var(--accent-blue-light);
+    border: 1px solid var(--accent-blue);
     margin-bottom: 1rem;
     text-decoration: none;
 }
 
-/* --- HEADER & NAVIGATION (Updated for Light Theme) --- */
+/* --- HEADER & NAVIGATION --- */
 header {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    background: rgba(255, 255, 255, 0.85); /* Light background */
+    background: rgba(255, 255, 255, 0.85);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--border-color);
@@ -113,7 +116,7 @@ nav ul li a:hover {
     color: var(--heading-text);
 }
 
-/* --- PAGE HEADER (for About, Contact, etc.) --- */
+/* --- PAGE HEADER --- */
 .page-header {
     text-align: center;
     padding-bottom: 2rem;
@@ -149,7 +152,6 @@ nav ul li a:hover {
 .hero-section {
     text-align: center;
     padding: 4rem 1rem;
-    /* Removed background-color and border */
 }
 
 .hero-section h1 {
@@ -170,23 +172,23 @@ nav ul li a:hover {
 .cta-button {
     display: inline-block;
     padding: 0.8rem 1.8rem;
-    background-color: var(--accent-green);
+    background-color: var(--accent-blue);
     color: #fff;
     text-decoration: none;
     font-weight: 600;
     border-radius: 50px;
     transition: all 0.3s ease;
-    border: 2px solid var(--accent-green);
+    border: 2px solid var(--accent-blue);
 }
 
 .cta-button:hover {
-    background-color: var(--accent-green-hover);
-    border-color: var(--accent-green-hover);
+    background-color: var(--accent-blue-hover);
+    border-color: var(--accent-blue-hover);
     transform: translateY(-3px);
-    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.2);
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.2);
 }
 
-/* --- NEW: Services Section --- */
+/* --- Services Section (Updated) --- */
 .services-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -210,7 +212,7 @@ nav ul li a:hover {
 .service-icon-wrapper {
     display: inline-block;
     padding: 1rem;
-    background-color: var(--accent-green-light);
+    background-color: var(--accent-blue-light); /* UNIFIED */
     border-radius: 8px;
     margin-bottom: 1.5rem;
 }
@@ -226,7 +228,7 @@ nav ul li a:hover {
 .service-icon svg {
     width: 28px;
     height: 28px;
-    color: var(--accent-green);
+    color: var(--accent-blue); /* UNIFIED */
 }
 
 .service-card h3 {
@@ -257,13 +259,126 @@ nav ul li a:hover {
 
 .service-features li::before {
     content: '✔';
-    color: var(--accent-green);
+    color: var(--accent-blue); /* UNIFIED */
     position: absolute;
     left: 0;
     top: 2px;
 }
 
-/* --- NEW: Development Process Section --- */
+/* --- Homepage "About Me" Section (Updated) --- */
+.about-section-home {
+    display: flex;
+    gap: 4rem;
+    align-items: center;
+    padding: 6rem 0;
+}
+
+.about-home-text {
+    flex-basis: 55%;
+}
+
+.about-home-image {
+    flex-basis: 45%;
+    position: relative;
+}
+
+.about-home-text h2 {
+    color: var(--heading-text);
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.3;
+}
+
+.about-home-text p {
+    color: var(--body-text);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+}
+
+.feature-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+}
+
+.feature-list li {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.feature-icon {
+    flex-shrink: 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--accent-blue-light); /* UNIFIED */
+    color: var(--accent-blue); /* UNIFIED */
+}
+
+.feature-icon svg {
+    width: 24px;
+    height: 24px;
+}
+
+.feature-text strong {
+    display: block;
+    color: var(--heading-text);
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.feature-text span {
+    color: var(--muted-text);
+    font-size: 0.95rem;
+}
+
+/* --- REMOVED custom icon colors for feature list --- */
+
+.about-home-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    object-fit: cover;
+    box-shadow: 0 20px 40px rgba(15, 23, 42, 0.1);
+}
+
+.cta-overlay-box {
+    position: absolute;
+    bottom: -40px;
+    left: -40px;
+    background-color: var(--accent-blue); /* UNIFIED */
+    color: #fff;
+    padding: 2rem;
+    border-radius: 12px;
+    max-width: 300px;
+    box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3); /* UNIFIED */
+    transition: all 0.3s ease;
+}
+
+.cta-overlay-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(59, 130, 246, 0.4); /* UNIFIED */
+}
+
+.cta-overlay-box h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.cta-overlay-box p {
+    font-size: 1rem;
+    color: #EFF6FF; /* UNIFIED */
+    margin: 0;
+}
+
+/* --- Development Process Section (Updated) --- */
 .process-section {
     padding: 4rem 0;
 }
@@ -282,6 +397,12 @@ nav ul li a:hover {
     padding: 2rem;
     text-align: center;
     position: relative;
+    transition: all 0.3s ease;
+}
+
+.process-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(15, 23, 42, 0.05);
 }
 
 .process-card .process-number {
@@ -298,7 +419,7 @@ nav ul li a:hover {
     display: inline-block;
     padding: 1rem;
     border-radius: 8px;
-    background-color: var(--accent-green-light);
+    background-color: var(--accent-blue-light); /* UNIFIED */
     margin-bottom: 1rem;
     position: relative;
     z-index: 2;
@@ -307,7 +428,7 @@ nav ul li a:hover {
 .process-icon svg {
     width: 28px;
     height: 28px;
-    color: var(--accent-green);
+    color: var(--accent-blue); /* UNIFIED */
 }
 
 .process-card h3 {
@@ -325,7 +446,7 @@ nav ul li a:hover {
     z-index: 2;
 }
 
-/* --- NEW: Technologies Section --- */
+/* --- Technologies Section --- */
 .tech-section {
     padding: 4rem 0;
 }
@@ -355,7 +476,7 @@ nav ul li a:hover {
     color: var(--muted-text);
 }
 
-/* --- ABOUT PAGE (Untouched for now) --- */
+/* --- ABOUT PAGE --- */
 .about-content {
     display: flex;
     align-items: flex-start;
@@ -383,7 +504,7 @@ nav ul li a:hover {
     line-height: 1.8;
 }
 
-/* --- PORTFOLIO PAGE (Untouched for now) --- */
+/* --- PORTFOLIO PAGE (Updated) --- */
 .portfolio-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -412,7 +533,7 @@ nav ul li a:hover {
 .portfolio-item:hover .portfolio-overlay { transform: translateY(0); }
 .portfolio-overlay h3 { color: var(--heading-text); }
 .portfolio-overlay p { color: var(--body-text); opacity: 0; }
-.portfolio-link { color: var(--accent-green); opacity: 0; }
+.portfolio-link { color: var(--accent-blue); opacity: 0; } /* UNIFIED */
 .portfolio-item:hover .portfolio-overlay p,
 .portfolio-item:hover .portfolio-overlay .portfolio-link { opacity: 1; }
 
@@ -436,7 +557,8 @@ nav ul li a:hover {
     color: var(--heading-text);
 }
 .form-group input,
-.form-group textarea {
+.form-group textarea,
+.form-group select { /* Added select */
     padding: 0.75rem 1rem;
     border: 1px solid var(--border-color);
     border-radius: 0.5rem;
@@ -447,13 +569,14 @@ nav ul li a:hover {
     font-family: 'Poppins', sans-serif;
 }
 .form-group input:focus,
-.form-group textarea:focus {
+.form-group textarea:focus,
+.form-group select:focus { /* Added select */
     outline: none;
-    border-color: var(--accent-green);
-    box-shadow: 0 0 0 3px var(--accent-green-light);
+    border-color: var(--accent-blue); /* UNIFIED */
+    box-shadow: 0 0 0 3px var(--accent-blue-light); /* UNIFIED */
 }
 .submit-btn {
-    background: var(--accent-green);
+    background: var(--accent-blue); /* UNIFIED */
     color: #fff;
     border: none;
     padding: 0.9rem 1.2rem;
@@ -464,14 +587,23 @@ nav ul li a:hover {
     transition: background 0.2s ease;
 }
 .submit-btn:hover {
-    background: var(--accent-green-hover);
+    background: var(--accent-blue-hover); /* UNIFIED */
 }
 
 /* --- FEEDBACK MESSAGES (Updated) --- */
+.feedback-message {
+    margin-top: 1.5rem;
+    padding: 1rem 1.2rem;
+    border-radius: 8px;
+    font-weight: 500;
+    text-align: center;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
 .feedback-message.success {
-    background-color: var(--accent-green-light);
-    color: var(--accent-green-hover);
-    border: 1px solid var(--accent-green);
+    background-color: var(--accent-blue-light); /* UNIFIED */
+    color: var(--accent-blue-hover); /* UNIFIED */
+    border: 1px solid var(--accent-blue); /* UNIFIED */
 }
 .feedback-message.error {
     background-color: #FFF1F2;
@@ -479,7 +611,7 @@ nav ul li a:hover {
     border: 1px solid #F87171;
 }
 
-/* --- FOOTER (Updated) --- */
+/* --- FOOTER --- */
 footer {
     background-color: var(--card-bg);
     color: var(--muted-text);
@@ -489,23 +621,110 @@ footer {
     margin-top: auto;
 }
 
+/* --- Contact Page V2.0 (Updated) --- */
+.contact-page-wrapper {
+    display: flex;
+    gap: 3rem;
+    padding: 2rem 0;
+}
+.contact-info {
+    flex-basis: 40%;
+}
+.contact-form-wrapper {
+    flex-basis: 60%;
+    background-color: var(--card-bg);
+    padding: 2.5rem;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+}
+.contact-info h2 {
+    color: var(--heading-text);
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+.contact-info p {
+    font-size: 1rem;
+    color: var(--body-text);
+    margin-bottom: 2rem;
+}
+.contact-details {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+.contact-details li {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.contact-details strong {
+    display: block;
+    color: var(--heading-text);
+    font-weight: 600;
+}
+.contact-details span {
+    color: var(--muted-text);
+    font-size: 0.95rem;
+}
+.contact-icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 50px;
+    height: 50px;
+    background-color: var(--accent-blue-light); /* UNIFIED */
+    border-radius: 50%;
+}
+.contact-icon-wrapper svg {
+    width: 24px;
+    height: 24px;
+    color: var(--accent-blue); /* UNIFIED */
+}
+
+/* Style for the <select> dropdown */
+.form-group select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%2364748B' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1em;
+}
+
+/* Adjust feedback message margin for new layout */
+.contact-form-wrapper .feedback-message {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+}
+
 /* --- RESPONSIVE ADJUSTMENTS --- */
 @media (max-width: 950px) {
     nav {
         padding: 1rem;
     }
     nav ul {
-        display: none; /* Will add mobile menu later */
+        display: none;
+    }
+    .about-section-home {
+        gap: 2rem;
+    }
+    .cta-overlay-box {
+        left: 20px;
+        bottom: -30px;
+        max-width: 250px;
+        padding: 1.5rem;
     }
 }
 
 @media (max-width: 768px) {
     body { padding-top: 80px; }
     header {
-        /* Remove mobile-specific header for now */
+        /* (No changes needed) */
     }
     nav {
-        justify-content: center; /* Center logo on mobile */
+        justify-content: center;
     }
     .hero-section h1, .page-header h1 {
         font-size: 2.2rem;
@@ -520,7 +739,6 @@ footer {
         grid-template-columns: 1fr;
     }
     .tech-grid {
-        /* Make tech grid 2 columns on mobile */
         grid-template-columns: repeat(3, 1fr);
     }
     .about-content {
@@ -534,372 +752,33 @@ footer {
     .service-features {
         grid-template-columns: 1fr;
     }
-}
-
-/* --- ADD THIS TO THE END OF STYLE.CSS --- */
-
-/* --- NEW: Contact Page V2.0 Layout --- */
-.contact-page-wrapper {
-    display: flex;
-    gap: 3rem;
-    padding: 2rem 0;
-}
-
-.contact-info {
-    flex-basis: 40%; /* Left column takes 40% width */
-}
-
-.contact-form-wrapper {
-    flex-basis: 60%; /* Right column takes 60% width */
-    background-color: var(--card-bg);
-    padding: 2.5rem;
-    border-radius: 12px;
-    border: 1px solid var(--border-color);
-}
-
-.contact-info h2 {
-    color: var(--heading-text);
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    line-height: 1.2;
-}
-
-.contact-info p {
-    font-size: 1rem;
-    color: var(--body-text);
-    margin-bottom: 2rem;
-}
-
-.contact-details {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-}
-
-.contact-details li {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-
-.contact-details strong {
-    display: block;
-    color: var(--heading-text);
-    font-weight: 600;
-}
-
-.contact-details span {
-    color: var(--muted-text);
-    font-size: 0.95rem;
-}
-
-.contact-icon-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    width: 50px;
-    height: 50px;
-    background-color: var(--accent-green-light);
-    border-radius: 50%;
-}
-
-.contact-icon-wrapper svg {
-    width: 24px;
-    height: 24px;
-    color: var(--accent-green);
-}
-
-/* NEW: Style for the <select> dropdown */
-.form-group select {
-    padding: 0.75rem 1rem;
-    border: 1px solid var(--border-color);
-    border-radius: 0.5rem;
-    font-size: 1rem;
-    background: var(--background);
-    color: var(--body-text);
-    transition: border-color 0.2s, box-shadow 0.2s;
-    font-family: 'Poppins', sans-serif;
-    /* Added for dropdown arrow */
-    appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%2364748B' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 1rem center;
-    background-size: 1em;
-}
-
-.form-group select:focus {
-    outline: none;
-    border-color: var(--accent-green);
-    box-shadow: 0 0 0 3px var(--accent-green-light);
-}
-
-/* Adjust feedback message margin for new layout */
-.feedback-message {
-    margin-top: 0;
-    margin-bottom: 1.5rem;
-}
-
-/* --- Responsive for Contact Page --- */
-@media (max-width: 768px) {
     .contact-page-wrapper {
-        /* Stack columns on mobile */
         flex-direction: column;
         gap: 2rem;
     }
-    
     .contact-form-wrapper {
         padding: 1.5rem;
     }
-
     .contact-info h2 {
         font-size: 2rem;
     }
-}
-/* --- ADD THIS TO THE END OF style.css --- */
-
-/* --- Custom Colors for Service Icons --- */
-
-/* Custom Website Development (first service card) */
-.services-grid .service-card:nth-child(1) .service-icon-wrapper {
-    background-color: #E0F7FA; /* Light Teal background */
-}
-.services-grid .service-card:nth-child(1) .service-icon svg {
-    color: #00BCD4; /* Teal icon color */
-}
-
-/* Python Backend Development (second service card) */
-.services-grid .service-card:nth-child(2) .service-icon-wrapper {
-    background-color: #E3F2FD; /* Light Blue background */
-}
-.services-grid .service-card:nth-child(2) .service-icon svg {
-    color: #2196F3; /* Blue icon color */
-}
-
-/* Workflow & Process Automation (third service card) */
-.services-grid .service-card:nth-child(3) .service-icon-wrapper {
-    background-color: #EDE7F6; /* Light Purple background */
-}
-.services-grid .service-card:nth-child(3) .service-icon svg {
-    color: #673AB7; /* Purple icon color */
-}
-
-/* Website Modernization (fourth service card) */
-.services-grid .service-card:nth-child(4) .service-icon-wrapper {
-    background-color: #FFF3E0; /* Light Orange background */
-}
-.services-grid .service-card:nth-child(4) .service-icon svg {
-    color: #FF9800; /* Orange icon color */
-}
-
-/* --- ADD THIS TO THE END OF style.css --- */
-
-/* --- Development Process Card Hover Effect --- */
-.process-card {
-    /* ... (existing styles) ... */
-    transition: all 0.3s ease; /* Add transition for a smooth effect */
-}
-
-.process-card:hover {
-    transform: translateY(-5px); /* Lifts the card up */
-    box-shadow: 0 10px 20px rgba(15, 23, 42, 0.05); /* Adds a soft shadow */
-}
-
-/* --- Custom Colors for Process Icons --- */
-
-/* 1. Discovery & Planning (Green/Teal) */
-.process-grid .process-card:nth-child(1) .process-icon {
-    background-color: #E0F7FA; /* Light Teal background */
-}
-.process-grid .process-card:nth-child(1) .process-icon svg {
-    color: #00BCD4; /* Teal icon color */
-}
-
-/* 2. Design & Architecture (Blue) */
-.process-grid .process-card:nth-child(2) .process-icon {
-    background-color: #E3F2FD; /* Light Blue background */
-}
-.process-grid .process-card:nth-child(2) .process-icon svg {
-    color: #2196F3; /* Blue icon color */
-}
-
-/* 3. Development & Testing (Purple) */
-.process-grid .process-card:nth-child(3) .process-icon {
-    background-color: #EDE7F6; /* Light Purple background */
-}
-.process-grid .process-card:nth-child(3) .process-icon svg {
-    color: #673AB7; /* Purple icon color */
-}
-
-/* 4. Launch & Support (Orange) */
-.process-grid .process-card:nth-child(4) .process-icon {
-    background-color: #FFF3E0; /* Light Orange background */
-}
-.process-grid .process-card:nth-child(4) .process-icon svg {
-    color: #FF9800; /* Orange icon color */
-}
-
-/* --- ADD THIS TO THE END OF style.css --- */
-
-/* --- Homepage "About Me" Section --- */
-.about-section-home {
-    display: flex;
-    gap: 4rem;
-    align-items: center;
-    padding: 6rem 0; /* Adds vertical spacing */
-}
-
-.about-home-text {
-    flex-basis: 55%; /* Text column takes 55% */
-}
-
-.about-home-image {
-    flex-basis: 45%; /* Image column takes 45% */
-    position: relative; /* Crucial for the overlay */
-}
-
-.about-home-text h2 {
-    color: var(--heading-text);
-    font-size: 2.5rem;
-    margin-bottom: 1.5rem;
-    line-height: 1.3;
-}
-
-.about-home-text p {
-    color: var(--body-text);
-    font-size: 1.05rem; /* Slightly larger text */
-    line-height: 1.7;
-    margin-bottom: 1.5rem;
-}
-
-.feature-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    margin-top: 2.5rem;
-}
-
-.feature-list li {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-
-.feature-icon {
-    flex-shrink: 0; /* Prevents icon from shrinking */
-    width: 50px;
-    height: 50px;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.feature-icon svg {
-    width: 24px;
-    height: 24px;
-}
-
-.feature-text strong {
-    display: block;
-    color: var(--heading-text);
-    font-weight: 600;
-    font-size: 1.1rem;
-}
-
-.feature-text span {
-    color: var(--muted-text);
-    font-size: 0.95rem;
-}
-
-/* --- Colors for Feature Icons --- */
-.feature-list li:nth-child(1) .feature-icon {
-    background-color: #E0F7FA; /* Light Teal */
-    color: #00BCD4; /* Teal */
-}
-.feature-list li:nth-child(2) .feature-icon {
-    background-color: #E3F2FD; /* Light Blue */
-    color: #2196F3; /* Blue */
-}
-.feature-list li:nth-child(3) .feature-icon {
-    background-color: #EDE7F6; /* Light Purple */
-    color: #673AB7; /* Purple */
-}
-/* --- End of Icon Colors --- */
-
-.about-home-image img {
-    width: 100%;
-    height: auto;
-    border-radius: 12px;
-    object-fit: cover;
-    box-shadow: 0 20px 40px rgba(15, 23, 42, 0.1);
-}
-
-.cta-overlay-box {
-    position: absolute;
-    bottom: -40px; /* Hangs 40px below the image */
-    left: -40px; /* Hangs 40px off the left of the image */
-    background-color: var(--accent-green);
-    color: #fff;
-    padding: 2rem;
-    border-radius: 12px;
-    max-width: 300px;
-    box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
-    transition: all 0.3s ease;
-}
-
-.cta-overlay-box:hover {
-    transform: translateY(-5px); /* Add a hover effect */
-    box-shadow: 0 15px 35px rgba(16, 185, 129, 0.4);
-}
-
-.cta-overlay-box h3 {
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
-}
-
-.cta-overlay-box p {
-    font-size: 1rem;
-    color: #ECFDF5;
-    margin: 0;
-}
-
-/* --- Responsive adjustments for this new section --- */
-@media (max-g-width: 950px) {
     .about-section-home {
-        gap: 2rem; /* Reduce gap on tablets */
-    }
-    .cta-overlay-box {
-        left: 20px; /* Bring overlay inside on smaller screens */
-        bottom: -30px;
-        max-width: 250px;
-        padding: 1.5rem;
-    }
-}
-
-@media (max-width: 768px) {
-    .about-section-home {
-        flex-direction: column; /* Stack columns on mobile */
+        flex-direction: column;
         gap: 2rem;
         padding: 3rem 0;
     }
-
     .about-home-text {
-        order: 2; /* Put text below image on mobile */
+        order: 2;
     }
-
     .about-home-image {
-        order: 1; /* Put image on top */
+        order: 1;
         width: 100%;
     }
-    
     .cta-overlay-box {
-        position: relative; /* Make it static on mobile */
+        position: relative;
         bottom: auto;
         left: auto;
-        margin-top: -30px; /* Pull it up over the bottom of the image */
+        margin-top: -30px;
         margin-left: auto;
         margin-right: auto;
         width: 90%;
