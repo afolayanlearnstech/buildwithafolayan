@@ -22,7 +22,7 @@
             <p>Comprehensive development solutions designed to elevate your digital presence and operational efficiency.</p>
         </div>
 
-        <div class="services-grid">
+        <div classs="services-grid">
 
             <div class="service-card" data-aos="fade-up">
                 <div class="service-icon-wrapper">
@@ -174,35 +174,16 @@
         </div>
     </div>
 </div>
+
+<div class="cta-section" data-aos="fade-up">
+    <div class="container">
+        <h2>Ready to build your next project?</h2>
+        <p>
+            Let's work together to create an exceptional digital solution.
+            Get in touch to discuss your ideas.
+        </p>
+        <a href="{{ url_for('contact') }}" class="cta-button">Get In Touch</a>
+    </div>
+</div>
+
 {% endblock %}
-
-<div class="cta-section" data-aos="fade-up">
-    <div class="container">
-        <h2>Ready to build your next project?</h2>
-        <p>
-            Let's work together to create an exceptional digital solution.
-            Get in touch to discuss your ideas.
-        </p>
-        <a href="{{ url_for('contact') }}" class="cta-button">Get In Touch</a>
-    </div>
-</div>
-</div>
-</div>
-
-<div class="cta-section" data-aos="fade-up">
-    <div class="container">
-        <h2>Ready to build your next project?</h2>
-        <p>
-            Let's work together to create an exceptional digital solution.
-            Get in touch to discuss your ideas.
-        </p>
-        <a href="{{ url_for('contact') }}" class="cta-button">Get In Touch</a>
-    </div>
-</div>
-
-{% endblock %}  ```
-
-Once you delete that extra line and save the file, **restart your server**, and your homepage will work perfectly.#### 2. Add to `style.css`
-
-Open your `style.css` file. Go to the **very end** (after all the responsive media queries) and paste this new block of CSS.
-
