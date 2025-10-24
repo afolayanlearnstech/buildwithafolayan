@@ -1605,3 +1605,93 @@ footer {
         z-index: 3;
     }
 }
+
+/* --- NEW STYLES (Add to bottom of style.css) --- */
+
+/* --- About Page: Social Links --- */
+.about-social-links {
+    margin-top: 1.5rem;
+    display: flex;
+    gap: 1rem;
+}
+.social-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    color: var(--body-text);
+    transition: all 0.3s ease;
+}
+.social-icon:hover {
+    background-color: var(--accent-blue);
+    border-color: var(--accent-blue);
+    color: #fff;
+    transform: translateY(-3px);
+}
+.social-icon svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* --- About Page: "My Journey" Section --- */
+.about-journey-section {
+    padding: 4rem 0;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+.journey-text {
+    max-width: 750px;
+    margin: 0 auto;
+    text-align: center;
+}
+.journey-text p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--body-text);
+}
+.journey-text p:last-child {
+    margin-top: 1rem;
+}
+
+/* --- About Page: Adjustments for Philosophy Section --- */
+#about-page-extra {
+    padding: 3rem 0; /* Adjust padding */
+    align-items: flex-start; /* Align items to top */
+}
+#about-page-extra .feature-list {
+    margin-top: 0; /* Remove top margin */
+}
+#about-page-extra .feature-text span {
+    font-size: 0.9rem; /* Slightly smaller description text */
+    line-height: 1.6;
+}
+
+/* Optional: Style for the link in the CTA overlay */
+.cta-overlay-box a {
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+}
+.cta-overlay-box a:hover {
+    opacity: 0.8;
+}
+
+/* --- Responsive for About Page Additions --- */
+@media (max-width: 768px) {
+    .about-journey-section {
+        padding: 3rem 0;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+    }
+    .journey-text p {
+        font-size: 1rem;
+    }
+    #about-page-extra {
+        padding: 2rem 0;
+    }
+}we

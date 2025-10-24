@@ -12,7 +12,7 @@
     
     <div class="about-content" data-aos="fade-up">
         
-        <img src="{{ url_for('static', filename='assets/images/profile.jpeg.jpeg') }}" alt="A professional headshot of the developer" class="profile-pic" data-aos="fade-right">
+        <img src="{{ url_for('static', filename='assets/images/profile.jpeg.jpeg') }}" alt="A professional headshot of Afolayan Favour" class="profile-pic" data-aos="fade-right">
         
         <div class="about-text" data-aos="fade-left" data-aos-delay="100">
             <h2>AFOLAYAN FAVOUR AYO-OLUWA</h2>
@@ -27,12 +27,39 @@
             <p>
                 My goal is not just to build you a website, but to build you a custom-fit, secure, and automated business solution that reduces your administrative workload and helps you serve your customers more effectively.
             </p>
+            
+            <div class="about-social-links">
+                <a href="#" target="_blank" title="LinkedIn Profile" class="social-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                </a>
+                <a href="#" target="_blank" title="GitHub Profile" class="social-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                </a>
+                </div>
         </div>
     </div>
-    
+
+    <div class="about-journey-section" data-aos="fade-up">
+        <div class="section-header">
+            <span class="tag">My Journey</span>
+            <h2>From Curiosity to Craft</h2>
+        </div>
+        <div class="journey-text">
+            <p>
+                My path into development started with a simple question: "How does this work?". I was fascinated by how technology could solve complex problems and automate tedious tasks. This curiosity led me to Python, and I was immediately drawn to its clarity and power.
+            </p>
+            <p>
+                What truly excites me is seeing the direct impact that a well-crafted application can have on a business – streamlining operations, improving user experiences, and ultimately driving growth. I believe technology should be a tool that empowers, not complicates, and that's the philosophy I bring to every project.
+            </p>
+        </div>
+    </div>
     <div class="about-section-home" id="about-page-extra" data-aos="fade-up">
         
         <div class="about-home-text">
+             <div class="section-header" style="text-align: left; margin-bottom: 2rem;">
+                 <span class="tag">My Philosophy</span>
+                <h2 style="font-size: 2rem;">Building with Purpose</h2>
+             </div>
             <p>
                 I believe in building long-term partnerships with my clients, delivering not just code, but complete solutions that drive growth and efficiency. Every project is an opportunity to create something exceptional.
             </p>
@@ -43,7 +70,7 @@
                     </div>
                     <div class="feature-text">
                         <strong>Innovation-Driven</strong>
-                        <span>Always exploring cutting-edge technologies to deliver modern solutions.</span>
+                        <span>Always exploring cutting-edge technologies. This means your project benefits from modern, efficient, and future-proof solutions.</span>
                     </div>
                 </li>
                 <li>
@@ -52,7 +79,7 @@
                     </div>
                     <div class="feature-text">
                         <strong>Client-Focused</strong>
-                        <span>Your goals are my priority, with clear communication every step.</span>
+                        <span>Your goals are my priority. I ensure clear communication, regular updates, and incorporate your feedback every step of the way.</span>
                     </div>
                 </li>
                 <li>
@@ -61,7 +88,7 @@
                     </div>
                     <div class="feature-text">
                         <strong>Quality Assured</strong>
-                        <span>Rigorous testing and best practices ensure reliable, maintainable code.</span>
+                        <span>Rigorous testing and adherence to best practices mean you receive reliable, maintainable, and secure code that performs well.</span>
                     </div>
                 </li>
             </ul>
@@ -72,9 +99,11 @@
             
             <div class="cta-overlay-box">
                 <h3>Let's Build Together</h3>
-                <p>Ready to bring your ideas to life</p>
+                <p>Ready to bring your ideas to life?</p>
+                <a href="{{ url_for('contact') }}" style="color: #FFF; display: block; margin-top: 0.5rem; font-weight: 600;">Get in Touch &rarr;</a>
             </div>
         </div>
     </div>
 
-</div> {% endblock %}
+</div> 
+{% endblock %}
