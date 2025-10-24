@@ -1130,19 +1130,19 @@ footer {
     .process-card:not(:last-child)::after {
         content: '';
         position: absolute;
-        top: 50%;
+        top: 50%; /* Adjust to start from card center */
         bottom: -2.5rem;
         left: 50%;
         width: 2px;
         background-color: var(--border-color);
         transform: translateX(-50%);
-        z-index: 0;
+        z-index: 0; /* Behind card background */
     }
     .process-card::before {
         top: -10px;
         left: 50%;
         transform: translateX(-50%);
-        background-color: var(--card-bg);
+        background-color: var(--card-bg); /* Use card bg to cover line */
         z-index: 3;
     }
      /* Tech Scroller Mobile */
@@ -1273,6 +1273,132 @@ footer {
 .featured-project-text p {
     font-size: 1.1rem;
     margin-bottom: 2rem;
+}
+
+/* --- About Page: Social Links --- */
+.about-social-links {
+    margin-top: 1.5rem;
+    display: flex;
+    gap: 1rem;
+}
+.social-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    color: var(--body-text);
+    transition: all 0.3s ease;
+}
+.social-icon:hover {
+    background-color: var(--accent-blue);
+    border-color: var(--accent-blue);
+    color: #fff;
+    transform: translateY(-3px);
+}
+.social-icon svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* --- About Page: "My Journey" Section --- */
+.about-journey-section {
+    padding: 4rem 0;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+.journey-text {
+    max-width: 750px;
+    margin: 0 auto;
+    text-align: center;
+}
+.journey-text p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--body-text);
+}
+.journey-text p:last-child {
+    margin-top: 1rem;
+}
+
+/* --- About Page: Adjustments for Philosophy Section --- */
+#about-page-extra {
+    padding: 3rem 0;
+    align-items: flex-start;
+}
+#about-page-extra .feature-list {
+    margin-top: 0;
+}
+#about-page-extra .feature-text span {
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.cta-overlay-box a {
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+}
+.cta-overlay-box a:hover {
+    opacity: 0.8;
+}
+
+/* --- Solutions Page: "Who I Help" Section --- */
+.who-i-help-section {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid var(--border-color);
+}
+.who-i-help-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+.who-i-help-grid .service-card {
+    padding: 2rem;
+}
+.who-i-help-grid .service-card h3 {
+    font-size: 1.25rem;
+}
+.who-i-help-grid .service-card p {
+    font-size: 0.95rem;
+}
+
+/* --- Solutions Page: "Services" Section --- */
+.services-section {
+    padding-top: 3rem;
+}
+
+/* --- Solutions Page: "FAQs" Section --- */
+.faq-section {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+.faq-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    max-width: 900px;
+    margin: 0 auto;
+}
+.faq-item {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    padding: 2rem;
+    border-radius: 12px;
+}
+.faq-item h3 {
+    color: var(--heading-text);
+    margin-bottom: 0.75rem;
+}
+.faq-item p {
+    color: var(--body-text);
+    font-size: 0.95rem;
+    line-height: 1.7;
 }
 
 
