@@ -1695,3 +1695,120 @@ footer {
         padding: 2rem 0;
     }
 }
+
+/* --- NEW STYLES (Add to bottom of style.css) --- */
+
+/* --- Portfolio Page Enhancements --- */
+
+/* Style for the overlay container */
+.portfolio-overlay {
+    transition: all 0.4s ease-in-out; /* Slightly slower transition */
+    padding: 1.5rem; /* Standard padding */
+}
+
+/* Adjust overlay behaviour for more content */
+.portfolio-item:hover .portfolio-overlay { 
+    transform: translateY(0); 
+    background: linear-gradient(0deg, rgba(30, 41, 59, 1) 0%, rgba(30, 41, 59, 0.95) 60%, rgba(30, 41, 59, 0) 100%); /* Make overlay darker/taller */
+}
+
+/* Make title slightly smaller */
+.portfolio-overlay h3 { 
+    font-size: 1.4rem; /* Adjusted size */
+    margin-bottom: 0.5rem;
+}
+
+/* Ensure description is visible on hover */
+.portfolio-item .portfolio-overlay p { 
+    opacity: 0;
+    transition: opacity 0.3s ease 0.1s; /* Slight delay */
+    font-size: 0.9rem; /* Slightly smaller text */
+    line-height: 1.6;
+    margin-bottom: 1rem; /* Space below description */
+    color: var(--body-text); /* Ensure correct color */
+}
+.portfolio-item:hover .portfolio-overlay p {
+    opacity: 1;
+}
+
+/* Status Tag Styling */
+.portfolio-status-tag {
+    display: inline-block;
+    position: absolute; /* Position relative to overlay */
+    top: 1.5rem;
+    right: 1.5rem;
+    padding: 0.2rem 0.6rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border-radius: 4px;
+    background-color: var(--accent-blue-light);
+    color: var(--accent-blue);
+    border: 1px solid var(--accent-blue);
+    opacity: 0;
+    transition: opacity 0.3s ease 0.2s; /* Delay appearance */
+}
+.portfolio-item:hover .portfolio-status-tag {
+    opacity: 1;
+}
+
+
+/* Technology Tags Container */
+.portfolio-tech-tags {
+    margin-bottom: 1rem; /* Space below tags */
+    opacity: 0;
+    transition: opacity 0.3s ease 0.2s; /* Slight delay */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+.portfolio-item:hover .portfolio-tech-tags {
+    opacity: 1;
+}
+
+/* Individual Tech Tag Styling */
+.portfolio-tech-tags .tech-tag {
+    font-size: 0.75rem;
+    padding: 0.15rem 0.5rem;
+    background-color: var(--card-bg); /* Use card background */
+    color: var(--muted-text); /* Muted text color */
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-weight: 500;
+    margin-bottom: 0; /* Remove default margin from .tag */
+}
+
+/* Ensure link is visible on hover */
+.portfolio-item .portfolio-link { 
+    opacity: 0; 
+    transition: opacity 0.3s ease 0.3s; /* Delay further */
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+.portfolio-item:hover .portfolio-link { 
+    opacity: 1; 
+}
+
+
+/* Responsive Adjustments for Portfolio */
+@media (max-width: 768px) {
+    .portfolio-grid {
+        grid-template-columns: 1fr; /* Stack on mobile */
+    }
+    .portfolio-overlay h3 { 
+        font-size: 1.3rem; 
+    }
+    .portfolio-item .portfolio-overlay p {
+        font-size: 0.85rem;
+    }
+    .portfolio-tech-tags .tech-tag {
+        font-size: 0.7rem;
+    }
+    .portfolio-status-tag {
+        font-size: 0.7rem;
+        top: 1rem;
+        right: 1rem;
+    }
+    .portfolio-overlay {
+        padding: 1rem;
+    }
+}
