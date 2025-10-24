@@ -30,10 +30,25 @@ document.addEventListener('DOMContentLoaded', function() {
         closeButton.addEventListener('click', closeMenu);
     }
 
-    // Optional: Close the menu if a link inside it is clicked
+    // --- MODIFIED SECTION: Close menu on link click ---
     if (mobileNav) {
         mobileNav.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', closeMenu);
+            link.addEventListener('click', function(event) {
+                // 1. Prevent the link from navigating immediately
+                event.preventDefault(); 
+                
+                // 2. Get the destination URL from the link
+                const href = this.href; 
+                
+                // 3. Close the menu
+                closeMenu(); 
+                
+                // 4. Wait for the menu's close animation (300ms) to finish
+                setTimeout(() => {
+                    // 5. Go to the new page
+                    window.location.href = href;
+                }, 300); // This duration MUST match your CSS transition time
+            });
         });
     }
 
