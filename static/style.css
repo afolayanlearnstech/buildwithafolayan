@@ -14,13 +14,16 @@
 :root {
     --background: #0F172A; /* Deep Navy Blue */
     --card-bg: #1E293B; /* Dark Slate */
+    --input-bg: #1E293B; /* Same as card for cleaner look */
     --border-color: #334155; /* Muted border */
+    --border-color-focus: #475569; /* Slightly lighter border on focus */
     --heading-text: #E2E8F0; /* Light Gray */
     --body-text: #94A3B8; /* Lighter Gray */
     --accent-blue: #8B5CF6; /* Vibrant Purple */
     --accent-blue-hover: #7C3AED; /* Darker Purple */
     --accent-blue-light: rgba(139, 92, 246, 0.1); /* 10% Purple for tags */
     --muted-text: #64748B; /* Muted Gray */
+    --placeholder-text: #64748B; /* Use muted text for placeholders */
 }
 
 /* --- General Body & Layout --- */
@@ -620,60 +623,63 @@ ul.desktop-links li a:hover {
 /* --- END PORTFOLIO REDESIGN --- */
 
 
-/* --- CONTACT FORM (Specifics) - UPDATED STYLES --- */
-.contact-container { /* Removed this as it wasn't used, using .contact-form-wrapper instead */
-    /* ... */
-}
+/* --- CONTACT FORM (Specifics) - APPLE UI INSPIRED --- */
 .contact-form {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem; /* Increased gap slightly */
+    gap: 1.5rem;
 }
 .form-group {
-    display: flex; /* Helps align label and input if needed */
+    display: flex;
     flex-direction: column;
 }
 .form-group label {
-    font-weight: 600;
-    margin-bottom: 0.5rem;
+    font-weight: 500; /* Slightly lighter weight */
+    margin-bottom: 0.6rem; /* More space */
     color: var(--heading-text);
-    font-size: 0.9rem; /* Slightly smaller label */
+    font-size: 0.9rem;
 }
 .form-group input,
 .form-group textarea,
 .form-group select {
-    padding: 0.85rem 1.1rem; /* Adjusted padding */
-    border: 1px solid var(--border-color);
-    border-radius: 8px; /* More pronounced curve */
+    padding: 0.9rem 1.2rem; /* Generous padding */
+    border: 1px solid var(--border-color); /* Subtle border */
+    border-radius: 10px; /* Softer curve */
     font-size: 1rem;
-    background: var(--background);
-    color: var(--body-text);
-    transition: border-color 0.2s, box-shadow 0.2s;
+    background-color: var(--input-bg); /* Use specific input background */
+    color: var(--heading-text); /* Use lighter text for input */
+    transition: border-color 0.2s ease, box-shadow 0.2s ease; /* Smooth transitions */
     font-family: 'Poppins', sans-serif;
-    outline: none; /* Remove default outline */
+    outline: none;
 }
 /* Style placeholder text */
 .form-group input::placeholder,
 .form-group textarea::placeholder {
-    color: var(--muted-text);
-    opacity: 0.8;
+    color: var(--placeholder-text); /* Use placeholder variable */
+    opacity: 1; /* Ensure full opacity */
+}
+/* Subtle hover effect */
+.form-group input:hover,
+.form-group textarea:hover,
+.form-group select:hover {
+    border-color: var(--border-color-focus); /* Slightly lighter border on hover */
 }
 
+/* Cleaner focus state */
 .form-group input:focus,
 .form-group textarea:focus,
 .form-group select:focus {
-    border-color: var(--accent-blue);
-    /* Softer focus glow using the accent color */
-    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.3);
+    border-color: var(--accent-blue); /* Accent color border */
+    box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.2); /* Softer, wider glow */
 }
 .form-group select {
     appearance: none;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%2394A3B8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
     background-repeat: no-repeat;
-    background-position: right 1rem center;
+    background-position: right 1.2rem center; /* Adjusted position */
     background-size: 1em;
+    padding-right: 3rem; /* Add space for the arrow */
 }
-/* Style for disabled option in select */
 .form-group select option[disabled] {
     color: var(--muted-text);
 }
@@ -682,18 +688,22 @@ ul.desktop-links li a:hover {
     background: var(--accent-blue);
     color: #fff;
     border: none;
-    padding: 0.9rem 1.5rem; /* Slightly wider */
+    padding: 0.9rem 1.5rem;
     font-size: 1rem;
     font-weight: 600;
-    border-radius: 8px; /* Match input curve */
+    border-radius: 10px; /* Match input curve */
     cursor: pointer;
-    transition: background 0.2s ease, transform 0.2s ease;
-    text-transform: uppercase; /* Optional: Make button text uppercase */
-    letter-spacing: 0.5px; /* Optional: Add letter spacing */
+    transition: background-color 0.2s ease, transform 0.1s ease; /* Smoother transitions */
+    text-transform: none; /* Remove uppercase */
+    letter-spacing: 0; /* Remove letter spacing */
+    margin-top: 0.5rem; /* Add some space above button */
 }
 .submit-btn:hover {
     background: var(--accent-blue-hover);
-    transform: translateY(-2px); /* Add slight lift on hover */
+    transform: scale(1.02); /* Slight scale up on hover */
+}
+.submit-btn:active {
+    transform: scale(0.98); /* Slight scale down on click */
 }
 /* --- END CONTACT FORM UPDATE --- */
 
