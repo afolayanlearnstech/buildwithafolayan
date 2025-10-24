@@ -831,18 +831,94 @@ ul.desktop-links li a:hover {
     margin: 0 auto 2rem auto;
 }
 
-/* --- FOOTER --- */
+/* --- FOOTER (NEW STYLES) --- */
 footer {
     background-color: var(--card-bg);
     color: var(--muted-text);
-    text-align: center;
-    padding: 2rem 0;
+    /* Remove text-align: center to allow grid alignment */
+    padding: 4rem 0 2rem 0; /* Increase top padding */
     border-top: 1px solid var(--border-color);
     margin-top: auto;
 }
 footer .container {
     padding-top: 0;
     padding-bottom: 0;
+}
+
+.footer-main {
+    display: grid;
+    /* Create 3 columns: 2fr for about, 1fr for links, 1fr for social */
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 3rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.footer-logo {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--heading-text);
+    margin-bottom: 1rem;
+}
+
+.footer-about p {
+    font-size: 0.95rem;
+    max-width: 350px;
+    margin-bottom: 1rem;
+}
+
+.footer-contact-link {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--accent-blue);
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+}
+.footer-contact-link:hover {
+    opacity: 0.8;
+}
+
+.footer-links h3,
+.footer-social h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--heading-text);
+    margin-bottom: 1.5rem;
+}
+
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.footer-links ul li a {
+    text-decoration: none;
+    color: var(--body-text);
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+}
+
+.footer-links ul li a:hover {
+    color: var(--accent-blue);
+}
+
+.footer-social-icons {
+    display: flex;
+    gap: 0.75rem;
+}
+
+/* We can re-use the .social-icon class from your about.html styles */
+/* .social-icon { ... } */
+
+
+.footer-bottom {
+    padding-top: 2rem;
+    text-align: center;
+    font-size: 0.9rem;
 }
 
 /* --- Mobile Menu Styles --- */
@@ -952,8 +1028,7 @@ footer .container {
         padding: 1.5rem;
     }
      .portfolio-grid {
-        /* Optional: Switch to 1 column earlier if needed */
-        /* grid-template-columns: 1fr; */
+        grid-template-columns: 1fr; /* 1 column on tablet */
      }
      /* Solutions Page */
     .who-i-help-grid {
@@ -1015,6 +1090,22 @@ footer .container {
         border-right: none; /* Remove desktop border */
     }
     /* --- END: 950px Process Section --- */
+
+    /* --- Footer Responsive (950px) --- */
+    .footer-main {
+        /* Stack About and Links, keep Social separate */
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
+    .footer-about {
+        grid-column: 1 / 3; /* Make 'About' span full width */
+    }
+    .footer-links {
+        grid-column: 1 / 2;
+    }
+    .footer-social {
+        grid-column: 2 / 3;
+    }
 }
 
 @media (max-width: 768px) {
@@ -1231,6 +1322,33 @@ footer .container {
     }
     .stat-item strong {
         font-size: 1.5rem;
+    }
+
+    /* --- Footer Responsive (768px) --- */
+    footer {
+        padding-top: 3rem;
+    }
+    .footer-main {
+        /* Stack all 3 columns vertically */
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        text-align: center; /* Center all footer content */
+    }
+    .footer-about {
+        grid-column: 1 / -1; /* Reset column span */
+    }
+     .footer-links {
+        grid-column: 1 / -1; /* Reset column span */
+    }
+    .footer-social {
+        grid-column: 1 / -1; /* Reset column span */
+    }
+    .footer-about p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .footer-social-icons {
+        justify-content: center; /* Center icons */
     }
 }
 
