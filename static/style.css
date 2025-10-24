@@ -527,7 +527,7 @@ ul.desktop-links li a:hover {
     line-height: 1.8;
 }
 
-/* --- PORTFOLIO PAGE (Specifics) - UPDATED --- */
+/* --- PORTFOLIO PAGE (Specifics) - REDESIGNED --- */
 .portfolio-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -535,66 +535,66 @@ ul.desktop-links li a:hover {
     margin-top: 2rem;
 }
 
-.portfolio-item {
-    position: relative;
-    overflow: hidden;
-    border-radius: 12px;
-    border: 1px solid var(--border-color);
-    aspect-ratio: 4 / 3;
+.portfolio-item-card {
     background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 2.5rem;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
 }
 
-.portfolio-item img {
-    width: 100%;
-    height: 100%;
-    display: block;
-    object-fit: cover;
-    transition: transform 0.4s ease;
+.portfolio-item-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(15, 23, 42, 0.1);
+    border-color: var(--accent-blue);
 }
 
-.portfolio-item:hover img {
-    transform: scale(1.05);
+.portfolio-item-card .service-icon-wrapper {
+    margin-bottom: 1.5rem;
+}
+.portfolio-item-card .service-icon svg {
+     width: 28px;
+     height: 28px;
+     color: var(--accent-blue);
 }
 
-.portfolio-overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: linear-gradient(0deg, rgba(30, 41, 59, 1) 0%, rgba(30, 41, 59, 0.95) 50%, rgba(30, 41, 59, 0) 100%);
-    padding: 1.5rem;
-    transform: translateY(60%);
-    opacity: 1;
-    transition: all 0.4s ease-in-out;
-}
-
-.portfolio-item:hover .portfolio-overlay {
-    transform: translateY(0);
-}
-
-.portfolio-overlay h3 {
+.portfolio-item-card h3 {
+    color: var(--heading-text);
+    margin-bottom: 0.75rem;
     font-size: 1.4rem;
-    margin-bottom: 0.5rem;
-    color: var(--heading-text); /* Ensure heading color */
 }
 
-.portfolio-item .portfolio-overlay p {
-    opacity: 0;
-    transition: opacity 0.3s ease 0.1s;
-    font-size: 0.9rem;
-    line-height: 1.6;
-    margin-bottom: 1rem;
+.portfolio-item-card p {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
     color: var(--body-text);
-}
-.portfolio-item:hover .portfolio-overlay p {
-    opacity: 1;
+    flex-grow: 1;
 }
 
-.portfolio-status-tag {
+.portfolio-tech-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 0.75rem;
+}
+
+.portfolio-tech-list li {
+    font-size: 0.85rem;
+    color: var(--muted-text);
+    background-color: var(--background);
+    border: 1px solid var(--border-color);
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+.portfolio-status-tag-inline {
     display: inline-block;
-    position: absolute;
-    top: 1.5rem;
-    right: 1.5rem;
+    margin-top: auto;
     padding: 0.2rem 0.6rem;
     font-size: 0.75rem;
     font-weight: 600;
@@ -602,47 +602,22 @@ ul.desktop-links li a:hover {
     background-color: var(--accent-blue-light);
     color: var(--accent-blue);
     border: 1px solid var(--accent-blue);
-    opacity: 0;
-    transition: opacity 0.3s ease 0.2s;
-}
-.portfolio-item:hover .portfolio-status-tag {
-    opacity: 1;
+    align-self: flex-start;
 }
 
-.portfolio-tech-tags {
-    margin-bottom: 1rem;
-    opacity: 0;
-    transition: opacity 0.3s ease 0.2s;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-}
-.portfolio-item:hover .portfolio-tech-tags {
-    opacity: 1;
-}
-
-.portfolio-tech-tags .tech-tag {
-    font-size: 0.75rem;
-    padding: 0.15rem 0.5rem;
-    background-color: var(--card-bg);
-    color: var(--muted-text);
-    border: 1px solid var(--border-color);
-    border-radius: 4px;
-    font-weight: 500;
-    margin-bottom: 0;
-}
-
-.portfolio-item .portfolio-link {
-    opacity: 0;
-    transition: opacity 0.3s ease 0.3s;
+.portfolio-card-link {
+    display: inline-block;
+    margin-top: 1rem;
+    color: var(--accent-blue);
+    text-decoration: none;
     font-weight: 600;
     font-size: 0.9rem;
-    color: var(--accent-blue); /* Ensure link color */
+    transition: opacity 0.3s ease;
 }
-.portfolio-item:hover .portfolio-link {
-    opacity: 1;
+.portfolio-card-link:hover {
+    opacity: 0.8;
 }
-/* --- END PORTFOLIO UPDATE --- */
+/* --- END PORTFOLIO REDESIGN --- */
 
 
 /* --- CONTACT FORM (Specifics) --- */
@@ -940,9 +915,52 @@ footer {
         /* Optional: Switch to 1 column earlier if needed */
         /* grid-template-columns: 1fr; */
      }
+     /* Solutions Page */
+    .who-i-help-grid {
+        grid-template-columns: 1fr;
+    }
+    /* Process Section */
+    .process-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem 1.5rem;
+    }
+    .process-grid::before {
+        display: none;
+    }
+    .process-card:nth-child(1)::after,
+    .process-card:nth-child(2)::after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        bottom: -2.0rem;
+        width: 2px;
+        height: 2rem;
+        background-color: var(--border-color);
+        transform: translateX(-50%);
+        z-index: 0;
+    }
+    .process-card:nth-child(odd)::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        right: calc(-0.75rem - 1px);
+        width: calc(1.5rem + 2px);
+        height: 2px;
+        background-color: var(--border-color);
+        transform: translateY(-50%);
+        z-index: 0;
+        opacity: 1;
+    }
+    .process-card::before {
+        content: attr(data-step);
+        top: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        opacity: 1;
+        background-color: var(--card-bg);
+    }
 }
 
-/* --- Mobile Header Optimization --- */
 @media (max-width: 768px) {
     body {
         padding-top: 60px;
@@ -1067,31 +1085,107 @@ footer {
      .portfolio-grid {
         gap: 1rem;
      }
-     .portfolio-item {
-        /* Optional: Change aspect ratio for mobile if needed, e.g., 3:2 */
-        /* aspect-ratio: 3 / 2; */
+     .portfolio-item-card {
+         padding: 2rem;
      }
-    .portfolio-overlay h3 {
+    .portfolio-item-card h3 {
         font-size: 1.3rem;
     }
-    .portfolio-item .portfolio-overlay p {
-        font-size: 0.85rem;
+    .portfolio-item-card p {
+        font-size: 0.95rem;
     }
-    .portfolio-tech-tags .tech-tag {
-        font-size: 0.7rem;
+    .portfolio-tech-list li {
+        font-size: 0.8rem;
     }
-    .portfolio-status-tag {
-        font-size: 0.7rem;
-        top: 1rem;
-        right: 1rem;
+    /* About Page Mobile */
+    .journey-text p {
+        font-size: 1rem;
     }
-    .portfolio-overlay {
-        padding: 1rem;
-        transform: translateY(50%);
+    .about-journey-section {
+        padding: 3rem 0;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
     }
-     .portfolio-item:hover .portfolio-overlay {
-         transform: translateY(0);
-     }
+    #about-page-extra {
+        padding: 2rem 0;
+    }
+    /* Solutions Page Mobile */
+    .faq-grid {
+        grid-template-columns: 1fr;
+    }
+    .who-i-help-section {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    }
+    /* Process Mobile */
+    .process-grid {
+        gap: 2.5rem 0;
+    }
+    .process-card {
+        padding: 2rem 1rem;
+    }
+    .process-card:nth-child(odd)::before {
+        display: none; /* Hide horizontal connector from 950px */
+    }
+    .process-card:not(:last-child)::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        bottom: -2.5rem;
+        left: 50%;
+        width: 2px;
+        background-color: var(--border-color);
+        transform: translateX(-50%);
+        z-index: 0;
+    }
+    .process-card::before {
+        top: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: var(--card-bg);
+        z-index: 3;
+    }
+     /* Tech Scroller Mobile */
+    @keyframes scroll-tech {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(calc(-120px * 12)); }
+    }
+    .tech-scroll-track {
+        width: calc(120px * 24);
+        animation-duration: 40s;
+    }
+    .tech-logo-item {
+        width: 120px;
+    }
+    .tech-logo-item img {
+        height: 30px;
+    }
+    .tech-logo-item span {
+        font-size: 0.8rem;
+    }
+    /* Client Scroller Mobile */
+     @keyframes scroll {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(calc(-150px * 5)); }
+    }
+    .logobar-scroll-track {
+        width: calc(150px * 10);
+        animation-duration: 25s;
+    }
+    .logo-item {
+        width: 150px;
+    }
+    .logo-item img {
+        height: 30px;
+    }
+    /* Hero Stats Mobile */
+    .hero-stats {
+        flex-wrap: wrap;
+        gap: 1.25rem;
+    }
+    .stat-item strong {
+        font-size: 1.5rem;
+    }
 }
 
 /* --- (Keep all other new styles below this) --- */
@@ -1182,486 +1276,36 @@ footer {
 }
 
 
-/* --- REDESIGNED: Development Process Section (Updated with Blocks & New Icons) --- */
-.process-section {
-    padding: 5rem 0;
-    background-color: var(--background);
-}
-
-.process-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.5rem;
-    margin-top: 3rem;
-    position: relative;
-}
-
-.process-grid::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: calc(0% + 1.5rem);
-    right: calc(0% + 1.5rem);
-    width: calc(100% - 3rem);
-    height: 2px;
-    background-color: var(--border-color);
-    transform: translateY(-50%);
-    z-index: 0;
-}
-
-.process-card {
-    background-color: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
-    padding: 2.5rem 1.5rem;
-    text-align: center;
-    position: relative;
-    z-index: 1;
-    transition: all 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-}
-
-.process-card:hover {
-    border-color: var(--accent-blue);
-    transform: translateY(-5px);
-}
-
-.process-card-inner {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-}
-
-.process-card-header {
-    position: relative;
-    margin-bottom: 1.5rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 60px;
-}
-
-.process-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background-color: var(--accent-blue);
-    border: 2px solid var(--accent-blue);
-    position: relative;
-    z-index: 2;
-    box-shadow: 0 0 0 4px var(--card-bg);
-    transition: all 0.3s ease;
-}
-
-.process-icon svg {
-    width: 28px;
-    height: 28px;
-    color: #FFFFFF;
-}
-
-.process-card::before {
-    content: attr(data-step);
-    position: absolute;
-    top: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--accent-blue);
-    background-color: var(--card-bg);
-    padding: 0 0.5em;
-    z-index: 3;
-    opacity: 1;
-    transition: none;
-}
-
-.process-card h3 {
-    color: var(--heading-text);
-    font-size: 1.25rem;
-    margin-bottom: 0.75rem;
-    flex-grow: 0;
-}
-
-.process-card p {
-    font-size: 0.9rem;
-    color: var(--body-text);
-    line-height: 1.6;
-    flex-grow: 1;
-}
-
-
-/* --- Technologies Section - Scrolling --- */
-@keyframes scroll-tech {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(calc(-150px * 12)); }
-}
-
-.tech-scroll-container {
-    overflow: hidden;
-    position: relative;
-    width: 100%;
-    background-color: var(--card-bg);
-    border-radius: 12px;
-    border: 1px solid var(--border-color);
-    padding: 2rem 0;
-    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
-    mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
-}
-.tech-scroll-track {
-    display: flex;
-    width: calc(150px * 24);
-    animation: scroll-tech 50s linear infinite;
-}
-.tech-scroll-track:hover {
-    animation-play-state: paused;
-}
-.tech-logo-item {
-    flex-shrink: 0;
-    width: 150px;
-    padding: 0 1rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 0.5rem;
-}
-.tech-logo-item img {
-    height: 40px;
-    width: auto;
-    opacity: 0.7;
-    transition: opacity 0.3s ease;
-    filter: invert(1) brightness(1.5);
-}
-.tech-logo-item span {
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: var(--muted-text);
-}
-.tech-logo-item:hover img {
-    opacity: 1;
-}
-
-/* --- Client Logobar Section (Scrolling Marquee) --- */
-@keyframes scroll {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(calc(-180px * 5)); }
-}
-.client-logobar-section {
-    padding-bottom: 4rem;
-    border-bottom: 1px solid var(--border-color);
-    margin-bottom: 4rem;
-}
-.logobar-title {
-    text-align: center;
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--muted-text);
-    margin-bottom: 2rem;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-.logobar-scroll-container {
-    overflow: hidden;
-    position: relative;
-    width: 100%;
-    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
-    mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
-}
-.logobar-scroll-track {
-    display: flex;
-    width: calc(180px * 10);
-    animation: scroll 30s linear infinite;
-}
-.logobar-scroll-track:hover {
-    animation-play-state: paused;
-}
-.logo-item {
-    flex-shrink: 0;
-    width: 180px;
-    padding: 0 2rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.logo-item img {
-    height: 40px;
-    width: auto;
-    opacity: 0.5;
-    transition: opacity 0.3s ease;
-    filter: invert(1) brightness(1.5);
-}
-.logo-item img:hover {
-    opacity: 1;
-}
-
-
-/* --- About Page: Social Links --- */
-.about-social-links {
-    margin-top: 1.5rem;
-    display: flex;
-    gap: 1rem;
-}
-.social-icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: var(--card-bg);
-    border: 1px solid var(--border-color);
-    color: var(--body-text);
-    transition: all 0.3s ease;
-}
-.social-icon:hover {
-    background-color: var(--accent-blue);
-    border-color: var(--accent-blue);
-    color: #fff;
-    transform: translateY(-3px);
-}
-.social-icon svg {
-    width: 20px;
-    height: 20px;
-}
-
-/* --- About Page: "My Journey" Section --- */
-.about-journey-section {
-    padding: 4rem 0;
-    border-top: 1px solid var(--border-color);
-    border-bottom: 1px solid var(--border-color);
-    margin-top: 3rem;
-    margin-bottom: 3rem;
-}
-.journey-text {
-    max-width: 750px;
-    margin: 0 auto;
-    text-align: center;
-}
-.journey-text p {
-    font-size: 1.1rem;
-    line-height: 1.8;
-    color: var(--body-text);
-}
-.journey-text p:last-child {
-    margin-top: 1rem;
-}
-
-/* --- About Page: Adjustments for Philosophy Section --- */
-#about-page-extra {
-    padding: 3rem 0;
-    align-items: flex-start;
-}
-#about-page-extra .feature-list {
-    margin-top: 0;
-}
-#about-page-extra .feature-text span {
-    font-size: 0.9rem;
-    line-height: 1.6;
-}
-
-.cta-overlay-box a {
-    text-decoration: none;
-    transition: opacity 0.3s ease;
-}
-.cta-overlay-box a:hover {
-    opacity: 0.8;
-}
-
-/* --- Solutions Page: "Who I Help" Section --- */
-.who-i-help-section {
-    padding-top: 3rem;
-    padding-bottom: 3rem;
-    border-bottom: 1px solid var(--border-color);
-}
-.who-i-help-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-}
-.who-i-help-grid .service-card {
-    padding: 2rem;
-}
-.who-i-help-grid .service-card h3 {
-    font-size: 1.25rem;
-}
-.who-i-help-grid .service-card p {
-    font-size: 0.95rem;
-}
-
-/* --- Solutions Page: "Services" Section --- */
-.services-section {
-    padding-top: 3rem;
-}
-
-/* --- Solutions Page: "FAQs" Section --- */
-.faq-section {
-    padding-top: 3rem;
-    padding-bottom: 3rem;
-}
-.faq-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-    max-width: 900px;
-    margin: 0 auto;
-}
-.faq-item {
-    background-color: var(--card-bg);
-    border: 1px solid var(--border-color);
-    padding: 2rem;
-    border-radius: 12px;
-}
-.faq-item h3 {
-    color: var(--heading-text);
-    margin-bottom: 0.75rem;
-}
-.faq-item p {
-    color: var(--body-text);
-    font-size: 0.95rem;
-    line-height: 1.7;
-}
-
-/* --- Responsive for About/Solutions Additions & Process Section --- */
+/* --- Responsive adjustments for new sections --- */
 @media (max-width: 950px) {
-    /* ... (previous 950px styles) ... */
-    .who-i-help-grid {
-        grid-template-columns: 1fr;
+    .why-python-section,
+    .featured-project-section {
+        gap: 2rem;
     }
-    .process-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 2rem 1.5rem;
-    }
-    .process-grid::before {
-        display: none;
-    }
-    .process-card:nth-child(1)::after,
-    .process-card:nth-child(2)::after {
-        content: '';
-        position: absolute;
-        left: 50%;
-        bottom: -2.0rem;
-        width: 2px;
-        height: 2rem;
-        background-color: var(--border-color);
-        transform: translateX(-50%);
-        z-index: 0;
-    }
-    .process-card:nth-child(odd)::before {
-        content: '';
-        position: absolute;
-        top: 50%;
-        right: calc(-0.75rem - 1px);
-        width: calc(1.5rem + 2px);
-        height: 2px;
-        background-color: var(--border-color);
-        transform: translateY(-50%);
-        z-index: 0;
-        opacity: 1;
-    }
-    .process-card::before {
-        content: attr(data-step);
-        top: -10px;
-        left: 50%;
-        transform: translateX(-50%);
-        opacity: 1;
-        background-color: var(--card-bg);
+    .why-python-text h2,
+    .featured-project-text h2 {
+        font-size: 2rem;
     }
 }
 
 @media (max-width: 768px) {
-    /* ... (previous 768px styles) ... */
-    .journey-text p {
-        font-size: 1rem;
-    }
-    .about-journey-section {
+    .why-python-section {
+        flex-direction: column;
         padding: 3rem 0;
-        margin-top: 2rem;
-        margin-bottom: 2rem;
     }
-    #about-page-extra {
-        padding: 2rem 0;
+    .featured-project-section {
+        flex-direction: column;
+        gap: 2rem;
     }
-    .faq-grid {
-        grid-template-columns: 1fr;
+    .featured-project-text {
+        order: 2; /* Text second on mobile */
     }
-    .who-i-help-section {
-        padding-top: 2rem;
-        padding-bottom: 2rem;
+    .featured-project-image {
+        order: 1; /* Image first on mobile */
     }
-    /* Process Mobile */
-    .process-grid {
-        grid-template-columns: 1fr;
-        gap: 2.5rem 0;
-    }
-    .process-card {
-        padding: 2rem 1rem;
-    }
-    .process-card:nth-child(odd)::before {
-        display: none; /* Hide horizontal connector from 950px */
-    }
-    .process-card:not(:last-child)::after {
-        content: '';
-        position: absolute;
-        top: 50%; /* Adjust to start from card center */
-        bottom: -2.5rem;
-        left: 50%;
-        width: 2px;
-        background-color: var(--border-color);
-        transform: translateX(-50%);
-        z-index: 0; /* Behind card background */
-    }
-    .process-card::before {
-        top: -10px;
-        left: 50%;
-        transform: translateX(-50%);
-        background-color: var(--card-bg); /* Use card bg to cover line */
-        z-index: 3;
-    }
-     /* Tech Scroller Mobile */
-    @keyframes scroll-tech {
-        0% { transform: translateX(0); }
-        100% { transform: translateX(calc(-120px * 12)); }
-    }
-    .tech-scroll-track {
-        width: calc(120px * 24);
-        animation-duration: 40s;
-    }
-    .tech-logo-item {
-        width: 120px;
-    }
-    .tech-logo-item img {
-        height: 30px;
-    }
-    .tech-logo-item span {
-        font-size: 0.8rem;
-    }
-    /* Client Scroller Mobile */
-     @keyframes scroll {
-        0% { transform: translateX(0); }
-        100% { transform: translateX(calc(-150px * 5)); }
-    }
-    .logobar-scroll-track {
-        width: calc(150px * 10);
-        animation-duration: 25s;
-    }
-    .logo-item {
-        width: 150px;
-    }
-    .logo-item img {
-        height: 30px;
-    }
-    /* Hero Stats Mobile */
-    .hero-stats {
-        flex-wrap: wrap;
-        gap: 1.25rem;
-    }
-    .stat-item strong {
-        font-size: 1.5rem;
+
+    .client-logobar-section {
+         padding-bottom: 2.5rem;
+         margin-bottom: 2.5rem;
     }
 }

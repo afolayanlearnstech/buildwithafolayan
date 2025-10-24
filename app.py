@@ -10,21 +10,23 @@ app = Flask(__name__,
 app.config['SECRET_KEY'] = 'a-super-secret-key-that-you-should-change'
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0 # Good for development
 
-# --- MODIFIED: DYNAMIC CASE STUDY DATA ---
+# --- MODIFIED: DYNAMIC CASE STUDY DATA (with Icons) ---
 portfolio_projects = [
     {
         'title': 'The Secure Client Document Intake Portal',
         'description': 'A private portal allowing firms (Law, Accounting) to securely receive sensitive client files, bypassing insecure email. Automates renaming and organization, saving admin time and reducing breach risks.',
-        'image_url': 'https://placehold.co/600x400/8B5CF6/ffffff?text=Secure+Client+Intake+Portal+(Concept)', # Purple theme
+        # Icon: Shield Check (Security)
+        'icon_svg': '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield-check"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>',
         'tech_tags': ['Flask', 'File Handling', 'Security', 'Automation'],
         'status': 'Concept',
-        'case_study_url': '#', # Keep '#' until you have a detailed page
+        'case_study_url': '#',
         'link_text': 'Learn More (Coming Soon)'
     },
     {
         'title': 'The Automated Patient Nurture Sequence',
         'description': 'Automated email system for cosmetic surgeons. Nurtures leads from web forms with a timed sequence of helpful emails, increasing consultations and saving staff time.',
-        'image_url': 'https://placehold.co/600x400/10B981/ffffff?text=Automated+Patient+Nurturing+(Concept)', # Green theme
+        # Icon: Mail Check (Email Automation)
+        'icon_svg': '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail-check"><path d="M22 13V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v12c0 1.1.9 2 2 2h8"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/><path d="m16 19 2 2 4-4"/></svg>',
         'tech_tags': ['Flask', 'Google Sheets', 'Email (SMTP)', 'Scheduling'],
         'status': 'Concept',
         'case_study_url': '#',
@@ -33,7 +35,8 @@ portfolio_projects = [
     {
         'title': 'The Market Intelligence Briefing',
         'description': 'Automated daily email report delivering customized market data (stocks, crypto, commodities) directly to financial professionals, saving significant research time.',
-        'image_url': 'https://placehold.co/600x400/3B82F6/ffffff?text=Market+Intelligence+Briefing+(Concept)', # Blue theme
+        # Icon: Line Chart (Data/Finance)
+        'icon_svg': '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-line-chart"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>',
         'tech_tags': ['Python Script', 'yfinance', 'Email (SMTP)', 'Scheduling'],
         'status': 'Concept',
         'case_study_url': '#',
@@ -42,7 +45,8 @@ portfolio_projects = [
     {
         'title': 'The VIP Stock & Wishlist Notifier',
         'description': 'E-commerce feature for luxury goods. Captures emails for sold-out items and automatically notifies customers upon restock, recovering lost sales and driving urgency.',
-        'image_url': 'https://placehold.co/600x400/F59E0B/ffffff?text=VIP+Wishlist+Notifier+(Concept)', # Amber theme
+        # Icon: Bell Ring (Notification)
+        'icon_svg': '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bell-ring"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/><path d="M4 2C2.8 3.7 2 5.7 2 8"/><path d="M22 8c0-2.3-.8-4.3-2-6"/></svg>',
         'tech_tags': ['Flask', 'SQLAlchemy', 'Database', 'Email (SMTP)', 'Admin Panel'],
         'status': 'Concept',
         'case_study_url': '#',
@@ -56,7 +60,6 @@ portfolio_projects = [
 
 @app.route('/')
 def home():
-    # Pass projects to home if needed, otherwise remove if not used there
     return render_template('index.html')
 
 @app.route('/about')
@@ -69,7 +72,6 @@ def solutions():
 
 @app.route('/portfolio')
 def portfolio():
-    # This now uses the detailed project data
     return render_template('portfolio.html', projects=portfolio_projects)
 
 @app.route('/contact', methods=['GET', 'POST'])
@@ -94,7 +96,7 @@ def contact():
         print(f"Form submission error: {e}")
         flash('An error occurred. Please try again.', 'error')
         return redirect(url_for('contact'))
-    
+
     return render_template('contact.html')
 
 if __name__ == '__main__':
