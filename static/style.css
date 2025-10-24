@@ -108,6 +108,8 @@ header {
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
     /* MODIFIED: Allow clicks on the header itself */
     pointer-events: auto; 
+    /* MODIFIED: Add transition for mobile optimization */
+    transition: all 0.3s ease;
 }
 
 
@@ -960,19 +962,26 @@ footer {
     }
 }
 
+/* --- MODIFIED: Mobile Header Optimization --- */
 @media (max-width: 768px) {
     body { 
-        /* MODIFIED: Adjust for shorter mobile header */
-        padding-top: 90px; 
+        /* MODIFIED: Change padding for full-width header */
+        padding-top: 60px; 
     }
     header {
-        /* MODIFIED: Adjust padding for mobile */
-        padding-top: 0.75rem; 
+        /* MODIFIED: Remove padding for full-width header */
+        padding-top: 0; 
     }
     .header-container {
-        /* MODIFIED: Shorter header on mobile */
+        /* MODIFIED: Make header full-width */
+        width: 100%;
         height: 60px;
         padding: 0 1rem; /* Consistent padding */
+        border-radius: 0;
+        box-shadow: none;
+        border: none;
+        border-bottom: 1px solid var(--border-color);
+        background: rgba(30, 41, 59, 0.95); /* More solid background */
     }
      nav.desktop-nav { /* Adjust desktop nav container on mobile */
         height: 60px;
@@ -987,8 +996,8 @@ footer {
         padding: 4rem 0 5rem 0;
         text-align: center;
         /* MODIFIED: Match new mobile body padding */
-        margin-top: -90px; 
-        padding-top: 130px; /* 90px header + 40px space */
+        margin-top: -60px; 
+        padding-top: 100px; /* 60px header + 40px space */
     }
     .hero-content {
         text-align: center;
