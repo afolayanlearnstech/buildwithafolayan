@@ -10,34 +10,36 @@
     </p>
 </div>
 
-<div class="portfolio-grid">
-    {% for project in projects %}
-        <div class="portfolio-item-card" data-aos="fade-up" data-aos-delay="{{ loop.index0 * 100 }}">
+<div class="container">
+    <div class="portfolio-grid">
+        {% for project in projects %}
+            <div class="portfolio-item-card" data-aos="fade-up" data-aos-delay="{{ loop.index0 * 100 }}">
 
-            <div class="service-icon-wrapper">
-                <div class="service-icon">
-                    {{ project.icon_svg | safe }} {# Render the SVG code #}
+                <div class="service-icon-wrapper">
+                    <div class="service-icon">
+                        {{ project.icon_svg | safe }} {# Render the SVG code #}
+                    </div>
                 </div>
+
+                <h3>{{ project.title }}</h3>
+
+                <p>{{ project.description }}</p>
+
+                <ul class="portfolio-tech-list">
+                    {% for tag in project.tech_tags %}
+                    <li>{{ tag }}</li>
+                    {% endfor %}
+                </ul>
+
+                {% if project.status %}
+                    <span class="portfolio-status-tag-inline">{{ project.status }}</span>
+                 {% endif %}
+
+                {# Optional: Add a link if desired, maybe styled differently #}
+                {# <a href="{{ project.case_study_url }}" class="portfolio-card-link">{{ project.link_text }}</a> #}
+
             </div>
-
-            <h3>{{ project.title }}</h3>
-
-            <p>{{ project.description }}</p>
-
-            <ul class="portfolio-tech-list">
-                {% for tag in project.tech_tags %}
-                <li>{{ tag }}</li>
-                {% endfor %}
-            </ul>
-
-            {% if project.status %}
-                <span class="portfolio-status-tag-inline">{{ project.status }}</span>
-             {% endif %}
-
-            {# Optional: Add a link if desired, maybe styled differently #}
-            {# <a href="{{ project.case_study_url }}" class="portfolio-card-link">{{ project.link_text }}</a> #}
-
-        </div>
-    {% endfor %}
+        {% endfor %}
+    </div>
 </div>
 {% endblock %}
