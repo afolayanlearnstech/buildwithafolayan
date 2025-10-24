@@ -33,7 +33,7 @@ body {
     line-height: 1.6;
     background-color: var(--background);
     color: var(--body-text);
-    padding-top: 100px; 
+    padding-top: 80px; /* Adjusted for standard header height */
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -73,16 +73,27 @@ header {
     border-bottom: 1px solid var(--border-color);
     z-index: 1000;
     transition: all 0.3s ease;
+    height: 80px; /* Explicit height */
 }
 
-nav {
+/* New container inside header for alignment */
+.header-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
     max-width: 1100px;
     margin: 0 auto;
-    padding: 1rem 2rem;
-    height: 80px;
+    padding: 0 2rem; /* Adjusted padding */
+    height: 100%; /* Take full height of header */
+}
+
+
+nav.desktop-nav { /* Target only the desktop nav */
+    display: flex;
+    justify-content: space-between; /* This might need adjustment */
+    align-items: center;
+    width: 100%; /* Allow it to take space */
+    height: 100%;
 }
 
 nav .logo {
@@ -90,15 +101,18 @@ nav .logo {
     font-weight: 700;
     color: var(--heading-text); 
     text-decoration: none;
+    flex-shrink: 0; /* Prevent logo from shrinking */
 }
 
-nav ul {
+ul.desktop-links { /* Target only desktop links */
     list-style: none;
     display: flex;
     gap: 1rem;
+    margin: 0; /* Reset margin */
+    padding: 0; /* Reset padding */
 }
 
-nav ul li a {
+ul.desktop-links li a { /* Target only desktop links */
     text-decoration: none;
     color: var(--body-text); 
     font-weight: 600;
@@ -108,7 +122,7 @@ nav ul li a {
     transition: all 0.3s ease;
 }
 
-nav ul li a:hover {
+ul.desktop-links li a:hover { /* Target only desktop links */
     background-color: var(--card-bg);
     color: var(--heading-text);
 }
@@ -154,8 +168,8 @@ nav ul li a:hover {
     background-size: cover;
     background-position: center;
     overflow: hidden;
-    margin-top: -100px; 
-    padding-top: 180px; 
+    margin-top: -80px; /* Pulls it up under the fixed header */
+    padding-top: 160px; /* Pushes content down below header (80px header + 80px space) */
 }
 .hero-section-v2::before {
     content: '';
@@ -255,7 +269,6 @@ nav ul li a:hover {
     font-size: 1rem;
     color: var(--muted-text);
 }
-
 
 /* --- Services Section --- */
 .services-grid {
@@ -682,8 +695,14 @@ nav ul li a:hover {
 }
 
 /* --- FEEDBACK MESSAGES --- */
+.flash-messages { /* Container for flash messages */
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0; /* Add some space */
+}
 .feedback-message {
-    margin-top: 1.5rem;
+    margin-top: 0; /* Reset margin top */
+    margin-bottom: 1rem; /* Space below each message */
     padding: 1rem 1.2rem;
     border-radius: 8px;
     font-weight: 500;
@@ -707,7 +726,7 @@ nav ul li a:hover {
     display: flex;
     gap: 3rem;
     padding: 2rem 0;
-    padding-top: 100px;
+    padding-top: 2rem; /* Adjusted top padding */
 }
 .contact-info {
     flex-basis: 40%;
@@ -799,14 +818,101 @@ footer {
     margin-top: auto;
 }
 
+/* --- Mobile Menu Styles --- */
+#mobile-menu-button {
+    display: none;
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+    z-index: 1100;
+}
+#mobile-menu-button svg {
+    width: 28px;
+    height: 28px;
+    color: var(--heading-text);
+}
+
+#mobile-nav {
+    display: none; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 80%;
+    max-width: 300px;
+    height: 100%;
+    background-color: var(--heading-text);
+    padding: 4rem 2rem 2rem 2rem;
+    box-shadow: 2px 0 15px rgba(0, 0, 0, 0.1);
+    z-index: 1050;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+}
+
+#mobile-close-button {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.5rem;
+    cursor: pointer;
+}
+#mobile-close-button svg {
+    width: 24px;
+    height: 24px;
+}
+#mobile-close-button:hover {
+    color: #fff;
+}
+
+#mobile-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+#mobile-nav ul li a {
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 500;
+    padding: 0.75rem 0;
+    transition: color 0.2s ease;
+}
+
+#mobile-nav ul li a:hover {
+    color: var(--accent-blue);
+}
+
+#mobile-nav.mobile-nav-open {
+    transform: translateX(0);
+}
+
 /* --- RESPONSIVE ADJUSTMENTS --- */
 @media (max-width: 950px) {
-    nav {
-        padding: 1rem;
+    .header-container { /* Adjust container padding */
+         padding: 0 1rem;
     }
-    nav ul {
-        display: none;
+    nav.desktop-nav ul.desktop-links { /* Hide desktop links */
+        display: none; 
     }
+    #mobile-menu-button { /* Show hamburger */
+        display: block; 
+    }
+    #mobile-nav { /* Ensure mobile nav exists */
+        display: block; 
+    }
+    nav.desktop-nav { /* Ensure logo stays left */
+        justify-content: flex-start; 
+        width: auto; /* Allow hamburger to take space */
+    }
+
     .about-section-home {
         gap: 2rem;
     }
@@ -820,22 +926,23 @@ footer {
 
 @media (max-width: 768px) {
     body { 
-        padding-top: 80px; 
+        padding-top: 60px; /* Adjust for shorter mobile header */
     }
     header {
         height: 60px; /* Shorter header on mobile */
     }
-    nav {
+    .header-container {
         height: 60px;
-        padding: 0.5rem 1rem;
-        justify-content: center; /* Center logo if menu is hidden */
+    }
+    nav .logo {
+        font-size: 1.3rem; /* Slightly smaller logo */
     }
 
     .hero-section-v2 {
         padding: 4rem 0 5rem 0;
         text-align: center;
-        margin-top: -80px; 
-        padding-top: 120px; 
+        margin-top: -60px; /* Match mobile header height */
+        padding-top: 100px; /* 60px header + 40px space */
     }
     .hero-content {
         text-align: center;
@@ -927,127 +1034,5 @@ footer {
     }
     .testimonial-card {
         padding: 1.5rem;
-    }
-}
-
-/* --- ADD THIS TO THE END OF style.css --- */
-
-/* --- Mobile Menu --- */
-
-/* Hamburger Button */
-#mobile-menu-button {
-    display: none; /* Hidden by default */
-    background: none;
-    border: none;
-    padding: 0.5rem;
-    cursor: pointer;
-    position: absolute; /* Position relative to header */
-    right: 1rem;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 1100; /* Above mobile nav */
-}
-
-#mobile-menu-button svg {
-    width: 28px;
-    height: 28px;
-    color: var(--heading-text); /* Dark icon color */
-}
-
-/* Mobile Nav Container */
-#mobile-nav {
-    display: none; /* Hidden by default */
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 80%; /* Takes up 80% of screen width */
-    max-width: 300px; /* But not more than 300px */
-    height: 100%;
-    background-color: var(--heading-text); /* Dark background */
-    padding: 4rem 2rem 2rem 2rem;
-    box-shadow: 2px 0 15px rgba(0, 0, 0, 0.1);
-    z-index: 1050; /* Below hamburger, above content */
-    transform: translateX(-100%); /* Start off-screen to the left */
-    transition: transform 0.3s ease-in-out; /* Smooth slide */
-}
-
-/* Close button inside mobile nav */
-#mobile-close-button {
-    background: none;
-    border: none;
-    color: rgba(255, 255, 255, 0.7); /* Light close icon */
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    padding: 0.5rem;
-    cursor: pointer;
-}
-#mobile-close-button svg {
-    width: 24px;
-    height: 24px;
-}
-#mobile-close-button:hover {
-    color: #fff;
-}
-
-
-/* Styling links inside mobile nav */
-#mobile-nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem; /* Space between links */
-}
-
-#mobile-nav ul li a {
-    display: block; /* Make links full width */
-    color: #fff; /* White link text */
-    text-decoration: none;
-    font-size: 1.1rem;
-    font-weight: 500;
-    padding: 0.75rem 0;
-    transition: color 0.2s ease;
-}
-
-#mobile-nav ul li a:hover {
-    color: var(--accent-blue); /* Highlight on hover */
-}
-
-/* The "Open" State */
-#mobile-nav.mobile-nav-open {
-    transform: translateX(0); /* Slide into view */
-}
-
-/* --- Responsive Adjustments for Header --- */
-@media (max-width: 950px) {
-    /* Hide desktop nav, show hamburger */
-    .desktop-nav ul {
-        display: none; 
-    }
-    #mobile-menu-button {
-        display: block; 
-    }
-    #mobile-nav {
-        display: block; /* Make the container exist, even if hidden off-screen */
-    }
-    /* Adjust main nav alignment */
-    nav.desktop-nav {
-        justify-content: space-between; /* Keep logo left, button right */
-        padding: 1rem; /* Match mobile button padding */
-    }
-}
-
-@media (max-width: 768px) {
-    /* Ensure header height is correct */
-     header {
-        height: 80px; /* Use desktop height */
-    }
-     nav.desktop-nav {
-        height: 80px; /* Match header height */
-    }
-     #mobile-menu-button {
-        /* Position stays the same relative to header */
     }
 }

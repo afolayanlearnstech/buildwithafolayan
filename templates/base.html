@@ -5,30 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}My Portfolio{% endblock %}</title>
     
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}?v=6.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}?v=7.0">
     
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
 </head>
 <body class="{{ body_class or '' }}">
     <header>
-        <nav class="desktop-nav"> {/* Added class for desktop nav */}
-            <a href="/" class="logo">Afolayan Favour</a>
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/about">About</a></li>
-                <li><a href="/solutions">Solutions</a></li>
-                <li><a href="/portfolio">Case Studies</a></li>
-                <li><a href="/contact">Contact</a></li>
-            </ul>
-        </nav>
+        {/* Container for alignment */}
+        <div class="header-container"> 
+            <nav class="desktop-nav"> 
+                <a href="/" class="logo">Afolayan Favour</a>
+                {/* Desktop Links */}
+                <ul class="desktop-links">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/solutions">Solutions</a></li>
+                    <li><a href="/portfolio">Case Studies</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                </ul>
+            </nav>
 
-        {/* --- NEW: Hamburger Button (Mobile Only) --- */}
-        <button id="mobile-menu-button" aria-label="Open Menu">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
-        </button>
+            {/* Hamburger Button (Mobile Only) */}
+            <button id="mobile-menu-button" aria-label="Open Menu">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            </button>
+        </div>
 
-        {/* --- NEW: Mobile Navigation Menu (Initially Hidden) --- */}
+        {/* Mobile Navigation Menu (Initially Hidden) */}
         <nav id="mobile-nav">
              <button id="mobile-close-button" aria-label="Close Menu">
                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
@@ -46,7 +50,14 @@
     <main>
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
-                {/* Flash message logic remains */}
+                {/* Flash message rendering (ensure this is handled within specific page templates if needed) */}
+                <div class="container"> {/* Added container for potential flash messages */}
+                    <ul class="flash-messages">
+                        {% for category, message in messages %}
+                            <li class="feedback-message {{ category }}">{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
             {% endif %}
         {% endwith %}
         
@@ -56,8 +67,6 @@
     <footer>
         <p>&copy; 2025 Afolayan Favour Ayo-Oluwa. All rights reserved.</p>
     </footer>
-
-    {/* Swiper.js JS link REMOVED */}
 
     {/* AOS JavaScript Library */}
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
@@ -69,7 +78,7 @@
       });
     </script>
 
-    {/* --- NEW: Link to our custom JavaScript file --- */}
+    {/* Link to our custom JavaScript file */}
     <script src="{{ url_for('static', filename='script.js') }}"></script> 
 </body>
 </html>
