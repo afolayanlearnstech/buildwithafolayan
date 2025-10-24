@@ -1137,7 +1137,11 @@ footer {
 }
 
 
-/* --- Client Logobar Section --- */
+/* --- MODIFIED: Client Logobar Section (Scrolling Marquee) --- */
+@keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(-180px * 5)); } /* 180px width * 5 logos */
+}
 .client-logobar-section {
     padding-bottom: 4rem;
     border-bottom: 1px solid var(--border-color);
@@ -1152,20 +1156,37 @@ footer {
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
-.logobar-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-items: center;
-    gap: 2rem;
+.logobar-scroll-container {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    /* Fade edges with a mask */
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
 }
-.logobar-grid img {
-    height: 40px; /* Adjust height as needed */
+.logobar-scroll-track {
+    display: flex;
+    width: calc(180px * 10); /* 180px width * (5 logos * 2 sets) */
+    animation: scroll 30s linear infinite; /* Adjust 30s to change speed */
+}
+.logobar-scroll-track:hover {
+    animation-play-state: paused; /* Pause animation on hover */
+}
+.logo-item {
+    flex-shrink: 0;
+    width: 180px; /* Set a fixed width for each logo container */
+    padding: 0 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.logo-item img {
+    height: 40px; /* Original height */
     width: auto;
     opacity: 0.5;
     transition: opacity 0.3s ease;
 }
-.logobar-grid img:hover {
+.logo-item img:hover {
     opacity: 1;
 }
 
@@ -1197,13 +1218,26 @@ footer {
     .featured-project-image {
         order: 1; /* Image first on mobile */
     }
-
-    .logobar-grid img {
-        height: 30px;
-    }
+    
     .client-logobar-section {
          padding-bottom: 2.5rem;
          margin-bottom: 2.5rem;
+    }
+    
+    /* MODIFIED: Responsive Keyframe for marquee */
+    @keyframes scroll {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(calc(-150px * 5)); } /* Adjust for smaller width */
+    }
+    .logobar-scroll-track {
+        width: calc(150px * 10); /* Adjust for smaller width */
+        animation-duration: 25s; /* Speed up slightly on mobile */
+    }
+    .logo-item {
+        width: 150px; /* Smaller width on mobile */
+    }
+    .logo-item img {
+        height: 30px; /* Original responsive height */
     }
 }
 
