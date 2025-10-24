@@ -959,10 +959,14 @@ footer .container {
     .who-i-help-grid {
         grid-template-columns: 1fr;
     }
-    /* Process Section */
+
+    /* --- START: 950px Process Section (MODIFIED) --- */
     .process-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 3rem 1.5rem;
+    }
+    .process-grid::before {
+        display: none; /* Hides the desktop horizontal line */
     }
     .process-grid::before {
         display: none;
@@ -1007,7 +1011,10 @@ footer .container {
         transition: none;
         width: auto;
         height: auto;
+        border-left: none; /* Remove desktop border */
+        border-right: none; /* Remove desktop border */
     }
+    /* --- END: 950px Process Section --- */
 }
 
 @media (max-width: 768px) {
@@ -1315,6 +1322,108 @@ footer .container {
     font-size: 1.1rem;
     margin-bottom: 2rem;
 }
+
+
+/* --- START: NEW DESKTOP STYLES FOR PROCESS SECTION --- */
+.process-section {
+    padding: 5rem 0;
+    overflow: hidden; /* To contain pseudo-elements */
+}
+
+.process-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* This is the 4-column grid */
+    gap: 1.5rem;
+    position: relative;
+    margin-top: 3rem;
+}
+
+/* This creates the horizontal connecting line */
+.process-grid::before {
+    content: '';
+    position: absolute;
+    top: calc(2.5rem + 30px - 1px); /* Aligns with icon center */
+    left: calc( (100% / 4) / 2 ); /* Start in middle of first card */
+    right: calc( (100% / 4) / 2 ); /* End in middle of last card */
+    height: 2px;
+    background-color: var(--border-color);
+    z-index: 0;
+}
+
+.process-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 2.5rem; /* Match service-card */
+    transition: all 0.3s ease;
+    position: relative; /* For the step number */
+    z-index: 2; /* Sits above the connecting line */
+}
+
+.process-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-blue);
+}
+
+/* This is the step number (01, 02, etc.) */
+.process-card::before {
+    content: attr(data-step);
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--card-bg); /* Sits on top of the line */
+    padding: 0 0.5em;
+    border-left: 2px solid var(--border-color);
+    border-right: 2px solid var(--border-color);
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--accent-blue);
+    z-index: 3;
+}
+
+.process-card-inner {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.process-card-header {
+    display: flex;
+    justify-content: center; /* Center the icon */
+}
+
+.process-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;  /* Make icon bg circular */
+    height: 60px; /* Make icon bg circular */
+    padding: 1rem;
+    background-color: var(--accent-blue-light);
+    border-radius: 50%; /* Circular */
+    margin-bottom: 1.5rem;
+}
+
+.process-icon svg {
+    width: 28px;
+    height: 28px;
+    color: var(--accent-blue);
+}
+
+.process-card h3 {
+    color: var(--heading-text);
+    margin-bottom: 0.5rem;
+    font-size: 1.25rem; /* Slightly smaller */
+}
+
+.process-card p {
+    font-size: 0.95rem;
+    color: var(--body-text);
+    flex-grow: 1;
+}
+/* --- END: NEW DESKTOP STYLES FOR PROCESS SECTION --- */
+
 
 /* --- CORRECTED: Technologies Section - Scrolling --- */
 .tech-section {
