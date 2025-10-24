@@ -1423,3 +1423,202 @@ footer {
         padding-bottom: 2rem;
     }
 }
+/* --- REDESIGNED: Development Process Section --- */
+.process-section {
+    padding: 5rem 0; /* Increased padding */
+}
+
+.process-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0; /* Remove gap, connectors will handle spacing */
+    margin-top: 3rem;
+    position: relative; /* Needed for connector positioning */
+}
+
+.process-card {
+    background-color: transparent; /* Make card background transparent */
+    border: none; /* Remove border */
+    padding: 0 1.5rem; /* Horizontal padding */
+    text-align: center;
+    position: relative;
+    transition: all 0.3s ease;
+    z-index: 1; /* Keep content above connectors */
+}
+
+.process-card-header {
+    position: relative;
+    margin-bottom: 1.5rem;
+    display: inline-block; /* Center the icon block */
+}
+
+.process-icon {
+    display: flex; /* Use flex to center icon easily */
+    align-items: center;
+    justify-content: center;
+    width: 60px; /* Make icon circle larger */
+    height: 60px;
+    border-radius: 50%;
+    background-color: var(--card-bg); /* Use card background for icon circle */
+    border: 2px solid var(--border-color);
+    margin: 0 auto; /* Center horizontally */
+    position: relative;
+    z-index: 2; /* Ensure icon is above line */
+    transition: all 0.3s ease;
+}
+
+.process-icon svg {
+    width: 28px;
+    height: 28px;
+    color: var(--accent-blue);
+}
+
+/* Step number using ::before pseudo-element */
+.process-card::before {
+    content: attr(data-step); /* Use the data-step attribute */
+    position: absolute;
+    top: 28px; /* Vertically center relative to icon */
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--body-text); /* Use body text color */
+    z-index: 3; /* Above icon */
+    opacity: 0; /* Hide by default */
+    transition: opacity 0.3s ease;
+}
+
+.process-card h3 {
+    color: var(--heading-text);
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+}
+
+.process-card p {
+    font-size: 0.9rem;
+    color: var(--body-text); /* Use lighter body text */
+}
+
+/* Connector line using ::after pseudo-element */
+.process-grid::before {
+    content: '';
+    position: absolute;
+    top: 30px; /* Align vertically with center of icon circles */
+    left: calc(12.5% + 1.5rem); /* Start after half of first card + padding */
+    right: calc(12.5% + 1.5rem); /* End before half of last card + padding */
+    height: 2px;
+    background-color: var(--border-color); /* Use border color for line */
+    z-index: 1; /* Behind icons */
+}
+
+/* Hover effects */
+.process-card:hover .process-icon {
+    background-color: var(--accent-blue);
+    border-color: var(--accent-blue);
+    transform: scale(1.1); /* Slightly enlarge icon */
+}
+.process-card:hover .process-icon svg {
+    color: #FFFFFF; /* White icon on hover */
+}
+.process-card:hover::before {
+    opacity: 1; /* Show step number on hover */
+    color: #FFFFFF; /* White number on hover */
+}
+
+
+/* --- Responsive for Redesigned Process Section --- */
+@media (max-width: 950px) {
+    .process-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2x2 grid on medium screens */
+        gap: 2rem 1rem; /* Add vertical gap */
+    }
+    .process-grid::before {
+        display: none; /* Hide horizontal connector */
+    }
+    /* Add vertical connectors for 2x2 grid */
+    .process-card:nth-child(1)::after,
+    .process-card:nth-child(2)::after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        bottom: -2rem; /* Position below card */
+        width: 2px;
+        height: 2rem; /* Length of the connector */
+        background-color: var(--border-color);
+        transform: translateX(-50%);
+        z-index: 0;
+    }
+     /* Add horizontal connectors for 2x2 grid */
+    .process-card:nth-child(1)::before, /* Use before for horizontal */
+    .process-card:nth-child(3)::before {
+         content: '';
+         position: absolute;
+         top: 30px; /* Align vertically */
+         right: calc(-0.5rem - 1px); /* Position between cards (half gap + half line width) */
+         width: calc(1rem + 2px); /* Length (gap + line width) */
+         height: 2px;
+         background-color: var(--border-color);
+         transform: none; /* Reset transform */
+         z-index: 0;
+         opacity: 1; /* Always show */
+         color: transparent; /* Hide text if attr() is used */
+    }
+    .process-card:hover::before { /* Re-style hover for number */
+        content: attr(data-step);
+        top: 28px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: auto;
+        height: auto;
+        color: #FFFFFF;
+        background: none;
+    }
+    .process-card::before { /* Reset default number style */
+         opacity: 0;
+    }
+
+}
+
+@media (max-width: 768px) {
+    .process-grid {
+        grid-template-columns: 1fr; /* Single column on small screens */
+        gap: 2.5rem 0; /* Vertical gap only */
+    }
+    .process-card {
+        padding: 0 1rem; /* Adjust padding */
+    }
+    .process-card::before { /* Reset number style for vertical */
+        content: attr(data-step);
+        top: -10px; /* Position above icon */
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 0.8rem;
+        background-color: var(--card-bg); /* Add background to cover line */
+        padding: 0 0.3em;
+        z-index: 3;
+        opacity: 1; /* Always show step number */
+        color: var(--body-text); /* Default color */
+        transition: none; /* Remove hover transition */
+    }
+     .process-card:hover::before { /* Remove hover specific style */
+        color: var(--body-text);
+     }
+
+    /* Vertical connector line */
+    .process-card:not(:last-child)::after {
+        content: '';
+        position: absolute;
+        top: 30px; /* Start from icon center */
+        bottom: -2.5rem; /* Extend to next card's gap */
+        left: 50%;
+        width: 2px;
+        background-color: var(--border-color);
+        transform: translateX(-50%);
+        z-index: 1; /* Behind icon */
+    }
+     /* Remove horizontal connectors from medium screen */
+    .process-card:nth-child(1)::before,
+    .process-card:nth-child(3)::before {
+         display: none;
+    }
+}
