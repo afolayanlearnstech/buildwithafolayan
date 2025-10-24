@@ -1349,3 +1349,77 @@ footer {
         font-size: 1.5rem; /* Reduced font size for longer words */
     }
 }
+
+/* --- NEW STYLES (Add to bottom of style.css) --- */
+
+/* --- Solutions Page: "Who I Help" Section --- */
+.who-i-help-section {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid var(--border-color);
+}
+.who-i-help-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+.who-i-help-grid .service-card {
+    /* Make these cards a bit simpler */
+    padding: 2rem;
+}
+.who-i-help-grid .service-card h3 {
+    font-size: 1.25rem;
+}
+.who-i-help-grid .service-card p {
+    font-size: 0.95rem;
+}
+
+/* --- Solutions Page: "Services" Section --- */
+.services-section {
+    padding-top: 3rem;
+}
+
+/* --- Solutions Page: "FAQs" Section --- */
+.faq-section {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+.faq-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    max-width: 900px;
+    margin: 0 auto;
+}
+.faq-item {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    padding: 2rem;
+    border-radius: 12px;
+}
+.faq-item h3 {
+    color: var(--heading-text);
+    margin-bottom: 0.75rem;
+}
+.faq-item p {
+    color: var(--body-text);
+    font-size: 0.95rem;
+    line-height: 1.7;
+}
+
+/* --- Responsive for new Solutions sections --- */
+@media (max-width: 950px) {
+    .who-i-help-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .faq-grid {
+        grid-template-columns: 1fr;
+    }
+    .who-i-help-section {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    }
+}
