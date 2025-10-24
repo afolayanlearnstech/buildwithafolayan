@@ -33,7 +33,7 @@ body {
     line-height: 1.6;
     background-color: var(--background);
     color: var(--body-text);
-    padding-top: 80px; /* Adjusted for standard header height */
+    padding-top: 80px; 
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -42,10 +42,18 @@ body {
 .container {
     width: 90%;
     max-width: 1100px;
-    margin: 2rem auto;
-    padding: 0 1rem;
+    margin: 0 auto; /* Centered, removed top/bottom margin */
+    padding: 2rem 1rem; /* Added padding */
     flex-grow: 1;
 }
+/* Allow sections to manage their own top/bottom spacing */
+main > .container:first-child {
+     padding-top: 2rem;
+}
+main > div:first-child > .container {
+     padding-top: 2rem;
+}
+
 
 /* --- Utility Classes --- */
 .tag {
@@ -73,26 +81,25 @@ header {
     border-bottom: 1px solid var(--border-color);
     z-index: 1000;
     transition: all 0.3s ease;
-    height: 80px; /* Explicit height */
+    height: 80px; 
 }
 
-/* New container inside header for alignment */
 .header-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
     max-width: 1100px;
     margin: 0 auto;
-    padding: 0 2rem; /* Adjusted padding */
-    height: 100%; /* Take full height of header */
+    padding: 0 2rem; 
+    height: 100%; 
 }
 
 
-nav.desktop-nav { /* Target only the desktop nav */
+nav.desktop-nav { 
     display: flex;
-    justify-content: space-between; /* This might need adjustment */
+    justify-content: space-between; 
     align-items: center;
-    width: 100%; /* Allow it to take space */
+    width: 100%; 
     height: 100%;
 }
 
@@ -101,18 +108,18 @@ nav .logo {
     font-weight: 700;
     color: var(--heading-text); 
     text-decoration: none;
-    flex-shrink: 0; /* Prevent logo from shrinking */
+    flex-shrink: 0; 
 }
 
-ul.desktop-links { /* Target only desktop links */
+ul.desktop-links { 
     list-style: none;
     display: flex;
     gap: 1rem;
-    margin: 0; /* Reset margin */
-    padding: 0; /* Reset padding */
+    margin: 0; 
+    padding: 0; 
 }
 
-ul.desktop-links li a { /* Target only desktop links */
+ul.desktop-links li a { 
     text-decoration: none;
     color: var(--body-text); 
     font-weight: 600;
@@ -122,7 +129,7 @@ ul.desktop-links li a { /* Target only desktop links */
     transition: all 0.3s ease;
 }
 
-ul.desktop-links li a:hover { /* Target only desktop links */
+ul.desktop-links li a:hover { 
     background-color: var(--card-bg);
     color: var(--heading-text);
 }
@@ -168,8 +175,8 @@ ul.desktop-links li a:hover { /* Target only desktop links */
     background-size: cover;
     background-position: center;
     overflow: hidden;
-    margin-top: -80px; /* Pulls it up under the fixed header */
-    padding-top: 160px; /* Pushes content down below header (80px header + 80px space) */
+    margin-top: -80px; /* Adjusted for standard header height */
+    padding-top: 160px; /* 80px header + 80px space */
 }
 .hero-section-v2::before {
     content: '';
@@ -183,6 +190,11 @@ ul.desktop-links li a:hover { /* Target only desktop links */
         rgba(255, 255, 255, 0.95) 0%, 
         rgba(255, 255, 255, 0.8) 50%, 
         rgba(255, 255, 255, 0.3) 100%);
+}
+.hero-section-v2 .container { /* Ensure container inside hero is full width */
+     max-width: 1100px;
+     padding-top: 0; /* Remove extra padding */
+     padding-bottom: 0;
 }
 .hero-content {
     position: relative;
@@ -270,6 +282,7 @@ ul.desktop-links li a:hover { /* Target only desktop links */
     color: var(--muted-text);
 }
 
+
 /* --- Services Section --- */
 .services-grid {
     display: grid;
@@ -338,6 +351,7 @@ ul.desktop-links li a:hover { /* Target only desktop links */
 }
 
 /* --- Homepage "About Me" Section --- */
+/* (This section is only used on the about.html page now) */
 .about-section-home {
     display: flex;
     gap: 4rem;
@@ -695,14 +709,14 @@ ul.desktop-links li a:hover { /* Target only desktop links */
 }
 
 /* --- FEEDBACK MESSAGES --- */
-.flash-messages { /* Container for flash messages */
+.flash-messages { 
     list-style: none;
     padding: 0;
-    margin: 1rem 0; /* Add some space */
+    margin: 0; /* Reset margin */
 }
 .feedback-message {
-    margin-top: 0; /* Reset margin top */
-    margin-bottom: 1rem; /* Space below each message */
+    margin-top: 0; 
+    margin-bottom: 1rem; 
     padding: 1rem 1.2rem;
     border-radius: 8px;
     font-weight: 500;
@@ -825,7 +839,7 @@ footer {
     border: none;
     padding: 0.5rem;
     cursor: pointer;
-    z-index: 1100;
+    z-index: 1100; 
 }
 #mobile-menu-button svg {
     width: 28px;
@@ -878,7 +892,7 @@ footer {
 
 #mobile-nav ul li a {
     display: block;
-    color: #fff;
+    color: #fff; /* Ensure all links are white */
     text-decoration: none;
     font-size: 1.1rem;
     font-weight: 500;
@@ -894,23 +908,24 @@ footer {
     transform: translateX(0);
 }
 
+
 /* --- RESPONSIVE ADJUSTMENTS --- */
 @media (max-width: 950px) {
-    .header-container { /* Adjust container padding */
+    .header-container { 
          padding: 0 1rem;
     }
-    nav.desktop-nav ul.desktop-links { /* Hide desktop links */
+    nav.desktop-nav ul.desktop-links { 
         display: none; 
     }
-    #mobile-menu-button { /* Show hamburger */
+    #mobile-menu-button { 
         display: block; 
     }
-    #mobile-nav { /* Ensure mobile nav exists */
+    #mobile-nav { 
         display: block; 
     }
-    nav.desktop-nav { /* Ensure logo stays left */
+    nav.desktop-nav { 
         justify-content: flex-start; 
-        width: auto; /* Allow hamburger to take space */
+        width: auto; 
     }
 
     .about-section-home {
@@ -933,6 +948,12 @@ footer {
     }
     .header-container {
         height: 60px;
+        padding: 0 1rem; /* Consistent padding */
+    }
+     nav.desktop-nav { /* Adjust desktop nav container on mobile */
+        height: 60px;
+        padding: 0;
+        justify-content: flex-start; /* Align logo left */
     }
     nav .logo {
         font-size: 1.3rem; /* Slightly smaller logo */

@@ -5,14 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}My Portfolio{% endblock %}</title>
     
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}?v=7.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}?v=8.0">
     
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
 </head>
 <body class="{{ body_class or '' }}">
     <header>
-        {/* Container for alignment */}
         <div class="header-container"> 
             <nav class="desktop-nav"> 
                 <a href="/" class="logo">Afolayan Favour</a>
@@ -50,9 +49,8 @@
     <main>
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
-                {/* Flash message rendering (ensure this is handled within specific page templates if needed) */}
-                <div class="container"> {/* Added container for potential flash messages */}
-                    <ul class="flash-messages">
+                <div class="container"> 
+                    <ul class="flash-messages" style="padding-top: 20px;"> {/* Added inline padding for spacing */}
                         {% for category, message in messages %}
                             <li class="feedback-message {{ category }}">{{ message }}</li>
                         {% endfor %}
