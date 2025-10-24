@@ -518,34 +518,65 @@ ul.desktop-links li a:hover {
     z-index: 2;
 }
 
-/* --- Technologies Section --- */
+/* --- MODIFIED: Technologies Section --- */
 .tech-section {
     padding: 4rem 0;
 }
-.tech-grid {
-    display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    gap: 1rem;
-    padding: 2rem;
+
+/* New styles for scrolling marquee */
+@keyframes scroll-tech {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(-150px * 12)); } /* 150px width * 12 logos */
+}
+
+.tech-scroll-container {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
     background-color: var(--card-bg);
     border-radius: 12px;
     border: 1px solid var(--border-color);
+    padding: 2rem 0;
+    /* Fade edges with a mask */
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
 }
-.tech-item {
-    text-align: center;
+.tech-scroll-track {
+    display: flex;
+    width: calc(150px * 24); /* 150px width * (12 logos * 2 sets) */
+    animation: scroll-tech 50s linear infinite; /* Adjust 50s to change speed */
 }
-.tech-item img {
-    height: 48px;
-    margin-bottom: 0.5rem;
-    /* MODIFIED: Make logos white for dark mode */
-    filter: invert(1) brightness(2);
+.tech-scroll-track:hover {
+    animation-play-state: paused; /* Pause animation on hover */
+}
+.tech-logo-item {
+    flex-shrink: 0;
+    width: 150px; /* Set a fixed width for each logo container */
+    padding: 0 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+.tech-logo-item img {
+    height: 40px; 
+    width: auto;
     opacity: 0.7;
+    transition: opacity 0.3s ease;
+    /* MODIFIED: Make logos white for dark mode */
+    filter: invert(1) brightness(1.5);
 }
-.tech-item span {
+.tech-logo-item span {
     font-size: 0.9rem;
     font-weight: 500;
     color: var(--muted-text);
 }
+.tech-logo-item:hover img {
+    opacity: 1;
+}
+/* --- END MODIFIED: Technologies Section --- */
+
 
 /* --- Testimonials Section --- */
 .testimonials-section .section-header p {
@@ -1035,13 +1066,14 @@ footer {
     }
     .services-grid,
     .portfolio-grid,
-    .process-grid,
+    .process-grid {
+        grid-template-columns: 1fr;
+    }
+    /* MODIFIED: Responsive Tech Scroller */
     .tech-grid {
         grid-template-columns: 1fr;
     }
-    .tech-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
+    
     .about-content {
         flex-direction: column;
         align-items: center;
@@ -1285,6 +1317,26 @@ footer {
     .logo-item img {
         height: 30px; /* Original responsive height */
     }
+
+    /* MODIFIED: Responsive Tech Scroller */
+    @keyframes scroll-tech {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(calc(-120px * 12)); } /* 120px width * 12 logos */
+    }
+    .tech-scroll-track {
+        width: calc(120px * 24); /* 120px width * (12 logos * 2 sets) */
+        animation-duration: 40s; 
+    }
+    .tech-logo-item {
+        width: 120px; /* Smaller width on mobile */
+    }
+    .tech-logo-item img {
+        height: 30px;
+    }
+    .tech-logo-item span {
+        font-size: 0.8rem;
+    }
+
 }
 
 /* --- Mobile Fix for Hero Stats --- */
