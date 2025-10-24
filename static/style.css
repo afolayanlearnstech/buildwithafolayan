@@ -50,7 +50,7 @@ body {
     flex-grow: 1;
 }
 main > .container:first-child,
-main > div:first-child > .container { /* Targets containers directly under main or inside the first div under main */
+main > div:first-child > .container {
      padding-top: 2rem;
 }
 
@@ -303,12 +303,12 @@ ul.desktop-links li a:hover {
     border-radius: 12px;
     padding: 2.5rem;
     transition: all 0.3s ease;
-    display: flex; /* Added flex to ensure consistent height if needed */
+    display: flex;
     flex-direction: column;
 }
 .service-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(15, 23, 42, 0.1); /* Adjusted shadow for dark */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); /* Adjusted shadow */
 }
 .service-icon-wrapper {
     display: inline-block;
@@ -338,16 +338,16 @@ ul.desktop-links li a:hover {
     font-size: 1rem;
     margin-bottom: 1.5rem;
     color: var(--body-text);
-    flex-grow: 1; /* Allow description to push features down */
+    flex-grow: 1;
 }
 .service-features {
     list-style: none;
-    padding: 0; /* Remove default padding */
-    margin: 0; /* Remove default margin */
+    padding: 0;
+    margin: 0;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 0.5rem;
-    margin-top: auto; /* Push features to the bottom */
+    margin-top: auto;
 }
 .service-features li {
     font-size: 0.95rem;
@@ -391,8 +391,8 @@ ul.desktop-links li a:hover {
 }
 .feature-list {
     list-style: none;
-    padding: 0; /* Remove default padding */
-    margin: 0; /* Remove default margin */
+    padding: 0;
+    margin: 0;
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
@@ -433,7 +433,7 @@ ul.desktop-links li a:hover {
     height: auto;
     border-radius: 12px;
     object-fit: cover;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1); /* Adjusted shadow */
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
 }
 .cta-overlay-box {
     position: absolute;
@@ -444,7 +444,7 @@ ul.desktop-links li a:hover {
     padding: 2rem;
     border-radius: 12px;
     max-width: 300px;
-    box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3); /* Accent color shadow */
+    box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
     transition: all 0.3s ease;
 }
 .cta-overlay-box:hover {
@@ -467,12 +467,12 @@ ul.desktop-links li a:hover {
     border: 1px solid var(--border-color);
     border-radius: 12px;
     padding: 2rem;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Adjusted shadow */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
 }
 .testimonial-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15); /* Adjusted shadow */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
 }
 .testimonial-quote {
     font-size: 1rem;
@@ -522,7 +522,7 @@ ul.desktop-links li a:hover {
     height: 340px;
     object-fit: cover;
     border: 5px solid var(--background);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* Adjusted shadow */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     flex-shrink: 0;
 }
 .about-text h2, .about-text h3 {
@@ -554,7 +554,7 @@ ul.desktop-links li a:hover {
 
 .portfolio-item-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); /* Adjusted shadow */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
     border-color: var(--accent-blue);
 }
 
@@ -772,8 +772,8 @@ ul.desktop-links li a:hover {
 }
 .contact-details {
     list-style: none;
-    padding: 0; /* Remove default padding */
-    margin: 0; /* Remove default margin */
+    padding: 0;
+    margin: 0;
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
@@ -1097,7 +1097,7 @@ footer .container {
         gap: 2rem;
     }
     .contact-form-wrapper {
-        padding: 1.5rem; /* Less padding on mobile */
+        padding: 1.5rem;
     }
     .contact-info h2 {
         font-size: 2rem;
@@ -1189,7 +1189,7 @@ footer .container {
     }
      .process-card:nth-child(1)::after,
     .process-card:nth-child(2)::after {
-        display: none; /* Remove connector from 2x2 grid */
+        display: none;
     }
     .process-card::before {
         top: -10px;
@@ -1198,7 +1198,7 @@ footer .container {
         background-color: var(--card-bg);
         z-index: 3;
     }
-     /* Tech Scroller Mobile */
+     /* Tech Scroller Mobile - Ensure these are correct */
     @keyframes scroll-tech {
         0% { transform: translateX(0); }
         100% { transform: translateX(calc(-120px * 12)); }
@@ -1211,7 +1211,8 @@ footer .container {
         width: 120px;
     }
     .tech-logo-item img {
-        height: 30px;
+        height: 30px; /* Correct height */
+        max-width: 60px; /* Added max-width */
     }
     .tech-logo-item span {
         font-size: 0.8rem;
@@ -1314,6 +1315,63 @@ footer .container {
     font-size: 1.1rem;
     margin-bottom: 2rem;
 }
+
+/* --- CORRECTED: Technologies Section - Scrolling --- */
+.tech-section {
+    padding: 4rem 0; /* Standard padding */
+}
+
+@keyframes scroll-tech {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(-150px * 12)); } /* 150px width * 12 logos */
+}
+
+.tech-scroll-container {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    background-color: var(--card-bg); /* Use card background */
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    padding: 2rem 0; /* Vertical padding */
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+}
+.tech-scroll-track {
+    display: flex; /* Makes items horizontal */
+    width: calc(150px * 24); /* Item Width * (12 logos * 2 sets) */
+    animation: scroll-tech 50s linear infinite; /* Adjust speed */
+}
+.tech-scroll-track:hover {
+    animation-play-state: paused;
+}
+.tech-logo-item {
+    flex-shrink: 0; /* Prevent items from shrinking */
+    width: 150px; /* Set fixed width */
+    padding: 0 1rem; /* Horizontal padding */
+    display: flex; /* Column layout */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem; /* Space between logo and text */
+}
+.tech-logo-item img {
+    height: 40px; /* Set fixed height */
+    width: auto; /* Allow width to scale */
+    max-width: 80px; /* Prevent huge logos */
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+    filter: invert(1) brightness(1.5); /* Make logos white/light */
+}
+.tech-logo-item span {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--muted-text);
+}
+.tech-logo-item:hover img {
+    opacity: 1;
+}
+/* --- END CORRECTED TECHNOLOGIES --- */
 
 /* --- About Page: Social Links --- */
 .about-social-links {
@@ -1464,9 +1522,9 @@ footer .container {
         gap: 2rem;
     }
     .featured-project-text {
-        order: 2; /* Text second on mobile */
+        order: 2;
     }
     .featured-project-image {
-        order: 1; /* Image first on mobile */
+        order: 1;
     }
 }
