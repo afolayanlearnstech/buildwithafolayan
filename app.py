@@ -10,7 +10,7 @@ app = Flask(__name__,
 app.config['SECRET_KEY'] = 'a-super-secret-key-that-you-should-change'
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0 # Good for development
 
-# --- MODIFIED: DYNAMIC CASE STUDY DATA (with Icons) ---
+# --- DYNAMIC CASE STUDY DATA (with Icons) ---
 portfolio_projects = [
     {
         'title': 'The Secure Client Document Intake Portal',
@@ -53,8 +53,6 @@ portfolio_projects = [
         'link_text': 'Learn More (Coming Soon)'
     }
 ]
-# --- END MODIFIED DATA ---
-
 
 # --- ROUTES ---
 
@@ -83,6 +81,11 @@ def contact():
             service = request.form['service_needed']
             challenges = request.form['challenges']
 
+            # Basic validation (can be expanded)
+            if not name or not email or not service or not challenges:
+                 flash('Please fill out all required fields.', 'error')
+                 return redirect(url_for('contact'))
+
             print(f"--- New Consultation Request ---")
             print(f"Name: {name}")
             print(f"Email: {email}")
@@ -90,14 +93,26 @@ def contact():
             print(f"Challenges: {challenges}")
             print(f"---------------------------------")
 
+            # !!! IMPORTANT: Add email sending logic here in a real application !!!
+            # Example: send_email(name, email, service, challenges)
+
             flash('Thank you for your consultation request! I will get back to you soon.', 'success')
-            return redirect(url_for('contact'))
+            return redirect(url_for('contact')) # Redirect to clear the form
     except Exception as e:
         print(f"Form submission error: {e}")
-        flash('An error occurred. Please try again.', 'error')
-        return redirect(url_for('contact'))
+        # Log the error properly in a real application
+        # import logging
+        # logging.exception("Form submission error")
+        flash('An unexpected error occurred. Please try again later.', 'error')
+        # Don't redirect on server error, allow user to see the page still
+        # return redirect(url_for('contact')) # Avoid redirecting here
 
+    # Render the template for GET requests or if POST fails before redirect
     return render_template('contact.html')
 
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    # Use environment variable for port if available (e.g., for deployment)
+    port = int(os.environ.get('PORT', 5000))
+    # Turn off debug mode for production
+    app.run(debug=False, host='0.0.0.0', port=port)

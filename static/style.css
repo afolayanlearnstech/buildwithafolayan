@@ -713,11 +713,19 @@ ul.desktop-links li a:hover {
     padding: 0;
     margin: 0;
 }
+/* Add container for global flash messages */
+.global-flash-container {
+    padding-top: 1rem; /* Space from header */
+    padding-bottom: 0; /* No bottom padding needed here */
+    max-width: 1100px; /* Match site width */
+    margin-left: auto;
+    margin-right: auto;
+}
 .feedback-message {
     margin-top: 0;
     margin-bottom: 1rem;
     padding: 1rem 1.2rem;
-    border-radius: 8px;
+    border-radius: 8px; /* Match form radius */
     font-weight: 500;
     text-align: center;
     font-size: 0.95rem;
@@ -729,9 +737,9 @@ ul.desktop-links li a:hover {
     border: 1px solid var(--accent-blue);
 }
 .feedback-message.error {
-    background-color: #3f1217;
-    color: #fca5a5;
-    border: 1px solid #dc2626;
+    background-color: #3f1217; /* Darker red background */
+    color: #fca5a5; /* Light red text */
+    border: 1px solid #dc2626; /* Red border */
 }
 
 /* --- Contact Page V2.0 (Specifics) --- */
@@ -799,7 +807,7 @@ ul.desktop-links li a:hover {
 }
 .contact-form-wrapper .feedback-message {
     margin-top: 0;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.5rem; /* Keep space before form */
 }
 
 /* --- High-Contrast CTA Section --- */
@@ -829,6 +837,10 @@ footer {
     padding: 2rem 0;
     border-top: 1px solid var(--border-color);
     margin-top: auto;
+}
+footer .container {
+    padding-top: 0; /* Remove extra padding inside footer container */
+    padding-bottom: 0;
 }
 
 /* --- Mobile Menu Styles --- */
@@ -948,7 +960,7 @@ footer {
     /* Process Section */
     .process-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 2rem 1.5rem;
+        gap: 3rem 1.5rem; /* Increased vertical gap */
     }
     .process-grid::before {
         display: none;
@@ -958,9 +970,9 @@ footer {
         content: '';
         position: absolute;
         left: 50%;
-        bottom: -2.0rem;
+        bottom: -3.0rem; /* Match increased gap */
         width: 2px;
-        height: 2rem;
+        height: 3rem; /* Match increased gap */
         background-color: var(--border-color);
         transform: translateX(-50%);
         z-index: 0;
@@ -968,22 +980,32 @@ footer {
     .process-card:nth-child(odd)::before {
         content: '';
         position: absolute;
-        top: 50%;
+        top: calc(2.5rem + 30px - 1px);
         right: calc(-0.75rem - 1px);
         width: calc(1.5rem + 2px);
         height: 2px;
         background-color: var(--border-color);
-        transform: translateY(-50%);
+        transform: none;
         z-index: 0;
         opacity: 1;
+        padding: 0;
     }
-    .process-card::before {
+     .process-card::before {
         content: attr(data-step);
         top: -10px;
         left: 50%;
         transform: translateX(-50%);
         opacity: 1;
         background-color: var(--card-bg);
+        /* Ensure previous properties are not overridden */
+         font-size: 0.9rem;
+         font-weight: 600;
+         color: var(--accent-blue);
+         padding: 0 0.5em;
+         z-index: 3;
+         transition: none;
+         width: auto;
+         height: auto;
     }
 }
 
@@ -1145,24 +1167,29 @@ footer {
     }
     /* Process Mobile */
     .process-grid {
-        gap: 2.5rem 0;
+        gap: 3.5rem 0; /* Increased vertical gap */
     }
     .process-card {
         padding: 2rem 1rem;
     }
     .process-card:nth-child(odd)::before {
-        display: none; /* Hide horizontal connector from 950px */
+        display: none;
     }
     .process-card:not(:last-child)::after {
         content: '';
         position: absolute;
-        top: 50%;
-        bottom: -2.5rem;
+        top: calc(2.5rem + 60px + 4px); /* Start below icon+shadow */
+        bottom: -3.5rem; /* Match increased gap */
         left: 50%;
         width: 2px;
         background-color: var(--border-color);
         transform: translateX(-50%);
         z-index: 0;
+    }
+     /* Remove vertical connector from medium screen */
+    .process-card:nth-child(1)::after,
+    .process-card:nth-child(2)::after {
+        display: none;
     }
     .process-card::before {
         top: -10px;

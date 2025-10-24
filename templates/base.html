@@ -3,28 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}My Portfolio{% endblock %}</title>
-    
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}?v=8.0">
-    
+    <title>{% block title %}Afolayan Favour | Portfolio{% endblock %}</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}?v=9.0">
+
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
-</head>
+    </head>
 <body class="{{ body_class or '' }}">
     <header>
-        <div class="header-container"> 
-            <nav class="desktop-nav"> 
-                <a href="/" class="logo">Afolayan Favour</a>
+        <div class="header-container">
+            <nav class="desktop-nav">
+                <a href="{{ url_for('home') }}" class="logo">Afolayan Favour</a>
                 <ul class="desktop-links">
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/about">About</a></li>
-                    <li><a href="/solutions">Solutions</a></li>
-                    <li><a href="/portfolio">Case Studies</a></li>
-                    <li><a href="/contact">Contact</a></li>
+                    <li><a href="{{ url_for('home') }}">Home</a></li>
+                    <li><a href="{{ url_for('about') }}">About</a></li>
+                    <li><a href="{{ url_for('solutions') }}">Solutions</a></li>
+                    <li><a href="{{ url_for('portfolio') }}">Case Studies</a></li>
+                    <li><a href="{{ url_for('contact') }}">Contact</a></li>
                 </ul>
             </nav>
 
-            <button id="mobile-menu-button" aria-label="Open Menu">
+            <button id="mobile-menu-button" aria-label="Open Menu" aria-expanded="false" aria-controls="mobile-nav">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
             </button>
         </div>
@@ -34,43 +34,50 @@
                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
              </button>
             <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/about">About</a></li>
-                <li><a href="/solutions">Solutions</a></li>
-                <li><a href="/portfolio">Case Studies</a></li>
-                <li><a href="/contact">Contact</a></li>
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('about') }}">About</a></li>
+                <li><a href="{{ url_for('solutions') }}">Solutions</a></li>
+                <li><a href="{{ url_for('portfolio') }}">Case Studies</a></li>
+                <li><a href="{{ url_for('contact') }}">Contact</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
+        {# Display flashed messages globally just below header area #}
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
-                <div class="container"> 
-                    <ul class="flash-messages" style="padding-top: 20px;"> {% for category, message in messages %}
+                {# Container is only added if there are messages #}
+                <div class="container global-flash-container">
+                    <ul class="flash-messages">
+                        {% for category, message in messages %}
                             <li class="feedback-message {{ category }}">{{ message }}</li>
                         {% endfor %}
                     </ul>
                 </div>
             {% endif %}
         {% endwith %}
-        
+
         {% block content %}{% endblock %}
     </main>
 
     <footer>
-        <p>&copy; 2025 Afolayan Favour Ayo-Oluwa. All rights reserved.</p>
+        <div class="container"> {# Wrap footer content in container for consistency #}
+            <p>&copy; {% block year %}2025{% endblock %} Afolayan Favour Ayo-Oluwa. All rights reserved.</p>
+            {# Optional: Add social links or privacy policy link here #}
+        </div>
     </footer>
 
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
       AOS.init({
-        duration: 800, 
-        once: true,
-        offset: 50,
+        duration: 800,
+        once: true, // Animation happens only once
+        offset: 50, // Trigger animations a little sooner
+        disable: 'mobile' // Optional: Disable AOS on mobile if performance is an issue
       });
     </script>
 
-    <script src="{{ url_for('static', filename='script.js') }}?v=8.1"></script> 
+    <script src="{{ url_for('static', filename='script.js') }}?v=9.0"></script>
 </body>
 </html>
