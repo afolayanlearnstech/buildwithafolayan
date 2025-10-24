@@ -10,17 +10,17 @@
     padding: 0;
 }
 
-/* --- UNIFIED COLOR PALETTE --- */
+/* --- MODIFIED: DARK THEME COLOR PALETTE --- */
 :root {
-    --background: #FFFFFF;
-    --card-bg: #F8FAFC;
-    --border-color: #E2E8F0;
-    --heading-text: #0F172A;
-    --body-text: #475569;
-    --accent-blue: #3B82F6;
-    --accent-blue-hover: #2563EB;
-    --accent-blue-light: #EFF6FF;
-    --muted-text: #64748B;
+    --background: #0F172A; /* Deep Navy Blue */
+    --card-bg: #1E293B; /* Dark Slate */
+    --border-color: #334155; /* Muted border */
+    --heading-text: #E2E8F0; /* Light Gray */
+    --body-text: #94A3B8; /* Lighter Gray */
+    --accent-blue: #8B5CF6; /* Vibrant Purple */
+    --accent-blue-hover: #7C3AED; /* Darker Purple */
+    --accent-blue-light: rgba(139, 92, 246, 0.1); /* 10% Purple for tags */
+    --muted-text: #64748B; /* Muted Gray */
 }
 
 /* --- General Body & Layout --- */
@@ -75,7 +75,8 @@ header {
     top: 0;
     left: 0;
     width: 100%;
-    background: rgba(255, 255, 255, 0.85); 
+    /* MODIFIED: Dark header background */
+    background: rgba(15, 23, 42, 0.85); 
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--border-color);
@@ -186,10 +187,11 @@ ul.desktop-links li a:hover {
     right: 0;
     bottom: 0;
     z-index: 1;
+    /* MODIFIED: Dark gradient overlay */
     background: linear-gradient(90deg, 
-        rgba(255, 255, 255, 0.95) 0%, 
-        rgba(255, 255, 255, 0.8) 50%, 
-        rgba(255, 255, 255, 0.3) 100%);
+        rgba(15, 23, 42, 0.95) 0%, 
+        rgba(15, 23, 42, 0.8) 50%, 
+        rgba(15, 23, 42, 0.3) 100%);
 }
 .hero-section-v2 .container { /* Ensure container inside hero is full width */
      max-width: 1100px;
@@ -517,6 +519,9 @@ ul.desktop-links li a:hover {
 .tech-item img {
     height: 48px;
     margin-bottom: 0.5rem;
+    /* MODIFIED: Make logos white for dark mode */
+    filter: invert(1) brightness(2);
+    opacity: 0.7;
 }
 .tech-item span {
     font-size: 0.9rem;
@@ -627,7 +632,8 @@ ul.desktop-links li a:hover {
     bottom: 0;
     left: 0;
     right: 0;
-    background: linear-gradient(0deg, rgba(248,250,252,1) 0%, rgba(248,250,252,0.9) 40%, rgba(248,250,252,0) 100%);
+    /* MODIFIED: Dark overlay */
+    background: linear-gradient(0deg, rgba(30, 41, 59, 1) 0%, rgba(30, 41, 59, 0.9) 40%, rgba(30, 41, 59, 0) 100%);
     padding: 3rem 1.5rem 1.5rem 1.5rem;
     transform: translateY(20%);
     opacity: 1;
@@ -665,8 +671,8 @@ ul.desktop-links li a:hover {
     border: 1px solid var(--border-color);
     border-radius: 0.5rem;
     font-size: 1rem;
-    background: var(--background);
-    color: var(--body-text);
+    background: var(--background); /* Dark background */
+    color: var(--body-text); /* Light text */
     transition: border-color 0.2s, box-shadow 0.2s;
     font-family: 'Poppins', sans-serif;
 }
@@ -679,7 +685,8 @@ ul.desktop-links li a:hover {
 }
 .form-group select {
     appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%2364748B' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    /* MODIFIED: White arrow for dark mode */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%2394A3B8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 1rem center;
     background-size: 1em;
@@ -717,13 +724,13 @@ ul.desktop-links li a:hover {
 }
 .feedback-message.success {
     background-color: var(--accent-blue-light);
-    color: var(--accent-blue-hover);
+    color: var(--accent-blue); /* Changed from hover */
     border: 1px solid var(--accent-blue);
 }
 .feedback-message.error {
-    background-color: #FFF1F2;
-    color: #E11D48;
-    border: 1px solid #F87171;
+    background-color: #3f1217;
+    color: #fca5a5;
+    border: 1px solid #dc2626;
 }
 
 /* --- Contact Page V2.0 (Specifics) --- */
@@ -796,22 +803,25 @@ ul.desktop-links li a:hover {
 
 /* --- High-Contrast CTA Section --- */
 .cta-section {
-    background-color: var(--heading-text);
+    /* MODIFIED: Use dark purple for contrast */
+    background-color: var(--accent-blue-hover);
     padding: 4rem 0;
     text-align: center;
     margin-top: 4rem;
 }
 .cta-section h2 {
-    color: var(--background);
+    color: #FFFFFF; /* Hard-code white */
     font-size: 2.5rem;
     margin-bottom: 1rem;
 }
 .cta-section p {
-    color: var(--card-bg);
+    color: var(--heading-text); /* Light gray */
     font-size: 1.1rem;
     max-width: 500px;
     margin: 0 auto 2rem auto;
 }
+/* The .cta-button inside will be light purple, which contrasts */
+
 
 /* --- FOOTER --- */
 footer {
@@ -846,7 +856,8 @@ footer {
     width: 80%;
     max-width: 300px;
     height: 100%;
-    background-color: var(--heading-text);
+    /* MODIFIED: Use dark card background */
+    background-color: var(--card-bg);
     padding: 4rem 2rem 2rem 2rem;
     box-shadow: 2px 0 15px rgba(0, 0, 0, 0.1);
     z-index: 1050;
@@ -857,7 +868,8 @@ footer {
 #mobile-close-button {
     background: none;
     border: none;
-    color: rgba(255, 255, 255, 0.7);
+    /* MODIFIED: Use light text color */
+    color: rgba(226, 232, 240, 0.7);
     position: absolute;
     top: 1rem;
     right: 1rem;
@@ -869,7 +881,7 @@ footer {
     height: 24px;
 }
 #mobile-close-button:hover {
-    color: #fff;
+    color: var(--heading-text); /* Use light variable */
 }
 
 #mobile-nav ul {
@@ -883,7 +895,7 @@ footer {
 
 #mobile-nav ul li a {
     display: block;
-    color: #fff; /* Ensure all links are white */
+    color: var(--heading-text); /* Use light variable */
     text-decoration: none;
     font-size: 1.1rem;
     font-weight: 500;
@@ -960,7 +972,8 @@ footer {
         text-align: center;
     }
     .hero-section-v2::before {
-        background: rgba(255, 255, 255, 0.85);
+        /* MODIFIED: Dark mobile hero overlay */
+        background: rgba(15, 23, 42, 0.85);
     }
     .hero-section-v2 h1 {
         font-size: 2.5rem;
@@ -1185,6 +1198,8 @@ footer {
     width: auto;
     opacity: 0.5;
     transition: opacity 0.3s ease;
+    /* MODIFIED: Make logos white for dark mode */
+    filter: invert(1) brightness(1.5);
 }
 .logo-item img:hover {
     opacity: 1;
