@@ -308,7 +308,7 @@ ul.desktop-links li a:hover {
 }
 .service-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); /* Adjusted shadow */
 }
 .service-icon-wrapper {
     display: inline-block;
@@ -961,54 +961,49 @@ footer .container {
     }
     /* Process Section */
     .process-grid {
-        grid-template-columns: repeat(2, 1fr); /* 2x2 grid */
-        gap: 3rem 1.5rem; /* Increased vertical gap */
+        grid-template-columns: repeat(2, 1fr);
+        gap: 3rem 1.5rem;
     }
     .process-grid::before {
-        display: none; /* Hide main horizontal connector */
+        display: none;
     }
     .process-card:nth-child(1)::after,
     .process-card:nth-child(2)::after {
         content: '';
         position: absolute;
         left: 50%;
-        bottom: -3.0rem; /* Match increased gap */
+        bottom: -3.0rem;
         width: 2px;
-        height: 3rem; /* Match increased gap */
+        height: 3rem;
         background-color: var(--border-color);
         transform: translateX(-50%);
         z-index: 0;
     }
-     /* Horizontal connector for 2x2 grid */
-    .process-card:nth-child(odd)::before { /* Targets 1, 3 */
+    .process-card:nth-child(odd)::before {
         content: '';
         position: absolute;
-        /* Position vertically centered with icon */
-        top: calc(2.5rem + 30px - 1px); /* card padding + half icon height - half line height */
-        right: calc(-0.75rem - 1px); /* Half gap + half line width */
-        width: calc(1.5rem + 2px); /* Full gap + line width */
+        top: calc(2.5rem + 30px - 1px);
+        right: calc(-0.75rem - 1px);
+        width: calc(1.5rem + 2px);
         height: 2px;
         background-color: var(--border-color);
-        transform: none; /* Reset transform */
+        transform: none;
         z-index: 0;
         opacity: 1;
-        padding: 0; /* Remove padding */
+        padding: 0;
     }
-    /* Re-apply data-step number style as it was overridden by horizontal connector */
      .process-card::before {
-        content: attr(data-step); /* Restore number */
-        position: absolute;
-        top: -10px; /* Keep above card */
+        content: attr(data-step);
+        top: -10px;
         left: 50%;
         transform: translateX(-50%);
-        /* Keep original styling */
+        opacity: 1;
+        background-color: var(--card-bg);
         font-size: 0.9rem;
         font-weight: 600;
         color: var(--accent-blue);
-        background-color: var(--card-bg);
         padding: 0 0.5em;
         z-index: 3;
-        opacity: 1;
         transition: none;
         width: auto;
         height: auto;
@@ -1173,33 +1168,29 @@ footer .container {
     }
     /* Process Mobile */
     .process-grid {
-        gap: 3.5rem 0; /* Increased vertical gap */
+        gap: 3.5rem 0;
     }
     .process-card {
         padding: 2rem 1rem;
     }
-    /* Remove horizontal connector from medium screen */
     .process-card:nth-child(odd)::before {
         display: none;
     }
-     /* Vertical connector for single column */
     .process-card:not(:last-child)::after {
         content: '';
         position: absolute;
-        top: calc(2.5rem + 60px + 4px); /* Start below icon+shadow */
-        bottom: -3.5rem; /* Match increased gap */
+        top: calc(2.5rem + 60px + 4px);
+        bottom: -3.5rem;
         left: 50%;
         width: 2px;
         background-color: var(--border-color);
         transform: translateX(-50%);
-        z-index: 0; /* Behind card background */
+        z-index: 0;
     }
-     /* Remove vertical connector from medium screen */
-    .process-card:nth-child(1)::after,
+     .process-card:nth-child(1)::after,
     .process-card:nth-child(2)::after {
         display: none;
     }
-    /* Ensure number position */
     .process-card::before {
         top: -10px;
         left: 50%;
@@ -1207,7 +1198,7 @@ footer .container {
         background-color: var(--card-bg);
         z-index: 3;
     }
-     /* Tech Scroller Mobile */
+     /* Tech Scroller Mobile - Ensure these are correct */
     @keyframes scroll-tech {
         0% { transform: translateX(0); }
         100% { transform: translateX(calc(-120px * 12)); }
@@ -1220,8 +1211,8 @@ footer .container {
         width: 120px;
     }
     .tech-logo-item img {
-        height: 30px;
-        max-width: 60px;
+        height: 30px; /* Correct height */
+        max-width: 60px; /* Added max-width */
     }
     .tech-logo-item span {
         font-size: 0.8rem;
@@ -1253,7 +1244,7 @@ footer .container {
     width: 100%;
     border-radius: 12px;
     object-fit: cover;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Adjusted shadow */
 }
 .why-python-text {
     flex-basis: 55%;
@@ -1269,8 +1260,8 @@ footer .container {
 }
 .feature-list-simple {
     list-style: none;
-    padding: 0;
-    margin: 0;
+    padding: 0; /* Remove default padding */
+    margin: 0; /* Remove default margin */
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -1304,16 +1295,16 @@ footer .container {
 }
 .featured-project-text {
     flex-basis: 50%;
-    order: 1;
+    order: 1; /* Text first */
 }
 .featured-project-image {
     flex-basis: 50%;
-    order: 2;
+    order: 2; /* Image second */
 }
 .featured-project-image img {
     width: 100%;
     border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Adjusted shadow */
 }
 .featured-project-text h2 {
     color: var(--heading-text);
@@ -1324,6 +1315,63 @@ footer .container {
     font-size: 1.1rem;
     margin-bottom: 2rem;
 }
+
+/* --- CORRECTED: Technologies Section - Scrolling --- */
+.tech-section {
+    padding: 4rem 0; /* Standard padding */
+}
+
+@keyframes scroll-tech {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(-150px * 12)); } /* 150px width * 12 logos */
+}
+
+.tech-scroll-container {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    background-color: var(--card-bg); /* Use card background */
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    padding: 2rem 0; /* Vertical padding */
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+}
+.tech-scroll-track {
+    display: flex; /* Makes items horizontal */
+    width: calc(150px * 24); /* Item Width * (12 logos * 2 sets) */
+    animation: scroll-tech 50s linear infinite; /* Adjust speed */
+}
+.tech-scroll-track:hover {
+    animation-play-state: paused;
+}
+.tech-logo-item {
+    flex-shrink: 0; /* Prevent items from shrinking */
+    width: 150px; /* Set fixed width */
+    padding: 0 1rem; /* Horizontal padding */
+    display: flex; /* Column layout */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem; /* Space between logo and text */
+}
+.tech-logo-item img {
+    height: 40px; /* Set fixed height */
+    width: auto; /* Allow width to scale */
+    max-width: 80px; /* Prevent huge logos */
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+    filter: invert(1) brightness(1.5); /* Make logos white/light */
+}
+.tech-logo-item span {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--muted-text);
+}
+.tech-logo-item:hover img {
+    opacity: 1;
+}
+/* --- END CORRECTED TECHNOLOGIES --- */
 
 /* --- About Page: Social Links --- */
 .about-social-links {
