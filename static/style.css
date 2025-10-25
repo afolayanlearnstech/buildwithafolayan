@@ -1885,5 +1885,8 @@ body.mobile-nav-open #mobile-menu-overlay {
         order: 1;
     }
     .faq-grid, .who-i-help-grid{grid-template-columns: 1fr;}
+    .hero-section-v2 {
+      background-position-y: -120px;
+    }
 }
 
