@@ -1900,7 +1900,7 @@ body.mobile-nav-open #mobile-menu-overlay {
     bottom: -3.5rem;
     left: 50%;
     width: 2px;
-    background-color: none;
+    background-color: transparent;
     transform: translateX(-50%);
     z-index: 0;
 }
