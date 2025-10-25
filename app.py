@@ -15,13 +15,15 @@ app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0 # Good for development
 
 # --- Flask-Mail Configuration ---
 # We use os.environ.get() to pull the sensitive data from our Environment Variables
-app.config['MAIL_SERVER'] = 'smtp.gmail.com'
-app.config['MAIL_PORT'] = 587
-app.config['MAIL_USE_TLS'] = True
+# --- Flask-Mail Configuration ---
+# Now we read ALL settings from Vercel's Environment Variables
+app.config['MAIL_SERVER'] = os.environ.get('MAIL_SERVER')
+app.config['MAIL_PORT'] = int(os.environ.get('MAIL_PORT', 587)) # Port must be an integer
+app.config['MAIL_USE_TLS'] = os.environ.get('MAIL_USE_TLS') == 'True' # Converts string "True" to boolean True
+app.config['MAIL_USE_SSL'] = os.environ.get('MAIL_USE_SSL') == 'True' # Converts string "False" to boolean False
 app.config['MAIL_USERNAME'] = os.environ.get('MAIL_USERNAME')
 app.config['MAIL_PASSWORD'] = os.environ.get('MAIL_PASSWORD')
 app.config['MAIL_DEFAULT_SENDER'] = os.environ.get('MAIL_USERNAME')
-
 # Initialize the Mail object
 mail = Mail(app)
 
