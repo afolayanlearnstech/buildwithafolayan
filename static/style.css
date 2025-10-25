@@ -17,13 +17,14 @@
     --input-bg: #1E293B;
     --border-color: #334155;
     --border-color-focus: #475569;
-    --heading-text: #E2E8F0;
-    --body-text: #94A3B8;
+    /* ==== LIGHTENED TEXT COLORS ==== */
+    --heading-text: #F8FAFC; /* Was #E2E8F0 */
+    --body-text: #CBD5E1;    /* Was #94A3B8 */
     --accent-blue: #8B5CF6;
     --accent-blue-hover: #7C3AED;
     --accent-blue-light: rgba(139, 92, 246, 0.1);
-    --muted-text: #64748B;
-    --placeholder-text: #64748B;
+    --muted-text: #94A3B8;     /* Was #64748B */
+    --placeholder-text: #64748B; /* Kept darker for placeholders */
 }
 
 /* --- General Body & Layout --- */
@@ -35,7 +36,7 @@ body {
     font-family: 'Poppins', sans-serif;
     line-height: 1.6;
     background-color: var(--background);
-    color: var(--body-text);
+    color: var(--body-text); /* Uses the updated lighter color */
     padding-top: 120px;
     display: flex;
     flex-direction: column;
