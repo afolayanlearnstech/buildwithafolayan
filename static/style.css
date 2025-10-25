@@ -44,7 +44,8 @@ body {
 
 .container {
     width: 90%;
-    max-width: 1100px;
+    /* ==== INCREASED MAX-WIDTH ==== */
+    max-width: 1280px;
     margin: 0 auto;
     padding: 2rem 1rem;
     flex-grow: 1;
@@ -87,7 +88,8 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1100px;
+     /* Match the main container width */
+    max-width: 1280px;
     margin: 0 auto;
     padding: 0 2rem;
     height: 80px;
@@ -211,7 +213,8 @@ ul.desktop-links li a:hover {
         rgba(15, 23, 42, 0.3) 100%);
 }
 .hero-section-v2 .container {
-     max-width: 1100px;
+     /* Match main container width */
+     max-width: 1280px;
      padding-top: 0;
      padding-bottom: 0;
 }
