@@ -141,6 +141,17 @@ ul.desktop-links li a:hover {
     color: var(--heading-text);
 }
 
+/* ==== NEW: ACTIVE LINK STYLES (Desktop) ==== */
+.home-page .desktop-links a[href="/"],
+.about-page .desktop-links a[href="/about"],
+.solutions-page .desktop-links a[href="/solutions"],
+.portfolio-page .desktop-links a[href="/portfolio"],
+.contact-page .desktop-links a[href="/contact"] {
+    color: var(--accent-blue);
+    font-weight: 700;
+    background-color: var(--accent-blue-light);
+}
+
 
 /* --- PAGE HEADER --- */
 .page-header {
@@ -993,6 +1004,17 @@ footer .container {
 #mobile-nav ul li a:hover {
     color: var(--accent-blue);
 }
+
+/* ==== NEW: ACTIVE LINK STYLES (Mobile) ==== */
+.home-page #mobile-nav a[href="/"],
+.about-page #mobile-nav a[href="/about"],
+.solutions-page #mobile-nav a[href="/solutions"],
+.portfolio-page #mobile-nav a[href="/portfolio"],
+.contact-page #mobile-nav a[href="/contact"] {
+    color: var(--accent-blue);
+    font-weight: 700;
+}
+
 
 #mobile-nav.mobile-nav-open {
     transform: translateX(0);

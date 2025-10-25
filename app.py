@@ -1,6 +1,8 @@
 # Import all necessary tools from Flask and the 'os' module
 from flask import Flask, render_template, request, redirect, url_for, flash
 import os
+# Import Flask-Mail
+from flask_mail import Mail, Message
 
 # --- Production-Ready App Initialization ---
 app = Flask(__name__,
@@ -9,6 +11,20 @@ app = Flask(__name__,
 
 app.config['SECRET_KEY'] = 'a-super-secret-key-that-you-should-change'
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0 # Good for development
+
+
+# --- Flask-Mail Configuration ---
+# We use os.environ.get() to pull the sensitive data from our Environment Variables
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_PORT'] = 587
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USERNAME'] = os.environ.get('MAIL_USERNAME')
+app.config['MAIL_PASSWORD'] = os.environ.get('MAIL_PASSWORD')
+app.config['MAIL_DEFAULT_SENDER'] = os.environ.get('MAIL_USERNAME')
+
+# Initialize the Mail object
+mail = Mail(app)
+
 
 # --- DYNAMIC CASE STUDY DATA (with Icons) ---
 portfolio_projects = [
@@ -58,22 +74,36 @@ portfolio_projects = [
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+    # Pass 'home-page' as the body_class
+    return render_template('index.html', body_class='home-page')
 
 @app.route('/about')
 def about():
-    return render_template('about.html')
+    # Pass 'about-page' as the body_class
+    return render_template('about.html', body_class='about-page')
 
 @app.route('/solutions')
 def solutions():
-    return render_template('solutions.html')
+    # Pass 'solutions-page' as the body_class
+    return render_template('solutions.html', body_class='solutions-page')
 
 @app.route('/portfolio')
 def portfolio():
-    return render_template('portfolio.html', projects=portfolio_projects)
+    # Pass 'portfolio-page' as the body_class
+    return render_template('portfolio.html', projects=portfolio_projects, body_class='portfolio-page')
 
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
+    # This page needs the body_class in all return statements
+    active_body_class = 'contact-page'
+
+    # Check if mail configuration is missing
+    if not app.config['MAIL_USERNAME'] or not app.config['MAIL_PASSWORD']:
+        # Only flash this message if the server config is wrong, on POST attempt
+        if request.method == 'POST':
+            flash('The server is not configured for mail. Please contact the administrator.', 'error')
+        return render_template('contact.html', body_class=active_body_class)
+
     try:
         if request.method == 'POST':
             name = request.form['name']
@@ -84,31 +114,54 @@ def contact():
             # Basic validation (can be expanded)
             if not name or not email or not service or not challenges:
                  flash('Please fill out all required fields.', 'error')
-                 return redirect(url_for('contact'))
+                 # Return, not redirect, so user doesn't lose their data
+                 return render_template('contact.html', name=name, email=email, service=service, challenges=challenges, body_class=active_body_class)
 
-            print(f"--- New Consultation Request ---")
-            print(f"Name: {name}")
-            print(f"Email: {email}")
-            print(f"Service Needed: {service}")
-            print(f"Challenges: {challenges}")
-            print(f"---------------------------------")
+            # --- Create the Email ---
+            subject = f"New Portfolio Contact Request from: {name}"
+            # Send the email TO yourself
+            recipients = ['favour.afolayan.dev@gmail.com'] 
+            
+            # Build a nice-looking email body
+            msg_body = f"""
+            You have a new consultation request:
 
-            # !!! IMPORTANT: Add email sending logic here in a real application !!!
-            # Example: send_email(name, email, service, challenges)
+            Name: {name}
+            Email: {email}
+            
+            Service Needed:
+            {service}
+
+            Project Details / Challenges:
+            {challenges}
+            """
+            
+            # Create the message object
+            msg = Message(subject=subject,
+                          recipients=recipients,
+                          body=msg_body)
+            
+            # Set the reply-to to be the user's email
+            msg.reply_to = email
+
+            # --- Send the Email ---
+            mail.send(msg)
+
+            # --- END Email Logic ---
 
             flash('Thank you for your consultation request! I will get back to you soon.', 'success')
             return redirect(url_for('contact')) # Redirect to clear the form
+            
     except Exception as e:
-        print(f"Form submission error: {e}")
+        print(f"Form submission or email error: {e}")
         # Log the error properly in a real application
         # import logging
         # logging.exception("Form submission error")
-        flash('An unexpected error occurred. Please try again later.', 'error')
-        # Don't redirect on server error, allow user to see the page still
-        # return redirect(url_for('contact')) # Avoid redirecting here
-
-    # Render the template for GET requests or if POST fails before redirect
-    return render_template('contact.html')
+        flash('An unexpected server error occurred. Please try again later.', 'error')
+        # Don't redirect, let user see the page and their data
+    
+    # Render the template for GET requests or if POST fails
+    return render_template('contact.html', body_class=active_body_class)
 
 
 if __name__ == '__main__':
@@ -116,3 +169,4 @@ if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
     # Turn off debug mode for production
     app.run(debug=False, host='0.0.0.0', port=port)
+

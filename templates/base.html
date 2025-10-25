@@ -10,12 +10,14 @@
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
     </head>
+<!-- ==== MODIFIED BODY TAG ==== -->
 <body class="{{ body_class or '' }}">
     <header>
         <div class="header-container">
             <nav class="desktop-nav">
                 <a href="{{ url_for('home') }}" class="logo">Afolayan Favour</a>
                 <ul class="desktop-links">
+                    <!-- Links now use url_for() for consistency -->
                     <li><a href="{{ url_for('home') }}">Home</a></li>
                     <li><a href="{{ url_for('about') }}">About</a></li>
                     <li><a href="{{ url_for('solutions') }}">Solutions</a></li>
@@ -34,6 +36,7 @@
                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
              </button>
             <ul>
+                <!-- Links now use url_for() for consistency -->
                 <li><a href="{{ url_for('home') }}">Home</a></li>
                 <li><a href="{{ url_for('about') }}">About</a></li>
                 <li><a href="{{ url_for('solutions') }}">Solutions</a></li>
@@ -70,7 +73,6 @@
                     <p>
                         Full-Stack Developer & Automation Expert building custom, secure, and efficient web solutions.
                     </p>
-                    <!-- ==== UPDATED EMAIL ADDRESS ==== -->
                     <a href="mailto:favour.afolayan.dev@gmail.com" class="footer-contact-link">favour.afolayan.dev@gmail.com</a>
                 </div>
 
