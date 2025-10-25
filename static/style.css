@@ -1893,5 +1893,16 @@ body.mobile-nav-open #mobile-menu-overlay {
     grid-template-columns: 1fr;
     
 }
+.process-card:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: calc(2.5rem + 60px + 4px);
+    bottom: -3.5rem;
+    left: 50%;
+    width: 2px;
+    /* background-color: var(--border-color); */
+    transform: translateX(-50%);
+    z-index: 0;
+}
 }
 
