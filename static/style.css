@@ -1424,7 +1424,7 @@ body.mobile-nav-open #mobile-menu-overlay {
         background-color: var(--card-bg);
         z-index: 3;
     }
-     /* Tech Scroller Mobile - Ensure these are correct */
+     /* Tech Scroller Mobile - Ensure these correct */
     @keyframes scroll-tech {
         0% { transform: translateX(0); }
         100% { transform: translateX(calc(-120px * 12)); }
@@ -1883,3 +1883,4 @@ body.mobile-nav-open #mobile-menu-overlay {
         order: 1;
     }
 }
+
