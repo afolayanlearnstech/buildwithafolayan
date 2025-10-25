@@ -192,8 +192,8 @@ ul.desktop-links li a:hover {
     position: relative;
     padding: 6rem 0 8rem 0;
     background-color: var(--card-bg);
-    /* ==== CORRECTED BACKGROUND IMAGE PATH ==== */
-    background-image: url('/static/assets/images/hero-background.jpg');
+    /* ==== UPDATED BACKGROUND IMAGE ==== */
+    background-image: url('https://images.unsplash.com/photo-1550439062-609e1531270e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80');
     background-size: cover;
     background-position: center;
     overflow: hidden;
