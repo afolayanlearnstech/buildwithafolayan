@@ -1099,6 +1099,7 @@ body.mobile-nav-open #mobile-menu-overlay {
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    pointer-events: visible;
 }
 
 #mobile-nav ul li a {
