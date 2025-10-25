@@ -1884,5 +1884,6 @@ body.mobile-nav-open #mobile-menu-overlay {
     .featured-project-image {
         order: 1;
     }
+    .faq-grid, .who-i-help-grid{grid-template-columns: 1fr;}
 }
 
