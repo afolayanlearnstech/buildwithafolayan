@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Afolayan Favour | Portfolio{% endblock %}</title>
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}?v=9.0">
+    <!-- Updated cache-busting version -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}?v=9.1">
 
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
@@ -26,9 +27,13 @@
                 </ul>
             </nav>
 
+            <!-- ==== START: NEW ANIMATED HAMBURGER BUTTON ==== -->
             <button id="mobile-menu-button" aria-label="Open Menu" aria-expanded="false" aria-controls="mobile-nav">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                <div class="hamburger-box">
+                    <div class="hamburger-inner"></div>
+                </div>
             </button>
+            <!-- ==== END: NEW ANIMATED HAMBURGER BUTTON ==== -->
         </div>
 
         <nav id="mobile-nav">
@@ -44,6 +49,9 @@
                 <li><a href="{{ url_for('contact') }}">Contact</a></li>
             </ul>
         </nav>
+        
+        <!-- ==== NEW: Page overlay for when menu is open ==== -->
+        <div id="mobile-menu-overlay"></div>
     </header>
 
     <main>
@@ -123,6 +131,7 @@
       });
     </script>
 
-    <script src="{{ url_for('static', filename='script.js') }}?v=9.0"></script>
+    <!-- Updated cache-busting version -->
+    <script src="{{ url_for('static', filename='script.js') }}?v=9.1"></script>
 </body>
 </html>

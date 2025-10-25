@@ -1,23 +1,32 @@
 // Wait until the HTML is fully loaded before running the script
 document.addEventListener('DOMContentLoaded', function() {
 
-    // Find the hamburger button, the close button, and the mobile nav menu
+    // Find the hamburger button, the close button, the mobile nav menu, and the new overlay
     const menuButton = document.getElementById('mobile-menu-button');
     const closeButton = document.getElementById('mobile-close-button');
     const mobileNav = document.getElementById('mobile-nav');
+    const overlay = document.getElementById('mobile-menu-overlay'); // Get the overlay
 
     // Function to open the menu
     function openMenu() {
-        mobileNav.classList.add('mobile-nav-open'); 
-        // Optional: Disable scrolling on the body when menu is open
-        document.body.style.overflow = 'hidden'; 
+        // Add class to the BODY. This controls everything:
+        // 1. The nav sliding in
+        // 2. The overlay fading in
+        // 3. The hamburger icon animating
+        // 4. Disabling body scroll
+        document.body.classList.add('mobile-nav-open');
+        
+        // Update ARIA attribute for accessibility
+        menuButton.setAttribute('aria-expanded', 'true');
     }
 
     // Function to close the menu
     function closeMenu() {
-        mobileNav.classList.remove('mobile-nav-open');
-        // Optional: Re-enable scrolling
-        document.body.style.overflow = ''; 
+        // Remove class from the BODY
+        document.body.classList.remove('mobile-nav-open');
+        
+        // Update ARIA attribute for accessibility
+        menuButton.setAttribute('aria-expanded', 'false');
     }
 
     // Add event listener to the hamburger button
@@ -30,7 +39,13 @@ document.addEventListener('DOMContentLoaded', function() {
         closeButton.addEventListener('click', closeMenu);
     }
 
-    // --- MODIFIED SECTION: Close menu on link click ---
+    // --- NEW: Add event listener to the overlay to close menu ---
+    if (overlay) {
+        overlay.addEventListener('click', closeMenu);
+    }
+
+    // --- This section is still correct and essential ---
+    // It handles closing the menu *before* navigating to a new page.
     if (mobileNav) {
         mobileNav.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', function(event) {
@@ -40,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // 2. Get the destination URL from the link
                 const href = this.href; 
                 
-                // 3. Close the menu
+                // 3. Close the menu (which removes the 'mobile-nav-open' class)
                 closeMenu(); 
                 
                 // 4. Wait for the menu's close animation (300ms) to finish
