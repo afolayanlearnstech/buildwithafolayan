@@ -1894,8 +1894,6 @@ body.mobile-nav-open #mobile-menu-overlay {
     
 }
 .process-card:not(:last-child)::after {
-    content: '';
-    position: absolute;
     top: calc(2.5rem + 60px + 4px);
     bottom: -3.5rem;
     left: 50%;
