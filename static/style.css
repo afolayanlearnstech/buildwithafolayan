@@ -1865,7 +1865,7 @@ body.mobile-nav-open #mobile-menu-overlay {
     .featured-project-text h2 {
         font-size: 2rem;
     }
-    .header{pointer-events: visible;}
+    header{pointer-events: visible;}
 }
 
 @media (max-width: 768px) {
