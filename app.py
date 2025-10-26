@@ -38,7 +38,7 @@ portfolio_projects = [
         # UPDATED Status
         'status': 'Live Demo',
         # NEW Links - *** REMEMBER TO REPLACE THE vercel.app URL ***
-        'live_url': 'https://secure-client-portal-xxxx.vercel.app', # <-- *** REPLACE with your Secure Portal Vercel URL ***
+        'live_url': 'https://secure-client-portal.vercel.app/', # <-- *** REPLACE with your Secure Portal Vercel URL ***
         'github_url': 'https://github.com/buildwithafolayan/secure-client-portal'
     },
     {
