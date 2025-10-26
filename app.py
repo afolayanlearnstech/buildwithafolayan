@@ -14,8 +14,6 @@ app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0 # Good for development
 
 
 # --- Flask-Mail Configuration ---
-# We use os.environ.get() to pull the sensitive data from our Environment Variables
-# --- Flask-Mail Configuration ---
 # Now we read ALL settings from Vercel's Environment Variables
 app.config['MAIL_SERVER'] = os.environ.get('MAIL_SERVER')
 app.config['MAIL_PORT'] = int(os.environ.get('MAIL_PORT', 587)) # Port must be an integer
@@ -32,13 +30,16 @@ mail = Mail(app)
 portfolio_projects = [
     {
         'title': 'The Secure Client Document Intake Portal',
-        'description': 'A private portal allowing firms (Law, Accounting) to securely receive sensitive client files, bypassing insecure email. Automates renaming and organization, saving admin time and reducing breach risks.',
+        'description': 'A private portal allowing firms (Law, Accounting) to securely receive sensitive client files via direct cloud upload, bypassing insecure email. Features multi-file selection with preview.',
         # Icon: Shield Check (Security)
         'icon_svg': '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield-check"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>',
-        'tech_tags': ['Flask', 'File Handling', 'Security', 'Automation'],
-        'status': 'Concept',
-        'case_study_url': '#',
-        'link_text': 'Learn More (Coming Soon)'
+        # UPDATED Tech Tags
+        'tech_tags': ['Flask', 'SQLAlchemy', 'JavaScript', 'Vercel Blob', 'Security', 'Automation'],
+        # UPDATED Status
+        'status': 'Live Demo',
+        # NEW Links - *** REMEMBER TO REPLACE THE vercel.app URL ***
+        'live_url': 'https://secure-client-portal-xxxx.vercel.app', # <-- *** REPLACE with your Secure Portal Vercel URL ***
+        'github_url': 'https://github.com/buildwithafolayan/secure-client-portal'
     },
     {
         'title': 'The Automated Patient Nurture Sequence',
@@ -47,7 +48,7 @@ portfolio_projects = [
         'icon_svg': '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail-check"><path d="M22 13V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v12c0 1.1.9 2 2 2h8"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/><path d="m16 19 2 2 4-4"/></svg>',
         'tech_tags': ['Flask', 'Google Sheets', 'Email (SMTP)', 'Scheduling'],
         'status': 'Concept',
-        'case_study_url': '#',
+        'case_study_url': '#', # Keep these for concept projects if needed
         'link_text': 'Learn More (Coming Soon)'
     },
     {
@@ -122,27 +123,27 @@ def contact():
             # --- Create the Email ---
             subject = f"New Portfolio Contact Request from: {name}"
             # Send the email TO yourself
-            recipients = ['favour.afolayan.dev@gmail.com'] 
-            
+            recipients = ['favour.afolayan.dev@gmail.com']
+
             # Build a nice-looking email body
             msg_body = f"""
             You have a new consultation request:
 
             Name: {name}
             Email: {email}
-            
+
             Service Needed:
             {service}
 
             Project Details / Challenges:
             {challenges}
             """
-            
+
             # Create the message object
             msg = Message(subject=subject,
                           recipients=recipients,
                           body=msg_body)
-            
+
             # Set the reply-to to be the user's email
             msg.reply_to = email
 
@@ -153,7 +154,7 @@ def contact():
 
             flash('Thank you for your consultation request! I will get back to you soon.', 'success')
             return redirect(url_for('contact')) # Redirect to clear the form
-            
+
     except Exception as e:
         print(f"Form submission or email error: {e}")
         # Log the error properly in a real application
@@ -161,7 +162,7 @@ def contact():
         # logging.exception("Form submission error")
         flash('An unexpected server error occurred. Please try again later.', 'error')
         # Don't redirect, let user see the page and their data
-    
+
     # Render the template for GET requests or if POST fails
     return render_template('contact.html', body_class=active_body_class)
 
@@ -169,5 +170,7 @@ def contact():
 if __name__ == '__main__':
     # Use environment variable for port if available (e.g., for deployment)
     port = int(os.environ.get('PORT', 5000))
-    # Turn off debug mode for production
+    # Turn off debug mode for production (Important: set to False before final deployment)
+    # For local testing, you might temporarily set debug=True
     app.run(debug=False, host='0.0.0.0', port=port)
+
