@@ -21,7 +21,6 @@
                     </div>
                     <div>
                         <strong>Email</strong>
-                        <!-- ==== UPDATED EMAIL ADDRESS ==== -->
                         <span>favour.afolayan.dev@gmail.com</span>
                     </div>
                 </li>
@@ -70,15 +69,14 @@
                 <div class="form-group">
                     <label for="service_needed">Service Needed *</label>
                     <select id="service_needed" name="service_needed" required>
-                        <option value="" disabled selected>Select a service</option>
-                        <option value="custom_website">Custom Website Development</option>
-                        <option value="python_backend">Python Backend Development</option>
-                        <option value="automation">Workflow & Process Automation</option>
-                        <option value="modernization">Website Modernization</option>
-                        <option value="other">Other / Not Sure</option>
+                        <option value="" disabled {% if not service and not selected_service %}selected{% endif %}>Select a service</option>
+                        <option value="custom_website" {% if service == 'custom_website' or selected_service == 'custom_website' %}selected{% endif %}>Custom Website Development</option>
+                        <option value="python_backend" {% if service == 'python_backend' or selected_service == 'python_backend' %}selected{% endif %}>Python Backend Development</option>
+                        <option value="automation" {% if service == 'automation' or selected_service == 'automation' %}selected{% endif %}>Workflow & Process Automation</option>
+                        <option value="modernization" {% if service == 'modernization' or selected_service == 'modernization' %}selected{% endif %}>Website Modernization</option>
+                        <option value="other" {% if service == 'other' or selected_service == 'other' %}selected{% endif %}>Other / Not Sure</option>
                     </select>
                 </div>
-
                 <div class="form-group">
                     <label for="challenges">Project Details *</label>
                     <textarea id="challenges" name="challenges" rows="5" placeholder="Tell me about your project..." required></textarea>

@@ -100,12 +100,20 @@ def contact():
     # This page needs the body_class in all return statements
     active_body_class = 'contact-page'
 
+    # ==== MODIFICATION ====
+    # On a GET request, check for a 'service' parameter in the URL
+    # We set this as a default, which will be used when rendering
+    selected_service = request.args.get('service', '')
+    # ==== END MODIFICATION ====
+
     # Check if mail configuration is missing
     if not app.config['MAIL_USERNAME'] or not app.config['MAIL_PASSWORD']:
         # Only flash this message if the server config is wrong, on POST attempt
         if request.method == 'POST':
             flash('The server is not configured for mail. Please contact the administrator.', 'error')
-        return render_template('contact.html', body_class=active_body_class)
+        # ==== MODIFICATION ====
+        # Pass 'selected_service' even on the error page
+        return render_template('contact.html', body_class=active_body_class, selected_service=selected_service)
 
     try:
         if request.method == 'POST':
@@ -118,6 +126,7 @@ def contact():
             if not name or not email or not service or not challenges:
                  flash('Please fill out all required fields.', 'error')
                  # Return, not redirect, so user doesn't lose their data
+                 # Pass the user's *submitted* data back to the form
                  return render_template('contact.html', name=name, email=email, service=service, challenges=challenges, body_class=active_body_class)
 
             # --- Create the Email ---
@@ -163,8 +172,10 @@ def contact():
         flash('An unexpected server error occurred. Please try again later.', 'error')
         # Don't redirect, let user see the page and their data
 
-    # Render the template for GET requests or if POST fails
-    return render_template('contact.html', body_class=active_body_class)
+    # Render the template for GET requests or if POST fails and throws exception
+    # ==== MODIFICATION ====
+    # Pass 'selected_service' to the template
+    return render_template('contact.html', body_class=active_body_class, selected_service=selected_service)
 
 
 if __name__ == '__main__':
@@ -173,4 +184,3 @@ if __name__ == '__main__':
     # Turn off debug mode for production (Important: set to False before final deployment)
     # For local testing, you might temporarily set debug=True
     app.run(debug=False, host='0.0.0.0', port=port)
-
