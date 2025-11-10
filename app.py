@@ -31,7 +31,7 @@ portfolio_projects = [
     # --- NEW PROJECT ADDED AT THE TOP ---
     {
         'title': 'Distributed Uptime Monitoring System',
-        'description': 'A full-stack, distributed application built to monitor website reliability. This project demonstrates a hybrid-cloud architecture, combining Vercel (for the app) and Supabase (for the database). The core challenge was debugging a complex IPv6 cloud networking bug, which was solved by migrating the connection from port 5432 to the "Transaction Pooler" (port 6543) to ensure reliable communication between the serverless functions and the database.',
+        'description': 'A full-stack, distributed application built to monitor website reliability. This project demonstrates a hybrid-cloud architecture, combining Vercel (for the app) and Supabase (for the database).',
         # Icon: Activity/Pulse (for Monitoring)
         'icon_svg': '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-activity"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>',
         'tech_tags': ['Python', 'Flask', 'PostgreSQL', 'Supabase', 'Vercel', 'SRE', 'Cloud Networking', 'Debugging'],
