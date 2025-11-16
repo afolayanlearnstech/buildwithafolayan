@@ -1944,3 +1944,32 @@ body.mobile-nav-open #mobile-menu-overlay {
     padding: 0.5rem 0; /* Remove button padding */
 }
 
+/* --- Header Alignment & Logo (v3) --- */
+
+/* This new block aligns your logo and links */
+.desktop-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+/* This is your updated logo link style */
+a.logo {
+    display: inline-block;
+    padding: 0;
+    font-size: 0;
+}
+
+/* This is your updated logo image style */
+.logo-image {
+    /* 1. Set to a reasonable height that fits the header */
+    height: 60px; /* <-- You can adjust this value! */
+    width: auto;
+    display: block;
+
+    /* 2. Added a permanent "glow" effect */
+    filter: drop-shadow(0 0 3px rgb(249, 249, 251));
+    
+    /* 3. All hover animations are removed */
+}
