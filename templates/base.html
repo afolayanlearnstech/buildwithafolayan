@@ -3,24 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Expert Python Full-Stack Developer specializing in custom web applications, Flask backends, and workflow automation.">
+    <meta name="keywords" content="Python Developer, Flask, SRE, DevOps, Automation, Web Development">
+    <meta name="author" content="Afolayan Favour">
+
     <title>{% block title %}Afolayan Favour | Portfolio{% endblock %}</title>
 
-    <!-- Updated cache-busting version -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}?v=9.1">
+    <!-- Updated cache-busting version to force new styles to load -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}?v=9.5">
 
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link rel="icon" href="{{ url_for('static', filename='transparent_background_logo1.png') }}">
+</head>
 
-    </head>
-<!-- ==== MODIFIED BODY TAG ==== -->
 <body class="{{ body_class or '' }}">
+    
+    <!-- 1. SCROLL PROGRESS BAR (Top of screen) -->
+    <div class="progress-container">
+        <div class="progress-bar" id="myBar"></div>
+    </div>
+
     <header>
         <div class="header-container">
             <nav class="desktop-nav">
-                <a href="{{ url_for('home') }}" class="logo"><img src="{{ url_for('static', filename='assets/images/transparent_background_logo1.png') }}" alt="Afolayan Favour Logo" class="logo-image">
+                <!-- Logo -->
+                <a href="{{ url_for('home') }}" class="logo">
+                    <img src="{{ url_for('static', filename='assets/images/transparent_background_logo1.png') }}" alt="Afolayan Favour Logo" class="logo-image">
                 </a>
+
+                <!-- Desktop Menu Links -->
                 <ul class="desktop-links">
-                    <!-- Links now use url_for() for consistency -->
                     <li><a href="{{ url_for('home') }}">Home</a></li>
                     <li><a href="{{ url_for('about') }}">About</a></li>
                     <li><a href="{{ url_for('solutions') }}">Solutions</a></li>
@@ -29,21 +43,20 @@
                 </ul>
             </nav>
 
-            <!-- ==== START: NEW ANIMATED HAMBURGER BUTTON ==== -->
+            <!-- Mobile Hamburger Button -->
             <button id="mobile-menu-button" aria-label="Open Menu" aria-expanded="false" aria-controls="mobile-nav">
                 <div class="hamburger-box">
                     <div class="hamburger-inner"></div>
                 </div>
             </button>
-            <!-- ==== END: NEW ANIMATED HAMBURGER BUTTON ==== -->
         </div>
 
+        <!-- Mobile Navigation Menu -->
         <nav id="mobile-nav">
              <button id="mobile-close-button" aria-label="Close Menu">
                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
              </button>
             <ul>
-                <!-- Links now use url_for() for consistency -->
                 <li><a href="{{ url_for('home') }}">Home</a></li>
                 <li><a href="{{ url_for('about') }}">About</a></li>
                 <li><a href="{{ url_for('solutions') }}">Solutions</a></li>
@@ -52,15 +65,14 @@
             </ul>
         </nav>
         
-        <!-- ==== NEW: Page overlay for when menu is open ==== -->
+        <!-- Mobile Menu Overlay -->
         <div id="mobile-menu-overlay"></div>
     </header>
 
     <main>
-        {# Display flashed messages globally just below header area #}
+        <!-- Flash Messages (Success/Error notifications) -->
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
-                {# Container is only added if there are messages #}
                 <div class="container global-flash-container">
                     <ul class="flash-messages">
                         {% for category, message in messages %}
@@ -71,10 +83,15 @@
             {% endif %}
         {% endwith %}
 
+        <!-- Page Content Injection -->
         {% block content %}{% endblock %}
     </main>
 
-    <!-- ==== FOOTER STRUCTURE ==== -->
+    <!-- 3. BACK TO TOP BUTTON -->
+    <button id="back-to-top" aria-label="Back to Top">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg>
+    </button>
+
     <footer>
         <div class="container">
             <div class="footer-main">
@@ -100,14 +117,12 @@
                 <div class="footer-social">
                     <h3>Connect</h3>
                     <div class="footer-social-icons">
-                        <!-- Re-using the .social-icon class from your about page -->
                         <a href="#" target="_blank" title="LinkedIn" class="social-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
                         </a>
                         <a href="#" target="_blank" title="GitHub" class="social-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
                         </a>
-                        <!-- ==== CORRECTED "X" LOGO ==== -->
                         <a href="#" target="_blank" title="X (Twitter)" class="social-icon">
                              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/>
@@ -121,20 +136,19 @@
             </div>
         </div>
     </footer>
-    <!-- ==== END NEW FOOTER ==== -->
 
+    <!-- Scripts -->
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
       AOS.init({
         duration: 800,
-        once: true, // Animation happens only once
-        offset: 50, // Trigger animations a little sooner
-        disable: 'mobile' // Optional: Disable AOS on mobile if performance is an issue
+        once: true, 
+        offset: 50, 
+        disable: 'mobile' 
       });
     </script>
 
     <!-- Updated cache-busting version -->
-    <script src="{{ url_for('static', filename='script.js') }}?v=9.1"></script>
+    <script src="{{ url_for('static', filename='script.js') }}?v=9.5"></script>
 </body>
 </html>
-

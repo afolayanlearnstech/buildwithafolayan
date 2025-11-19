@@ -9,8 +9,8 @@ app = Flask(__name__,
             static_folder='static',
             template_folder='templates')
 
-app.config['SECRET_KEY'] = 'a-super-secret-key-that-you-should-change'
-app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0 # Good for development
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'fallback-dev-key-change-in-prod')
+#app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0 # Good for development
 
 
 # --- Flask-Mail Configuration ---

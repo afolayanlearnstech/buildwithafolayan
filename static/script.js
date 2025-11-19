@@ -1,71 +1,158 @@
 // Wait until the HTML is fully loaded before running the script
 document.addEventListener('DOMContentLoaded', function() {
 
-    // Find the hamburger button, the close button, the mobile nav menu, and the new overlay
+    // ==========================================
+    // 1. MOBILE MENU LOGIC
+    // ==========================================
+    
     const menuButton = document.getElementById('mobile-menu-button');
     const closeButton = document.getElementById('mobile-close-button');
     const mobileNav = document.getElementById('mobile-nav');
-    const overlay = document.getElementById('mobile-menu-overlay'); // Get the overlay
+    const overlay = document.getElementById('mobile-menu-overlay');
 
-    // Function to open the menu
     function openMenu() {
-        // Add class to the BODY. This controls everything:
-        // 1. The nav sliding in
-        // 2. The overlay fading in
-        // 3. The hamburger icon animating
-        // 4. Disabling body scroll
         document.body.classList.add('mobile-nav-open');
-        
-        // Update ARIA attribute for accessibility
-        menuButton.setAttribute('aria-expanded', 'true');
+        if(menuButton) menuButton.setAttribute('aria-expanded', 'true');
     }
 
-    // Function to close the menu
     function closeMenu() {
-        // Remove class from the BODY
         document.body.classList.remove('mobile-nav-open');
-        
-        // Update ARIA attribute for accessibility
-        menuButton.setAttribute('aria-expanded', 'false');
+        if(menuButton) menuButton.setAttribute('aria-expanded', 'false');
     }
 
-    // Add event listener to the hamburger button
-    if (menuButton && mobileNav) { // Check if elements exist
+    if (menuButton && mobileNav) {
         menuButton.addEventListener('click', openMenu);
     }
 
-     // Add event listener to the close button
-    if (closeButton && mobileNav) { // Check if elements exist
+    if (closeButton && mobileNav) {
         closeButton.addEventListener('click', closeMenu);
     }
 
-    // --- NEW: Add event listener to the overlay to close menu ---
     if (overlay) {
         overlay.addEventListener('click', closeMenu);
     }
 
-    // --- This section is still correct and essential ---
-    // It handles closing the menu *before* navigating to a new page.
     if (mobileNav) {
         mobileNav.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', function(event) {
-                // 1. Prevent the link from navigating immediately
-                event.preventDefault(); 
-                
-                // 2. Get the destination URL from the link
-                const href = this.href; 
-                
-                // 3. Close the menu (which removes the 'mobile-nav-open' class)
-                closeMenu(); 
-                
-                // 4. Wait for the menu's close animation (300ms) to finish
-                setTimeout(() => {
-                    // 5. Go to the new page
-                    window.location.href = href;
-                }, 300); // This duration MUST match your CSS transition time
+                // Only close menu if it's an anchor link to a section or page
+                const href = this.getAttribute('href');
+                if (href) {
+                    // Allow default behavior (navigation) but close menu first
+                    closeMenu(); 
+                }
             });
         });
     }
 
-});
+    // ==========================================
+    // 2. TYPEWRITER EFFECT LOGIC (Updated)
+    // ==========================================
 
+    const words = [
+        "Custom Business Websites.",  // <--- First option as requested
+        "Python Backends.", 
+        "Workflow Automations.", 
+        "Secure Client Portals.", 
+        "Scalable Web Apps."
+    ];
+    
+    let i = 0;
+    let timer;
+
+    function typeWriter() {
+        const heading = document.querySelector(".typewriter-text");
+        // If the element isn't found (e.g., on a different page), stop here
+        if (!heading) return;
+        
+        const word = words[i];
+        let charIndex = 0;
+        let isDeleting = false;
+
+        function loop() {
+            // Update the text content
+            heading.innerHTML = word.substring(0, charIndex);
+            
+            // Logic to determine if we are typing or deleting
+            if (isDeleting) {
+                charIndex--;
+            } else {
+                charIndex++;
+            }
+
+            // Control the speed and direction
+            if (!isDeleting && charIndex > word.length) {
+                // Finished typing word, wait 2 seconds then start deleting
+                isDeleting = true;
+                setTimeout(loop, 2000); 
+            } else if (isDeleting && charIndex === 0) {
+                // Finished deleting, move to next word
+                isDeleting = false;
+                i = (i + 1) % words.length;
+                // Wait 0.5s before typing next word
+                setTimeout(typeWriter, 500);
+            } else {
+                // Typing speed (100ms) vs Deleting speed (50ms)
+                setTimeout(loop, isDeleting ? 50 : 100);
+            }
+        }
+
+        // Start the loop for the current word
+        loop();
+    }
+
+    // Start the typewriter effect
+    typeWriter();
+
+    // ==========================================
+    // 3. SCROLL & INTERACTIVE UI FEATURES
+    // ==========================================
+
+    // We attach the scroll event to the window
+    window.onscroll = function() {
+        handleScrollEffects();
+    };
+
+    function handleScrollEffects() {
+        // --- A. Progress Bar Calculation ---
+        let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        let scrolled = (winScroll / height) * 100;
+        
+        const progressBar = document.getElementById("myBar");
+        if (progressBar) {
+            progressBar.style.width = scrolled + "%";
+        }
+
+        // --- B. Back To Top Button Visibility ---
+        const backToTopBtn = document.getElementById("back-to-top");
+        if (backToTopBtn) {
+            // Show button after scrolling down 300px
+            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                backToTopBtn.classList.add("visible");
+            } else {
+                backToTopBtn.classList.remove("visible");
+            }
+        }
+    }
+
+    // --- C. Back To Top Click Event ---
+    const backToTopBtn = document.getElementById("back-to-top");
+    if (backToTopBtn) {
+        backToTopBtn.addEventListener("click", function() {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
+    }
+    
+    // ==========================================
+    // 4. INTERACTIVE FAQ (Solutions Page)
+    // ==========================================
+    // This exposes the toggle function globally so the HTML 'onclick' works
+    window.toggleFaq = function(element) {
+        element.classList.toggle("active");
+    };
+
+});

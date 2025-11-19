@@ -1,0 +1,33 @@
+--- Security ---
+
+Ignore the file containing passwords/keys
+
+.env
+.flaskenv
+private_keys/
+
+--- Python Temporary Files ---
+
+These are compiled files your computer makes to run faster.
+
+They are useless to other people and clutter the code.
+
+pycache/
+*.py[cod]
+*$py.class
+
+--- Virtual Environments ---
+
+If you create a virtual environment later, we don't want to upload it.
+
+venv/
+env/
+.venv/
+
+--- IDE/Editor Settings ---
+
+Ignore personal editor settings (VS Code, PyCharm, Mac Finder)
+
+.vscode/
+.idea/
+.DS_Store

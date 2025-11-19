@@ -207,7 +207,7 @@ ul.desktop-links li a:hover {
     padding: 6rem 0 8rem 0;
     background-color: var(--card-bg);
     /* ==== UPDATED BACKGROUND IMAGE ==== */
-    background-image: url('https://images.unsplash.com/photo-1550439062-609e1531270e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80');
+    background-image: url('assets/images/hero-background.jpg.jpeg');
     background-size: cover;
     background-position: center;
     overflow: hidden;
@@ -1972,4 +1972,136 @@ a.logo {
     filter: drop-shadow(0 0 3px rgb(249, 249, 251));
     
     /* 3. All hover animations are removed */
+}
+/* --- NEW: Modern UI Polish --- */
+
+/* 1. Background Ambient Glow (Subtle) */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 15% 50%, rgba(139, 92, 246, 0.08), transparent 25%),
+        radial-gradient(circle at 85% 30%, rgba(56, 189, 248, 0.08), transparent 25%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* 2. Card "Glass" & Hover Glow Effect */
+.service-card, .portfolio-item-card, .process-card {
+    background: rgba(30, 41, 59, 0.7); /* Semi-transparent */
+    backdrop-filter: blur(12px); /* The blur effect */
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.05); /* Subtle border */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.service-card:hover, .portfolio-item-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--accent-blue);
+    /* This is the "Neon" glow */
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.2), 
+                inset 0 0 20px rgba(139, 92, 246, 0.05); 
+}
+
+/* 3. Gradient Text for Main Headings */
+.hero-section-v2 h1, .page-header h1 {
+    background: linear-gradient(to right, #F8FAFC 20%, #94A3B8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+/* --- NEW: Interactive Features Suite --- */
+
+/* 1. Scroll Progress Bar (Top of Screen) */
+.progress-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: transparent;
+    z-index: 9999; /* Highest priority */
+}
+.progress-bar {
+    height: 3px;
+    background: var(--accent-blue);
+    width: 0%;
+    box-shadow: 0 0 10px var(--accent-blue); /* Neon Glow */
+    transition: width 0.1s ease-out;
+}
+
+/* 2. "Live" System Status Indicator (Header) */
+.status-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--heading-text);
+    background: rgba(30, 41, 59, 0.5);
+    padding: 6px 12px;
+    border-radius: 20px;
+    border: 1px solid var(--border-color);
+    margin-right: 1.5rem; /* Space before nav links */
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #10B981; /* Emerald Green */
+    border-radius: 50%;
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+    animation: pulse-green 2s infinite;
+}
+
+@keyframes pulse-green {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+    70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
+/* 3. Floating Back to Top Button */
+#back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: var(--accent-blue);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+    z-index: 990;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+#back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+#back-to-top:hover {
+    background: var(--accent-blue-hover);
+    transform: translateY(-5px);
+}
+
+/* Hide Status Indicator on small mobile screens if needed */
+@media (max-width: 600px) {
+    .status-indicator {
+        display: none;
+    }
 }
