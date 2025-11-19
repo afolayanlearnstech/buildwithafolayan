@@ -46,11 +46,11 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // ==========================================
-    // 2. TYPEWRITER EFFECT LOGIC (Updated)
+    // 2. TYPEWRITER EFFECT LOGIC
     // ==========================================
 
     const words = [
-        "Custom Business Websites.",  // <--- First option as requested
+        "Custom Business Websites.", 
         "Python Backends.", 
         "Workflow Automations.", 
         "Secure Client Portals.", 
@@ -114,17 +114,7 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
     function handleScrollEffects() {
-        // --- A. Progress Bar Calculation ---
-        let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-        let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        let scrolled = (winScroll / height) * 100;
-        
-        const progressBar = document.getElementById("myBar");
-        if (progressBar) {
-            progressBar.style.width = scrolled + "%";
-        }
-
-        // --- B. Back To Top Button Visibility ---
+        // --- Back To Top Button Visibility ---
         const backToTopBtn = document.getElementById("back-to-top");
         if (backToTopBtn) {
             // Show button after scrolling down 300px
@@ -136,7 +126,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // --- C. Back To Top Click Event ---
+    // --- Back To Top Click Event ---
     const backToTopBtn = document.getElementById("back-to-top");
     if (backToTopBtn) {
         backToTopBtn.addEventListener("click", function() {
